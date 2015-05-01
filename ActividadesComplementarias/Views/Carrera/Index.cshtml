@@ -1,0 +1,40 @@
+﻿@model IEnumerable<ActividadesComplementarias.Models.Carrera>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.idCarrera)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.nombreCarrera)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.idCarrera)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.nombreCarrera)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.idCarrera }) |
+            @Html.ActionLink("Details", "Details", new { id = item.idCarrera }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.idCarrera })
+        </td>
+    </tr>
+}
+
+</table>

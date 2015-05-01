@@ -1,0 +1,58 @@
+﻿@model ActividadesComplementarias.Models.ActividadComplementaria
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>ActividadComplementaria</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.idActividadComplementaria)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.idActividadComplementaria)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.nombreActComplementaria)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.nombreActComplementaria)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.descripcion)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.descripcion)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Carrera1.nombreCarrera)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Carrera1.nombreCarrera)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.modalidad)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.modalidad)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.noCreditos)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.noCreditos)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.idActividadComplementaria }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

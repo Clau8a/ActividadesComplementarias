@@ -1,0 +1,58 @@
+﻿@model IEnumerable<ActividadesComplementarias.Models.Estudiante>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.idEstudiante)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.nombreEstudiante)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Carrera1.nombreCarrera)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.estatusEstudiante)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.creditosComplementarios)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.idEstudiante)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.nombreEstudiante)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Carrera1.nombreCarrera)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.estatusEstudiante)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.creditosComplementarios)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.idEstudiante }) |
+            @Html.ActionLink("Details", "Details", new { id=item.idEstudiante}) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.idEstudiante })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,45 @@
+﻿@model ActividadesComplementarias.Models.Departamento
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Departamento</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.idDepartamento)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.idDepartamento)
+            @Html.ValidationMessageFor(model => model.idDepartamento)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.nombreDepartamento)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.nombreDepartamento)
+            @Html.ValidationMessageFor(model => model.nombreDepartamento)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "IndexDepartamento")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

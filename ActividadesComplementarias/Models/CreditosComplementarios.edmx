@@ -1,0 +1,430 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="CreditosComplementariosModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ActividadComplementaria">
+          <Key>
+            <PropertyRef Name="idActividadComplementaria" />
+          </Key>
+          <Property Name="idActividadComplementaria" Type="int" Nullable="false" />
+          <Property Name="nombreActComplementaria" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="140" Nullable="false" />
+          <Property Name="carrera" Type="int" Nullable="false" />
+          <Property Name="modalidad" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="noCreditos" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ActividadCursada">
+          <Key>
+            <PropertyRef Name="idAvtividadCursada" />
+          </Key>
+          <Property Name="idAvtividadCursada" Type="int" Nullable="false" />
+          <Property Name="idActComplementaria" Type="int" Nullable="false" />
+          <Property Name="idEstudiante" Type="int" Nullable="false" />
+          <Property Name="estatusActividad" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="periodo" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="mestro" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Carrera">
+          <Key>
+            <PropertyRef Name="idCarrera" />
+          </Key>
+          <Property Name="idCarrera" Type="int" Nullable="false" />
+          <Property Name="nombreCarrera" Type="varchar" MaxLength="60" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Departamento">
+          <Key>
+            <PropertyRef Name="idDepartamento" />
+          </Key>
+          <Property Name="idDepartamento" Type="int" Nullable="false" />
+          <Property Name="nombreDepartamento" Type="varchar" MaxLength="60" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Estudiante">
+          <Key>
+            <PropertyRef Name="idEstudiante" />
+          </Key>
+          <Property Name="idEstudiante" Type="int" Nullable="false" />
+          <Property Name="nombreEstudiante" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="carrera" Type="int" Nullable="false" />
+          <Property Name="estatusEstudiante" Type="bit" Nullable="false" />
+          <Property Name="creditosComplementarios" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Maestros">
+          <Key>
+            <PropertyRef Name="idMaestro" />
+          </Key>
+          <Property Name="idMaestro" Type="int" Nullable="false" />
+          <Property Name="nombreMaestro" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="departamentoMaestro" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_ActividadComplementaria_Disciplina">
+          <End Role="Carrera" Type="Self.Carrera" Multiplicity="1" />
+          <End Role="ActividadComplementaria" Type="Self.ActividadComplementaria" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Carrera">
+              <PropertyRef Name="idCarrera" />
+            </Principal>
+            <Dependent Role="ActividadComplementaria">
+              <PropertyRef Name="carrera" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ActividadCursada_ActividadComplementaria">
+          <End Role="ActividadComplementaria" Type="Self.ActividadComplementaria" Multiplicity="1" />
+          <End Role="ActividadCursada" Type="Self.ActividadCursada" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ActividadComplementaria">
+              <PropertyRef Name="idActividadComplementaria" />
+            </Principal>
+            <Dependent Role="ActividadCursada">
+              <PropertyRef Name="idActComplementaria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ActividadCursada_Estudiante">
+          <End Role="Estudiante" Type="Self.Estudiante" Multiplicity="1" />
+          <End Role="ActividadCursada" Type="Self.ActividadCursada" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estudiante">
+              <PropertyRef Name="idEstudiante" />
+            </Principal>
+            <Dependent Role="ActividadCursada">
+              <PropertyRef Name="idEstudiante" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ActividadCursada_Maestros">
+          <End Role="Maestros" Type="Self.Maestros" Multiplicity="1" />
+          <End Role="ActividadCursada" Type="Self.ActividadCursada" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Maestros">
+              <PropertyRef Name="idMaestro" />
+            </Principal>
+            <Dependent Role="ActividadCursada">
+              <PropertyRef Name="mestro" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Estudiante_Disciplina">
+          <End Role="Carrera" Type="Self.Carrera" Multiplicity="1" />
+          <End Role="Estudiante" Type="Self.Estudiante" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Carrera">
+              <PropertyRef Name="idCarrera" />
+            </Principal>
+            <Dependent Role="Estudiante">
+              <PropertyRef Name="carrera" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Maestros_Departamento">
+          <End Role="Departamento" Type="Self.Departamento" Multiplicity="1" />
+          <End Role="Maestros" Type="Self.Maestros" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Departamento">
+              <PropertyRef Name="idDepartamento" />
+            </Principal>
+            <Dependent Role="Maestros">
+              <PropertyRef Name="departamentoMaestro" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CreditosComplementariosModelStoreContainer">
+          <EntitySet Name="ActividadComplementaria" EntityType="Self.ActividadComplementaria" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ActividadCursada" EntityType="Self.ActividadCursada" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Carrera" EntityType="Self.Carrera" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Departamento" EntityType="Self.Departamento" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Estudiante" EntityType="Self.Estudiante" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Maestros" EntityType="Self.Maestros" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_ActividadComplementaria_Disciplina" Association="Self.FK_ActividadComplementaria_Disciplina">
+            <End Role="Carrera" EntitySet="Carrera" />
+            <End Role="ActividadComplementaria" EntitySet="ActividadComplementaria" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ActividadCursada_ActividadComplementaria" Association="Self.FK_ActividadCursada_ActividadComplementaria">
+            <End Role="ActividadComplementaria" EntitySet="ActividadComplementaria" />
+            <End Role="ActividadCursada" EntitySet="ActividadCursada" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ActividadCursada_Estudiante" Association="Self.FK_ActividadCursada_Estudiante">
+            <End Role="Estudiante" EntitySet="Estudiante" />
+            <End Role="ActividadCursada" EntitySet="ActividadCursada" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ActividadCursada_Maestros" Association="Self.FK_ActividadCursada_Maestros">
+            <End Role="Maestros" EntitySet="Maestros" />
+            <End Role="ActividadCursada" EntitySet="ActividadCursada" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Estudiante_Disciplina" Association="Self.FK_Estudiante_Disciplina">
+            <End Role="Carrera" EntitySet="Carrera" />
+            <End Role="Estudiante" EntitySet="Estudiante" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Maestros_Departamento" Association="Self.FK_Maestros_Departamento">
+            <End Role="Departamento" EntitySet="Departamento" />
+            <End Role="Maestros" EntitySet="Maestros" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CreditosComplementariosModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ActividadComplementaria">
+          <Key>
+            <PropertyRef Name="idActividadComplementaria" />
+          </Key>
+          <Property Name="idActividadComplementaria" Type="Int32" Nullable="false" />
+          <Property Name="nombreActComplementaria" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="140" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="carrera" Type="Int32" Nullable="false" />
+          <Property Name="modalidad" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="noCreditos" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Carrera1" Relationship="Self.FK_ActividadComplementaria_Disciplina" FromRole="ActividadComplementaria" ToRole="Carrera" />
+          <NavigationProperty Name="ActividadCursada" Relationship="Self.FK_ActividadCursada_ActividadComplementaria" FromRole="ActividadComplementaria" ToRole="ActividadCursada" />
+        </EntityType>
+        <EntityType Name="ActividadCursada">
+          <Key>
+            <PropertyRef Name="idAvtividadCursada" />
+          </Key>
+          <Property Name="idAvtividadCursada" Type="Int32" Nullable="false" />
+          <Property Name="idActComplementaria" Type="Int32" Nullable="false" />
+          <Property Name="idEstudiante" Type="Int32" Nullable="false" />
+          <Property Name="estatusActividad" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="periodo" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="mestro" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ActividadComplementaria" Relationship="Self.FK_ActividadCursada_ActividadComplementaria" FromRole="ActividadCursada" ToRole="ActividadComplementaria" />
+          <NavigationProperty Name="Estudiante" Relationship="Self.FK_ActividadCursada_Estudiante" FromRole="ActividadCursada" ToRole="Estudiante" />
+          <NavigationProperty Name="Maestros" Relationship="Self.FK_ActividadCursada_Maestros" FromRole="ActividadCursada" ToRole="Maestros" />
+        </EntityType>
+        <EntityType Name="Carrera">
+          <Key>
+            <PropertyRef Name="idCarrera" />
+          </Key>
+          <Property Name="idCarrera" Type="Int32" Nullable="false" />
+          <Property Name="nombreCarrera" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="ActividadComplementaria" Relationship="Self.FK_ActividadComplementaria_Disciplina" FromRole="Carrera" ToRole="ActividadComplementaria" />
+          <NavigationProperty Name="Estudiante" Relationship="Self.FK_Estudiante_Disciplina" FromRole="Carrera" ToRole="Estudiante" />
+        </EntityType>
+        <EntityType Name="Departamento">
+          <Key>
+            <PropertyRef Name="idDepartamento" />
+          </Key>
+          <Property Name="idDepartamento" Type="Int32" Nullable="false" />
+          <Property Name="nombreDepartamento" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Maestros" Relationship="Self.FK_Maestros_Departamento" FromRole="Departamento" ToRole="Maestros" />
+        </EntityType>
+        <EntityType Name="Estudiante">
+          <Key>
+            <PropertyRef Name="idEstudiante" />
+          </Key>
+          <Property Name="idEstudiante" Type="Int32" Nullable="false" />
+          <Property Name="nombreEstudiante" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="carrera" Type="Int32" Nullable="false" />
+          <Property Name="estatusEstudiante" Type="Boolean" Nullable="false" />
+          <Property Name="creditosComplementarios" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ActividadCursada" Relationship="Self.FK_ActividadCursada_Estudiante" FromRole="Estudiante" ToRole="ActividadCursada" />
+          <NavigationProperty Name="Carrera1" Relationship="Self.FK_Estudiante_Disciplina" FromRole="Estudiante" ToRole="Carrera" />
+        </EntityType>
+        <EntityType Name="Maestros">
+          <Key>
+            <PropertyRef Name="idMaestro" />
+          </Key>
+          <Property Name="idMaestro" Type="Int32" Nullable="false" />
+          <Property Name="nombreMaestro" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="departamentoMaestro" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ActividadCursada" Relationship="Self.FK_ActividadCursada_Maestros" FromRole="Maestros" ToRole="ActividadCursada" />
+          <NavigationProperty Name="Departamento" Relationship="Self.FK_Maestros_Departamento" FromRole="Maestros" ToRole="Departamento" />
+        </EntityType>
+        <Association Name="FK_ActividadComplementaria_Disciplina">
+          <End Role="Carrera" Type="Self.Carrera" Multiplicity="1" />
+          <End Role="ActividadComplementaria" Type="Self.ActividadComplementaria" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Carrera">
+              <PropertyRef Name="idCarrera" />
+            </Principal>
+            <Dependent Role="ActividadComplementaria">
+              <PropertyRef Name="carrera" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ActividadCursada_ActividadComplementaria">
+          <End Role="ActividadComplementaria" Type="Self.ActividadComplementaria" Multiplicity="1" />
+          <End Role="ActividadCursada" Type="Self.ActividadCursada" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ActividadComplementaria">
+              <PropertyRef Name="idActividadComplementaria" />
+            </Principal>
+            <Dependent Role="ActividadCursada">
+              <PropertyRef Name="idActComplementaria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ActividadCursada_Estudiante">
+          <End Role="Estudiante" Type="Self.Estudiante" Multiplicity="1" />
+          <End Role="ActividadCursada" Type="Self.ActividadCursada" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estudiante">
+              <PropertyRef Name="idEstudiante" />
+            </Principal>
+            <Dependent Role="ActividadCursada">
+              <PropertyRef Name="idEstudiante" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ActividadCursada_Maestros">
+          <End Role="Maestros" Type="Self.Maestros" Multiplicity="1" />
+          <End Role="ActividadCursada" Type="Self.ActividadCursada" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Maestros">
+              <PropertyRef Name="idMaestro" />
+            </Principal>
+            <Dependent Role="ActividadCursada">
+              <PropertyRef Name="mestro" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Estudiante_Disciplina">
+          <End Role="Carrera" Type="Self.Carrera" Multiplicity="1" />
+          <End Role="Estudiante" Type="Self.Estudiante" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Carrera">
+              <PropertyRef Name="idCarrera" />
+            </Principal>
+            <Dependent Role="Estudiante">
+              <PropertyRef Name="carrera" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Maestros_Departamento">
+          <End Role="Departamento" Type="Self.Departamento" Multiplicity="1" />
+          <End Role="Maestros" Type="Self.Maestros" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Departamento">
+              <PropertyRef Name="idDepartamento" />
+            </Principal>
+            <Dependent Role="Maestros">
+              <PropertyRef Name="departamentoMaestro" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CreditosComplementariosEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ActividadComplementaria" EntityType="Self.ActividadComplementaria" />
+          <EntitySet Name="ActividadCursada" EntityType="Self.ActividadCursada" />
+          <EntitySet Name="Carrera" EntityType="Self.Carrera" />
+          <EntitySet Name="Departamento" EntityType="Self.Departamento" />
+          <EntitySet Name="Estudiante" EntityType="Self.Estudiante" />
+          <EntitySet Name="Maestros" EntityType="Self.Maestros" />
+          <AssociationSet Name="FK_ActividadComplementaria_Disciplina" Association="Self.FK_ActividadComplementaria_Disciplina">
+            <End Role="Carrera" EntitySet="Carrera" />
+            <End Role="ActividadComplementaria" EntitySet="ActividadComplementaria" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ActividadCursada_ActividadComplementaria" Association="Self.FK_ActividadCursada_ActividadComplementaria">
+            <End Role="ActividadComplementaria" EntitySet="ActividadComplementaria" />
+            <End Role="ActividadCursada" EntitySet="ActividadCursada" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ActividadCursada_Estudiante" Association="Self.FK_ActividadCursada_Estudiante">
+            <End Role="Estudiante" EntitySet="Estudiante" />
+            <End Role="ActividadCursada" EntitySet="ActividadCursada" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ActividadCursada_Maestros" Association="Self.FK_ActividadCursada_Maestros">
+            <End Role="Maestros" EntitySet="Maestros" />
+            <End Role="ActividadCursada" EntitySet="ActividadCursada" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Estudiante_Disciplina" Association="Self.FK_Estudiante_Disciplina">
+            <End Role="Carrera" EntitySet="Carrera" />
+            <End Role="Estudiante" EntitySet="Estudiante" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Maestros_Departamento" Association="Self.FK_Maestros_Departamento">
+            <End Role="Departamento" EntitySet="Departamento" />
+            <End Role="Maestros" EntitySet="Maestros" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CreditosComplementariosModelStoreContainer" CdmEntityContainer="CreditosComplementariosEntities">
+          <EntitySetMapping Name="ActividadComplementaria">
+            <EntityTypeMapping TypeName="CreditosComplementariosModel.ActividadComplementaria">
+              <MappingFragment StoreEntitySet="ActividadComplementaria">
+                <ScalarProperty Name="idActividadComplementaria" ColumnName="idActividadComplementaria" />
+                <ScalarProperty Name="nombreActComplementaria" ColumnName="nombreActComplementaria" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="carrera" ColumnName="carrera" />
+                <ScalarProperty Name="modalidad" ColumnName="modalidad" />
+                <ScalarProperty Name="noCreditos" ColumnName="noCreditos" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ActividadCursada">
+            <EntityTypeMapping TypeName="CreditosComplementariosModel.ActividadCursada">
+              <MappingFragment StoreEntitySet="ActividadCursada">
+                <ScalarProperty Name="idAvtividadCursada" ColumnName="idAvtividadCursada" />
+                <ScalarProperty Name="idActComplementaria" ColumnName="idActComplementaria" />
+                <ScalarProperty Name="idEstudiante" ColumnName="idEstudiante" />
+                <ScalarProperty Name="estatusActividad" ColumnName="estatusActividad" />
+                <ScalarProperty Name="periodo" ColumnName="periodo" />
+                <ScalarProperty Name="mestro" ColumnName="mestro" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Carrera">
+            <EntityTypeMapping TypeName="CreditosComplementariosModel.Carrera">
+              <MappingFragment StoreEntitySet="Carrera">
+                <ScalarProperty Name="idCarrera" ColumnName="idCarrera" />
+                <ScalarProperty Name="nombreCarrera" ColumnName="nombreCarrera" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Departamento">
+            <EntityTypeMapping TypeName="CreditosComplementariosModel.Departamento">
+              <MappingFragment StoreEntitySet="Departamento">
+                <ScalarProperty Name="idDepartamento" ColumnName="idDepartamento" />
+                <ScalarProperty Name="nombreDepartamento" ColumnName="nombreDepartamento" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Estudiante">
+            <EntityTypeMapping TypeName="CreditosComplementariosModel.Estudiante">
+              <MappingFragment StoreEntitySet="Estudiante">
+                <ScalarProperty Name="idEstudiante" ColumnName="idEstudiante" />
+                <ScalarProperty Name="nombreEstudiante" ColumnName="nombreEstudiante" />
+                <ScalarProperty Name="carrera" ColumnName="carrera" />
+                <ScalarProperty Name="estatusEstudiante" ColumnName="estatusEstudiante" />
+                <ScalarProperty Name="creditosComplementarios" ColumnName="creditosComplementarios" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Maestros">
+            <EntityTypeMapping TypeName="CreditosComplementariosModel.Maestros">
+              <MappingFragment StoreEntitySet="Maestros">
+                <ScalarProperty Name="idMaestro" ColumnName="idMaestro" />
+                <ScalarProperty Name="nombreMaestro" ColumnName="nombreMaestro" />
+                <ScalarProperty Name="departamentoMaestro" ColumnName="departamentoMaestro" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

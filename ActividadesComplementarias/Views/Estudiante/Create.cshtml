@@ -1,0 +1,69 @@
+﻿@model ActividadesComplementarias.Models.Estudiante
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Estudiante</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.idEstudiante)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.idEstudiante)
+            @Html.ValidationMessageFor(model => model.idEstudiante)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.nombreEstudiante)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.nombreEstudiante)
+            @Html.ValidationMessageFor(model => model.nombreEstudiante)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.carrera, "Carrera1")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("carrera", String.Empty)
+            @Html.ValidationMessageFor(model => model.carrera)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.estatusEstudiante)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.estatusEstudiante)
+            @Html.ValidationMessageFor(model => model.estatusEstudiante)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.creditosComplementarios)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.creditosComplementarios)
+            @Html.ValidationMessageFor(model => model.creditosComplementarios)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

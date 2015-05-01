@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="CreditosComplementariosModelStoreContainer" CdmEntityContainer="CreditosComplementariosEntities">
+    <EntitySetMapping Name="ActividadComplementaria">
+      <EntityTypeMapping TypeName="CreditosComplementariosModel.ActividadComplementaria">
+        <MappingFragment StoreEntitySet="ActividadComplementaria">
+          <ScalarProperty Name="idActividadComplementaria" ColumnName="idActividadComplementaria" />
+          <ScalarProperty Name="nombreActComplementaria" ColumnName="nombreActComplementaria" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="carrera" ColumnName="carrera" />
+          <ScalarProperty Name="modalidad" ColumnName="modalidad" />
+          <ScalarProperty Name="noCreditos" ColumnName="noCreditos" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ActividadCursada">
+      <EntityTypeMapping TypeName="CreditosComplementariosModel.ActividadCursada">
+        <MappingFragment StoreEntitySet="ActividadCursada">
+          <ScalarProperty Name="idAvtividadCursada" ColumnName="idAvtividadCursada" />
+          <ScalarProperty Name="idActComplementaria" ColumnName="idActComplementaria" />
+          <ScalarProperty Name="idEstudiante" ColumnName="idEstudiante" />
+          <ScalarProperty Name="estatusActividad" ColumnName="estatusActividad" />
+          <ScalarProperty Name="periodo" ColumnName="periodo" />
+          <ScalarProperty Name="mestro" ColumnName="mestro" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Carrera">
+      <EntityTypeMapping TypeName="CreditosComplementariosModel.Carrera">
+        <MappingFragment StoreEntitySet="Carrera">
+          <ScalarProperty Name="idCarrera" ColumnName="idCarrera" />
+          <ScalarProperty Name="nombreCarrera" ColumnName="nombreCarrera" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Departamento">
+      <EntityTypeMapping TypeName="CreditosComplementariosModel.Departamento">
+        <MappingFragment StoreEntitySet="Departamento">
+          <ScalarProperty Name="idDepartamento" ColumnName="idDepartamento" />
+          <ScalarProperty Name="nombreDepartamento" ColumnName="nombreDepartamento" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Estudiante">
+      <EntityTypeMapping TypeName="CreditosComplementariosModel.Estudiante">
+        <MappingFragment StoreEntitySet="Estudiante">
+          <ScalarProperty Name="idEstudiante" ColumnName="idEstudiante" />
+          <ScalarProperty Name="nombreEstudiante" ColumnName="nombreEstudiante" />
+          <ScalarProperty Name="carrera" ColumnName="carrera" />
+          <ScalarProperty Name="estatusEstudiante" ColumnName="estatusEstudiante" />
+          <ScalarProperty Name="creditosComplementarios" ColumnName="creditosComplementarios" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Maestros">
+      <EntityTypeMapping TypeName="CreditosComplementariosModel.Maestros">
+        <MappingFragment StoreEntitySet="Maestros">
+          <ScalarProperty Name="idMaestro" ColumnName="idMaestro" />
+          <ScalarProperty Name="nombreMaestro" ColumnName="nombreMaestro" />
+          <ScalarProperty Name="departamentoMaestro" ColumnName="departamentoMaestro" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,30 @@
+﻿@model ActividadesComplementarias.Models.Departamento
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+
+    <legend>Departamento</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.idDepartamento)
+        
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.idDepartamento)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.nombreDepartamento)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.nombreDepartamento)
+    </div>
+
+    @Html.ActionLink("Edit", "Edit", new { id=Model.idDepartamento}) 
+    @Html.ActionLink("Back to List", "IndexDepartamento")
+

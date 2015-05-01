@@ -1,0 +1,34 @@
+﻿@model ActividadesComplementarias.Models.Carrera
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>Carrera</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.idCarrera)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.idCarrera)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.nombreCarrera)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.nombreCarrera)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}
