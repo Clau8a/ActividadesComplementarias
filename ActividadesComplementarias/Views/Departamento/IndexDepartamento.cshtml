@@ -1,22 +1,22 @@
 ﻿@model IEnumerable<ActividadesComplementarias.Models.Departamento>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "CAS - Departamento";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Departamento</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Crear nuevo Departamento", "Create")
 </p>
 <table>
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.idDepartamento)
+            <label>ID Departamento</label>
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.nombreDepartamento)
+           <label>Nombre de Departamento</label>
         </th>
         <th></th>
     </tr>
@@ -30,9 +30,9 @@
             @Html.DisplayFor(modelItem => item.nombreDepartamento)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.idDepartamento }) |
-            @Html.ActionLink("Details", "Details", new {id=item.idDepartamento}) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.idDepartamento  })
+            @Html.ActionLink("Editar", "Edit", new { id=item.idDepartamento }) |
+            @Html.ActionLink("Detalles", "Details", new {id=item.idDepartamento}) |
+            @Html.ActionLink("Eliminar", "Delete", new { id=item.idDepartamento  })
         </td>
     </tr>
 }

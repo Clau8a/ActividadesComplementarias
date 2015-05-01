@@ -1,22 +1,22 @@
 ﻿@model IEnumerable<ActividadesComplementarias.Models.Carrera>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "CAS - Carrera";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Carrera</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Crear Nueva Carrera", "Create")
 </p>
 <table>
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.idCarrera)
+            <label>ID Carrera</label>
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.nombreCarrera)
+            <label>Nombre Carrera</label>
         </th>
         <th></th>
     </tr>
@@ -30,9 +30,9 @@
             @Html.DisplayFor(modelItem => item.nombreCarrera)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.idCarrera }) |
-            @Html.ActionLink("Details", "Details", new { id = item.idCarrera }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.idCarrera })
+            @Html.ActionLink("Editar", "Edit", new { id=item.idCarrera }) |
+            @Html.ActionLink("Detalles", "Details", new { id = item.idCarrera }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id = item.idCarrera })
         </td>
     </tr>
 }
