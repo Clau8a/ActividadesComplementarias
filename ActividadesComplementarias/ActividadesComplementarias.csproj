@@ -132,6 +132,7 @@
     <Compile Include="Controllers\CarreraController.cs" />
     <Compile Include="Controllers\DepartamentoController.cs" />
     <Compile Include="Controllers\EstudianteController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MaestrosController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -297,6 +298,7 @@
     <Content Include="Views\ActividadComplementaria\Create.cshtml" />
     <Content Include="Views\ActividadComplementaria\Edit.cshtml" />
     <Content Include="Views\ActividadComplementaria\Delete.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
