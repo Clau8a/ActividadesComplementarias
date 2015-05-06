@@ -4,7 +4,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
-    
+
+    <link href="~/Content/Site.css" rel="stylesheet" />
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
@@ -14,6 +15,9 @@
     @Html.ActionLink("Carrera", "Index", "Carrera")
 
     @RenderBody()
+
+    @Html.ActionLink("Carrera", "Index", "Carrera")
+
     @Scripts.Render("~/bundles/jquery")
     @RenderSection("scripts", required: false)
 </body>
