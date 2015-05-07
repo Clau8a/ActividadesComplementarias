@@ -22,8 +22,12 @@ namespace ActividadesComplementarias.Models
         public int idMaestro { get; set; }
         public string nombreMaestro { get; set; }
         public int departamentoMaestro { get; set; }
+        public string tipoMaestro { get; set; }
+        public string contraseñaMaestro { get; set; }
+        public string saltContraseña { get; set; }
     
         public virtual ICollection<ActividadCursada> ActividadCursada { get; set; }
         public virtual Departamento Departamento { get; set; }
+        public virtual TipoMaestro TipoMaestro1 { get; set; }
     }
 }

@@ -15,7 +15,7 @@
         <legend>Estudiante</legend>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.idEstudiante)
+            <label>Numero de Control Estudiante</label>
         </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.idEstudiante)
@@ -23,7 +23,7 @@
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.nombreEstudiante)
+            <label>Nombre de Estudiante</label>
         </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.nombreEstudiante)
@@ -31,29 +31,32 @@
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.carrera, "Carrera1")
+            <label>Carrera</label>
         </div>
         <div class="editor-field">
-            @Html.DropDownList("carrera", String.Empty)
+            @Html.DropDownList("carrera", "sin seleccionar")
             @Html.ValidationMessageFor(model => model.carrera)
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.estatusEstudiante)
+            <label>Estatus estudiante</label>
         </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.estatusEstudiante)
             @Html.ValidationMessageFor(model => model.estatusEstudiante)
         </div>
 
+        <!--numero de creditos complementarios-->
+
         <div class="editor-label">
-            @Html.LabelFor(model => model.creditosComplementarios)
+            <label>Contraseña</label>
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.creditosComplementarios)
-            @Html.ValidationMessageFor(model => model.creditosComplementarios)
+            @Html.EditorFor(model => model.contraseñaEstudiante)
+            @Html.ValidationMessageFor(model => model.contraseñaEstudiante)
         </div>
 
+        <!-- Salt de contraseña -->
         <p>
             <input type="submit" value="Create" />
         </p>

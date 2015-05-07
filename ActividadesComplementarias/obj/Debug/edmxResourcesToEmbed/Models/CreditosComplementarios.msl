@@ -44,6 +44,8 @@
     <EntitySetMapping Name="Estudiante">
       <EntityTypeMapping TypeName="CreditosComplementariosModel.Estudiante">
         <MappingFragment StoreEntitySet="Estudiante">
+          <ScalarProperty Name="saltContraseña" ColumnName="saltContraseña" />
+          <ScalarProperty Name="contraseñaEstudiante" ColumnName="contraseñaEstudiante" />
           <ScalarProperty Name="idEstudiante" ColumnName="idEstudiante" />
           <ScalarProperty Name="nombreEstudiante" ColumnName="nombreEstudiante" />
           <ScalarProperty Name="carrera" ColumnName="carrera" />
@@ -55,9 +57,20 @@
     <EntitySetMapping Name="Maestros">
       <EntityTypeMapping TypeName="CreditosComplementariosModel.Maestros">
         <MappingFragment StoreEntitySet="Maestros">
+          <ScalarProperty Name="saltContraseña" ColumnName="saltContraseña" />
+          <ScalarProperty Name="contraseñaMaestro" ColumnName="contraseñaMaestro" />
+          <ScalarProperty Name="tipoMaestro" ColumnName="tipoMaestro" />
           <ScalarProperty Name="idMaestro" ColumnName="idMaestro" />
           <ScalarProperty Name="nombreMaestro" ColumnName="nombreMaestro" />
           <ScalarProperty Name="departamentoMaestro" ColumnName="departamentoMaestro" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TipoMaestro">
+      <EntityTypeMapping TypeName="CreditosComplementariosModel.TipoMaestro">
+        <MappingFragment StoreEntitySet="TipoMaestro">
+          <ScalarProperty Name="tipoMaestro1" ColumnName="tipoMaestro" />
+          <ScalarProperty Name="idTipoMaestro" ColumnName="idTipoMaestro" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

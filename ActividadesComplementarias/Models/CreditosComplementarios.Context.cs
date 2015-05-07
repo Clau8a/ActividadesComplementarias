@@ -31,5 +31,6 @@ namespace ActividadesComplementarias.Models
         public DbSet<Departamento> Departamento { get; set; }
         public DbSet<Estudiante> Estudiante { get; set; }
         public DbSet<Maestros> Maestros { get; set; }
+        public DbSet<TipoMaestro> TipoMaestro { get; set; }
     }
 }

@@ -44,7 +44,9 @@
     <Property Name="nombreEstudiante" Type="varchar" MaxLength="60" Nullable="false" />
     <Property Name="carrera" Type="int" Nullable="false" />
     <Property Name="estatusEstudiante" Type="bit" Nullable="false" />
-    <Property Name="creditosComplementarios" Type="int" Nullable="false" />
+    <Property Name="creditosComplementarios" Type="int" />
+    <Property Name="contraseñaEstudiante" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="saltContraseña" Type="varchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="Maestros">
     <Key>
@@ -53,6 +55,16 @@
     <Property Name="idMaestro" Type="int" Nullable="false" />
     <Property Name="nombreMaestro" Type="varchar" MaxLength="60" Nullable="false" />
     <Property Name="departamentoMaestro" Type="int" Nullable="false" />
+    <Property Name="tipoMaestro" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="contraseñaMaestro" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="saltContraseña" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="TipoMaestro">
+    <Key>
+      <PropertyRef Name="idTipoMaestro" />
+    </Key>
+    <Property Name="idTipoMaestro" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="tipoMaestro" Type="varchar" MaxLength="50" Nullable="false" />
   </EntityType>
   <Association Name="FK_ActividadComplementaria_Disciplina">
     <End Role="Carrera" Type="Self.Carrera" Multiplicity="1" />
@@ -126,6 +138,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Maestros_TipoMaestro">
+    <End Role="TipoMaestro" Type="Self.TipoMaestro" Multiplicity="1" />
+    <End Role="Maestros" Type="Self.Maestros" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoMaestro">
+        <PropertyRef Name="idTipoMaestro" />
+      </Principal>
+      <Dependent Role="Maestros">
+        <PropertyRef Name="tipoMaestro" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="CreditosComplementariosModelStoreContainer">
     <EntitySet Name="ActividadComplementaria" EntityType="Self.ActividadComplementaria" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ActividadCursada" EntityType="Self.ActividadCursada" Schema="dbo" store:Type="Tables" />
@@ -133,6 +157,7 @@
     <EntitySet Name="Departamento" EntityType="Self.Departamento" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Estudiante" EntityType="Self.Estudiante" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Maestros" EntityType="Self.Maestros" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TipoMaestro" EntityType="Self.TipoMaestro" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_ActividadComplementaria_Disciplina" Association="Self.FK_ActividadComplementaria_Disciplina">
       <End Role="Carrera" EntitySet="Carrera" />
       <End Role="ActividadComplementaria" EntitySet="ActividadComplementaria" />
@@ -155,6 +180,10 @@
     </AssociationSet>
     <AssociationSet Name="FK_Maestros_Departamento" Association="Self.FK_Maestros_Departamento">
       <End Role="Departamento" EntitySet="Departamento" />
+      <End Role="Maestros" EntitySet="Maestros" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Maestros_TipoMaestro" Association="Self.FK_Maestros_TipoMaestro">
+      <End Role="TipoMaestro" EntitySet="TipoMaestro" />
       <End Role="Maestros" EntitySet="Maestros" />
     </AssociationSet>
   </EntityContainer>

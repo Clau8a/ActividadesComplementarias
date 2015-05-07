@@ -17,6 +17,8 @@
         <AssociationConnector Association="CreditosComplementariosModel.FK_ActividadCursada_Maestros" ManuallyRouted="false" />
         <AssociationConnector Association="CreditosComplementariosModel.FK_Estudiante_Disciplina" ManuallyRouted="false" />
         <AssociationConnector Association="CreditosComplementariosModel.FK_Maestros_Departamento" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="CreditosComplementariosModel.TipoMaestro" Width="1.5" PointX="0.75" PointY="6.625" />
+        <AssociationConnector Association="CreditosComplementariosModel.FK_Maestros_TipoMaestro" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -13,6 +13,10 @@ namespace ActividadesComplementarias.Controllers
 
         public ActionResult Index()
         {
+            if (Session["uxid"] == null)
+            {
+                return RedirectToAction("IniciarSesion", "Cuenta");
+            }
             return View();
         }
 

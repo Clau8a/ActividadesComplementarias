@@ -1,0 +1,62 @@
+﻿@model ActividadesComplementarias.Models.Maestros
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>Maestros</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.idMaestro)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.idMaestro)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.nombreMaestro)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.nombreMaestro)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Departamento.nombreDepartamento)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Departamento.nombreDepartamento)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.TipoMaestro1.tipoMaestro1)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.TipoMaestro1.tipoMaestro1)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.contraseñaMaestro)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.contraseñaMaestro)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.saltContraseña)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.saltContraseña)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

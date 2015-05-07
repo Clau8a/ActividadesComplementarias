@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="CreditosComplementariosModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="CreditosComplementariosModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="ActividadComplementaria">
           <Key>
             <PropertyRef Name="idActividadComplementaria" />
@@ -49,7 +49,9 @@
           <Property Name="nombreEstudiante" Type="varchar" MaxLength="60" Nullable="false" />
           <Property Name="carrera" Type="int" Nullable="false" />
           <Property Name="estatusEstudiante" Type="bit" Nullable="false" />
-          <Property Name="creditosComplementarios" Type="int" Nullable="false" />
+          <Property Name="creditosComplementarios" Type="int" />
+          <Property Name="contraseñaEstudiante" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="saltContraseña" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Maestros">
           <Key>
@@ -58,6 +60,16 @@
           <Property Name="idMaestro" Type="int" Nullable="false" />
           <Property Name="nombreMaestro" Type="varchar" MaxLength="60" Nullable="false" />
           <Property Name="departamentoMaestro" Type="int" Nullable="false" />
+          <Property Name="tipoMaestro" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="contraseñaMaestro" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="saltContraseña" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="TipoMaestro">
+          <Key>
+            <PropertyRef Name="idTipoMaestro" />
+          </Key>
+          <Property Name="idTipoMaestro" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="tipoMaestro" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <Association Name="FK_ActividadComplementaria_Disciplina">
           <End Role="Carrera" Type="Self.Carrera" Multiplicity="1" />
@@ -131,6 +143,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Maestros_TipoMaestro">
+          <End Role="TipoMaestro" Type="Self.TipoMaestro" Multiplicity="1" />
+          <End Role="Maestros" Type="Self.Maestros" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoMaestro">
+              <PropertyRef Name="idTipoMaestro" />
+            </Principal>
+            <Dependent Role="Maestros">
+              <PropertyRef Name="tipoMaestro" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="CreditosComplementariosModelStoreContainer">
           <EntitySet Name="ActividadComplementaria" EntityType="Self.ActividadComplementaria" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ActividadCursada" EntityType="Self.ActividadCursada" Schema="dbo" store:Type="Tables" />
@@ -138,6 +162,7 @@
           <EntitySet Name="Departamento" EntityType="Self.Departamento" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Estudiante" EntityType="Self.Estudiante" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Maestros" EntityType="Self.Maestros" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TipoMaestro" EntityType="Self.TipoMaestro" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_ActividadComplementaria_Disciplina" Association="Self.FK_ActividadComplementaria_Disciplina">
             <End Role="Carrera" EntitySet="Carrera" />
             <End Role="ActividadComplementaria" EntitySet="ActividadComplementaria" />
@@ -162,9 +187,12 @@
             <End Role="Departamento" EntitySet="Departamento" />
             <End Role="Maestros" EntitySet="Maestros" />
           </AssociationSet>
+          <AssociationSet Name="FK_Maestros_TipoMaestro" Association="Self.FK_Maestros_TipoMaestro">
+            <End Role="TipoMaestro" EntitySet="TipoMaestro" />
+            <End Role="Maestros" EntitySet="Maestros" />
+          </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="CreditosComplementariosModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -220,9 +248,11 @@
           <Property Name="nombreEstudiante" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="carrera" Type="Int32" Nullable="false" />
           <Property Name="estatusEstudiante" Type="Boolean" Nullable="false" />
-          <Property Name="creditosComplementarios" Type="Int32" Nullable="false" />
+          <Property Name="creditosComplementarios" Type="Int32" />
           <NavigationProperty Name="ActividadCursada" Relationship="Self.FK_ActividadCursada_Estudiante" FromRole="Estudiante" ToRole="ActividadCursada" />
           <NavigationProperty Name="Carrera1" Relationship="Self.FK_Estudiante_Disciplina" FromRole="Estudiante" ToRole="Carrera" />
+          <Property Name="contraseñaEstudiante" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="saltContraseña" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Maestros">
           <Key>
@@ -233,6 +263,10 @@
           <Property Name="departamentoMaestro" Type="Int32" Nullable="false" />
           <NavigationProperty Name="ActividadCursada" Relationship="Self.FK_ActividadCursada_Maestros" FromRole="Maestros" ToRole="ActividadCursada" />
           <NavigationProperty Name="Departamento" Relationship="Self.FK_Maestros_Departamento" FromRole="Maestros" ToRole="Departamento" />
+          <Property Name="tipoMaestro" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="contraseñaMaestro" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="saltContraseña" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TipoMaestro1" Relationship="CreditosComplementariosModel.FK_Maestros_TipoMaestro" FromRole="Maestros" ToRole="TipoMaestro" />
         </EntityType>
         <Association Name="FK_ActividadComplementaria_Disciplina">
           <End Role="Carrera" Type="Self.Carrera" Multiplicity="1" />
@@ -337,7 +371,32 @@
             <End Role="Departamento" EntitySet="Departamento" />
             <End Role="Maestros" EntitySet="Maestros" />
           </AssociationSet>
+          <EntitySet Name="TipoMaestro" EntityType="CreditosComplementariosModel.TipoMaestro" />
+          <AssociationSet Name="FK_Maestros_TipoMaestro" Association="CreditosComplementariosModel.FK_Maestros_TipoMaestro">
+            <End Role="TipoMaestro" EntitySet="TipoMaestro" />
+            <End Role="Maestros" EntitySet="Maestros" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="TipoMaestro">
+          <Key>
+            <PropertyRef Name="idTipoMaestro" />
+          </Key>
+          <Property Name="idTipoMaestro" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="tipoMaestro1" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Maestros" Relationship="CreditosComplementariosModel.FK_Maestros_TipoMaestro" FromRole="TipoMaestro" ToRole="Maestros" />
+        </EntityType>
+        <Association Name="FK_Maestros_TipoMaestro">
+          <End Type="CreditosComplementariosModel.TipoMaestro" Role="TipoMaestro" Multiplicity="1" />
+          <End Type="CreditosComplementariosModel.Maestros" Role="Maestros" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoMaestro">
+              <PropertyRef Name="idTipoMaestro" />
+            </Principal>
+            <Dependent Role="Maestros">
+              <PropertyRef Name="tipoMaestro" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -387,6 +446,8 @@
           <EntitySetMapping Name="Estudiante">
             <EntityTypeMapping TypeName="CreditosComplementariosModel.Estudiante">
               <MappingFragment StoreEntitySet="Estudiante">
+                <ScalarProperty Name="saltContraseña" ColumnName="saltContraseña" />
+                <ScalarProperty Name="contraseñaEstudiante" ColumnName="contraseñaEstudiante" />
                 <ScalarProperty Name="idEstudiante" ColumnName="idEstudiante" />
                 <ScalarProperty Name="nombreEstudiante" ColumnName="nombreEstudiante" />
                 <ScalarProperty Name="carrera" ColumnName="carrera" />
@@ -398,9 +459,20 @@
           <EntitySetMapping Name="Maestros">
             <EntityTypeMapping TypeName="CreditosComplementariosModel.Maestros">
               <MappingFragment StoreEntitySet="Maestros">
+                <ScalarProperty Name="saltContraseña" ColumnName="saltContraseña" />
+                <ScalarProperty Name="contraseñaMaestro" ColumnName="contraseñaMaestro" />
+                <ScalarProperty Name="tipoMaestro" ColumnName="tipoMaestro" />
                 <ScalarProperty Name="idMaestro" ColumnName="idMaestro" />
                 <ScalarProperty Name="nombreMaestro" ColumnName="nombreMaestro" />
                 <ScalarProperty Name="departamentoMaestro" ColumnName="departamentoMaestro" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipoMaestro">
+            <EntityTypeMapping TypeName="CreditosComplementariosModel.TipoMaestro">
+              <MappingFragment StoreEntitySet="TipoMaestro">
+                <ScalarProperty Name="tipoMaestro1" ColumnName="tipoMaestro" />
+                <ScalarProperty Name="idTipoMaestro" ColumnName="idTipoMaestro" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
