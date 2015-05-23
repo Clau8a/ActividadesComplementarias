@@ -20,7 +20,7 @@
     <Property Name="idEstudiante" Type="int" Nullable="false" />
     <Property Name="estatusActividad" Type="varchar" MaxLength="20" Nullable="false" />
     <Property Name="periodo" Type="varchar" MaxLength="6" Nullable="false" />
-    <Property Name="mestro" Type="int" Nullable="false" />
+    <Property Name="mestro" Type="varchar" MaxLength="50" Nullable="false" />
   </EntityType>
   <EntityType Name="Carrera">
     <Key>
@@ -52,7 +52,7 @@
     <Key>
       <PropertyRef Name="idMaestro" />
     </Key>
-    <Property Name="idMaestro" Type="int" Nullable="false" />
+    <Property Name="idMaestro" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="nombreMaestro" Type="varchar" MaxLength="60" Nullable="false" />
     <Property Name="departamentoMaestro" Type="int" Nullable="false" />
     <Property Name="tipoMaestro" Type="char" MaxLength="1" Nullable="false" />

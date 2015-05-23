@@ -22,7 +22,7 @@
     <Property Name="idEstudiante" Type="Int32" Nullable="false" />
     <Property Name="estatusActividad" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="periodo" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="mestro" Type="Int32" Nullable="false" />
+    <Property Name="mestro" Type="String" Nullable="false" />
     <NavigationProperty Name="ActividadComplementaria" Relationship="Self.FK_ActividadCursada_ActividadComplementaria" FromRole="ActividadCursada" ToRole="ActividadComplementaria" />
     <NavigationProperty Name="Estudiante" Relationship="Self.FK_ActividadCursada_Estudiante" FromRole="ActividadCursada" ToRole="Estudiante" />
     <NavigationProperty Name="Maestros" Relationship="Self.FK_ActividadCursada_Maestros" FromRole="ActividadCursada" ToRole="Maestros" />
@@ -62,7 +62,7 @@
     <Key>
       <PropertyRef Name="idMaestro" />
     </Key>
-    <Property Name="idMaestro" Type="Int32" Nullable="false" />
+    <Property Name="idMaestro" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
     <Property Name="nombreMaestro" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="departamentoMaestro" Type="Int32" Nullable="false" />
     <NavigationProperty Name="ActividadCursada" Relationship="Self.FK_ActividadCursada_Maestros" FromRole="Maestros" ToRole="ActividadCursada" />

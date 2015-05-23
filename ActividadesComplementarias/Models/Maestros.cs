@@ -19,7 +19,7 @@ namespace ActividadesComplementarias.Models
             this.ActividadCursada = new HashSet<ActividadCursada>();
         }
     
-        public int idMaestro { get; set; }
+        public string idMaestro { get; set; }
         public string nombreMaestro { get; set; }
         public int departamentoMaestro { get; set; }
         public string tipoMaestro { get; set; }

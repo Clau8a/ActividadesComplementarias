@@ -177,6 +177,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\cssLogin\login.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -301,9 +302,9 @@
     <Content Include="Views\Cuenta\IniciarSesion.cshtml" />
     <Content Include="Views\Maestro\Index.cshtml" />
     <Content Include="Views\Maestro\Details.cshtml" />
-    <Content Include="Views\Maestro\Create.cshtml" />
     <Content Include="Views\Maestro\Edit.cshtml" />
     <Content Include="Views\Maestro\Delete.cshtml" />
+    <Content Include="Views\Maestro\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

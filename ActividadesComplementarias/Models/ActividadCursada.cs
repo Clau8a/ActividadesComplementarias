@@ -19,7 +19,7 @@ namespace ActividadesComplementarias.Models
         public int idEstudiante { get; set; }
         public string estatusActividad { get; set; }
         public string periodo { get; set; }
-        public int mestro { get; set; }
+        public string mestro { get; set; }
     
         public virtual ActividadComplementaria ActividadComplementaria { get; set; }
         public virtual Estudiante Estudiante { get; set; }

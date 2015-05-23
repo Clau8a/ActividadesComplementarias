@@ -29,6 +29,6 @@ C:\Users\Claudita\Documents\Visual Studio 2013\Projects\ActividadesComplementari
 C:\Users\Claudita\Documents\Visual Studio 2013\Projects\ActividadesComplementarias\ActividadesComplementarias\bin\es\System.Web.WebPages.resources.dll
 C:\Users\Claudita\Documents\Visual Studio 2013\Projects\ActividadesComplementarias\ActividadesComplementarias\bin\es\System.Web.WebPages.Deployment.resources.dll
 C:\Users\Claudita\Documents\Visual Studio 2013\Projects\ActividadesComplementarias\ActividadesComplementarias\bin\es\System.Web.WebPages.Razor.resources.dll
-C:\Users\Claudita\Documents\Visual Studio 2013\Projects\ActividadesComplementarias\ActividadesComplementarias\obj\Debug\ActividadesComplementarias.csprojResolveAssemblyReference.cache
 C:\Users\Claudita\Documents\Visual Studio 2013\Projects\ActividadesComplementarias\ActividadesComplementarias\obj\Debug\ActividadesComplementarias.dll
 C:\Users\Claudita\Documents\Visual Studio 2013\Projects\ActividadesComplementarias\ActividadesComplementarias\obj\Debug\ActividadesComplementarias.pdb
+C:\Users\Claudita\Documents\Visual Studio 2013\Projects\ActividadesComplementarias\ActividadesComplementarias\obj\Debug\ActividadesComplementarias.csprojResolveAssemblyReference.cache

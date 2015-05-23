@@ -12,7 +12,7 @@ namespace ActividadesComplementarias.Controllers
         private CreditosComplementariosEntities db = new CreditosComplementariosEntities();
         //
         // GET: /Account/
-
+        char tipoUsuario;
         public ActionResult IniciarSesion()
         {
             return View();
@@ -24,13 +24,15 @@ namespace ActividadesComplementarias.Controllers
         [HttpPost]
         public RedirectResult IniciarSesion(string user, string password)
         {
-            
-            
             if ((user != "") && (password != ""))
             {
                 if (findUser(user,password))
                 {
-                    Session["uxid"] = "lalala";
+                    if (tipoUsuario == 'E')
+                        Session["uxid"] = estudiante.nombreEstudiante;
+                    else
+                        Session["uxid"] = maestro.nombreMaestro;
+                       
                 }
             }
             return Redirect("/Home/Index");
@@ -45,7 +47,9 @@ namespace ActividadesComplementarias.Controllers
                 if (estudiante != null)
                 {
                     if (passwd == estudiante.contraseñaEstudiante)
+                    {tipoUsuario='E';
                         return true;
+                    }
                     else
                         return false;
                 }
@@ -58,8 +62,11 @@ namespace ActividadesComplementarias.Controllers
                 if (maestro != null)
                 {
                     if (passwd == maestro.contraseñaMaestro)
+                    {
+                        tipoUsuario = Convert.ToChar(maestro.tipoMaestro);
                         return true;
-                    else 
+                    }
+                    else
                         return false;
                 }
                 else

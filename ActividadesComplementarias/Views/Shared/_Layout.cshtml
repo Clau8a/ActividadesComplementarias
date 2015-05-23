@@ -13,6 +13,7 @@
     @Html.ActionLink("Inicio","Index","Home") |
     @Html.ActionLink("Departamento", "IndexDepartamento", "Departamento") |
     @Html.ActionLink("Carrera", "Index", "Carrera")
+    <a href="#">@Session["uxid"]</a>
 
     @RenderBody()
     @Scripts.Render("~/bundles/jquery")
