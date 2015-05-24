@@ -23,19 +23,6 @@ namespace ActividadesComplementarias.Controllers
         }
 
         //
-        // GET: /Estudiante/Details/5
-
-        public ActionResult Details(int id = 0)
-        {
-            Estudiante estudiante = db.Estudiante.Find(id);
-            if (estudiante == null)
-            {
-                return HttpNotFound();
-            }
-            return View(estudiante);
-        }
-
-        //
         // GET: /Estudiante/Create
 
         public ActionResult Create()

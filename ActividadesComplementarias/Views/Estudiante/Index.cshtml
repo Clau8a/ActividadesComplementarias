@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Estudiantes</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -13,21 +13,20 @@
 <table>
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.idEstudiante)
+            <label>Numero de Control</label>
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.nombreEstudiante)
+            <label>Nombre</label>
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Carrera1.nombreCarrera)
+            <label>Carrera</label>
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.estatusEstudiante)
+            <label>Status</label>
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.creditosComplementarios)
+            <label>Num de Créditos</label>
         </th>
-        <th></th>
     </tr>
 
 @foreach (var item in Model) {
@@ -48,9 +47,8 @@
             @Html.DisplayFor(modelItem => item.creditosComplementarios)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.idEstudiante }) |
-            @Html.ActionLink("Details", "Details", new { id=item.idEstudiante}) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.idEstudiante })
+            @Html.ActionLink("Editar", "Edit", new { id=item.idEstudiante }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id=item.idEstudiante })
         </td>
     </tr>
 }

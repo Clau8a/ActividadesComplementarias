@@ -16,22 +16,9 @@ namespace ActividadesComplementarias.Controllers
         //
         // GET: /Departamento/
 
-        public ActionResult IndexDepartamento()
+        public ActionResult Index()
         {
             return View(db.Departamento.ToList());
-        }
-
-        //
-        // GET: /Departamento/Details/5
-
-        public ActionResult Details(int id )
-        {
-            Departamento departamento = db.Departamento.Find(id);
-            if (departamento == null)
-            {
-                return HttpNotFound();
-            }
-            return View(departamento);
         }
 
         //
@@ -56,7 +43,7 @@ namespace ActividadesComplementarias.Controllers
                 {
                     db.Departamento.Add(departamento);
                     db.SaveChanges();
-                    return RedirectToAction("IndexDepartamento");
+                    return RedirectToAction("Index");
                 }
                 else 
                 {
@@ -91,7 +78,7 @@ namespace ActividadesComplementarias.Controllers
             {
                 db.Entry(departamento).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("IndexDepartamento");
+                return RedirectToAction("Index");
             }
             return View(departamento);
         }
@@ -119,7 +106,7 @@ namespace ActividadesComplementarias.Controllers
             Departamento departamento = db.Departamento.Find(id);
             db.Departamento.Remove(departamento);
             db.SaveChanges();
-            return RedirectToAction("IndexDepartamento");
+            return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)

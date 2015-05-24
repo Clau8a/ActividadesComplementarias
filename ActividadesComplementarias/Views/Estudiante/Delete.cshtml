@@ -5,51 +5,63 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Delete</h2>
+<h2>Eliminar Estudiante</h2>
 
 <h3>Are you sure you want to delete this?</h3>
-<fieldset>
-    <legend>Estudiante</legend>
 
     <div class="display-label">
-         @Html.DisplayNameFor(model => model.idEstudiante)
+         <label>Número de Control</label>
     </div>
     <div class="display-field">
         @Html.DisplayFor(model => model.idEstudiante)
     </div>
 
     <div class="display-label">
-         @Html.DisplayNameFor(model => model.nombreEstudiante)
+         <label>nombreEstudiante)
     </div>
     <div class="display-field">
         @Html.DisplayFor(model => model.nombreEstudiante)
     </div>
 
     <div class="display-label">
-         @Html.DisplayNameFor(model => model.Carrera1.nombreCarrera)
+         <label>Carrera</label>
     </div>
     <div class="display-field">
         @Html.DisplayFor(model => model.Carrera1.nombreCarrera)
     </div>
 
     <div class="display-label">
-         @Html.DisplayNameFor(model => model.estatusEstudiante)
+         <label>Etatus</label>
     </div>
     <div class="display-field">
         @Html.DisplayFor(model => model.estatusEstudiante)
     </div>
 
     <div class="display-label">
-         @Html.DisplayNameFor(model => model.creditosComplementarios)
+         <label>Num de créditos</label>
     </div>
     <div class="display-field">
         @Html.DisplayFor(model => model.creditosComplementarios)
     </div>
-</fieldset>
+    <div class="editor-label">
+        <label>Contraseña</label>
+    </div>
+    <div class="editor-field">
+        @Html.EditorFor(model => model.contraseñaEstudiante)
+        @Html.ValidationMessageFor(model => model.contraseñaEstudiante)
+    </div>
+
+    <div class="editor-label">
+        <label>Salt Contraseña</label>
+    </div>
+    <div class="editor-field">
+        @Html.EditorFor(model => model.saltContraseña)
+        @Html.ValidationMessageFor(model => model.saltContraseña)
+    </div>
+
 @using (Html.BeginForm()) {
     @Html.AntiForgeryToken()
     <p>
-        <input type="submit" value="Delete" /> |
-        @Html.ActionLink("Back to List", "Index")
+        <input type="submit" value="Eliminar" /> 
     </p>
 }

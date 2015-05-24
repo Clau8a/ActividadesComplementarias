@@ -22,19 +22,6 @@ namespace ActividadesComplementarias.Controllers
         }
 
         //
-        // GET: /Carrera/Details/5
-
-        public ActionResult Details(int id = 0)
-        {
-            Carrera carrera = db.Carrera.Find(id);
-            if (carrera == null)
-            {
-                return HttpNotFound();
-            }
-            return View(carrera);
-        }
-
-        //
         // GET: /Carrera/Create
 
         public ActionResult Create()

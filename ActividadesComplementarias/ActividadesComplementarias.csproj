@@ -177,7 +177,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\cssLogin\login.css" />
+    <Content Include="Content\css\style.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -278,18 +278,15 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Departamento\IndexDepartamento.cshtml" />
-    <Content Include="Views\Departamento\Details.cshtml" />
+    <Content Include="Views\Departamento\Index.cshtml" />
     <Content Include="Views\Departamento\Create.cshtml" />
     <Content Include="Views\Departamento\Edit.cshtml" />
     <Content Include="Views\Departamento\Delete.cshtml" />
     <Content Include="Views\Carrera\Index.cshtml" />
-    <Content Include="Views\Carrera\Details.cshtml" />
     <Content Include="Views\Carrera\Create.cshtml" />
     <Content Include="Views\Carrera\Edit.cshtml" />
     <Content Include="Views\Carrera\Delete.cshtml" />
     <Content Include="Views\Estudiante\Index.cshtml" />
-    <Content Include="Views\Estudiante\Details.cshtml" />
     <Content Include="Views\Estudiante\Create.cshtml" />
     <Content Include="Views\Estudiante\Edit.cshtml" />
     <Content Include="Views\Estudiante\Delete.cshtml" />
@@ -301,7 +298,6 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Cuenta\IniciarSesion.cshtml" />
     <Content Include="Views\Maestro\Index.cshtml" />
-    <Content Include="Views\Maestro\Details.cshtml" />
     <Content Include="Views\Maestro\Edit.cshtml" />
     <Content Include="Views\Maestro\Delete.cshtml" />
     <Content Include="Views\Maestro\Create.cshtml" />

@@ -5,17 +5,14 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Edit</h2>
+<h2>Editar Estudiante</h2>
 
 @using (Html.BeginForm()) {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
 
-    <fieldset>
-        <legend>Estudiante</legend>
-
         <div class="editor-label">
-            @Html.LabelFor(model => model.idEstudiante)
+            <label>Número de Control</label>
         </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.idEstudiante)
@@ -23,7 +20,7 @@
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.nombreEstudiante)
+            <label>Nombre Estudiante</label>
         </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.nombreEstudiante)
@@ -31,7 +28,7 @@
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.carrera, "Carrera1")
+            <label>Carrera</label>
         </div>
         <div class="editor-field">
             @Html.DropDownList("carrera", String.Empty)
@@ -39,7 +36,7 @@
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.estatusEstudiante)
+            <label>Status</label>
         </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.estatusEstudiante)
@@ -47,22 +44,33 @@
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.creditosComplementarios)
+            <label>Num. de Créditos</label>
         </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.creditosComplementarios)
             @Html.ValidationMessageFor(model => model.creditosComplementarios)
         </div>
+        <div class="editor-label">
+            <label>Contraseña</label>
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.contraseñaEstudiante)
+            @Html.ValidationMessageFor(model => model.contraseñaEstudiante)
+        </div>
+
+        <div class="editor-label">
+            <label>Salt Contraseña</label>
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.saltContraseña)
+            @Html.ValidationMessageFor(model => model.saltContraseña)
+        </div>
 
         <p>
-            <input type="submit" value="Save" />
+            <input type="submit" value="Guardar" />
         </p>
-    </fieldset>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

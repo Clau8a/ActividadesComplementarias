@@ -12,7 +12,7 @@
     @Html.ValidationSummary(true)
 
         <div class="editor-label">
-            <label>ID Carrea</label>
+            <label>Clave Carrea</label>
         </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.idCarrera)
@@ -20,7 +20,7 @@
         </div>
 
         <div class="editor-label">
-            <label>Nombre de Carrera</label>
+            <label>Carrera</label>
         </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.nombreCarrera)
@@ -32,9 +32,7 @@
         </p>
 }
 
-<div>
-    @Html.ActionLink("Regresar a lista de Carreras", "Index")
-</div>
+
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

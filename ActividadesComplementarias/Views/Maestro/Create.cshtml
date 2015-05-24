@@ -1,11 +1,11 @@
 ﻿@model ActividadesComplementarias.Models.Maestros
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "ECAS";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Create</h2>
+<h2>Crear Maestro</h2>
 
 @using (Html.BeginForm()) {
     @Html.AntiForgeryToken()
@@ -15,7 +15,7 @@
         <legend>Maestros</legend>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.idMaestro)
+            <label>Clave Maestro</label>
         </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.idMaestro)
@@ -23,7 +23,7 @@
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.nombreMaestro)
+            <label>Nombre Maestro</label>
         </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.nombreMaestro)
@@ -31,7 +31,7 @@
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.departamentoMaestro, "Departamento")
+            <label>Departamento</label>
         </div>
         <div class="editor-field">
             @Html.DropDownList("departamentoMaestro", String.Empty)
@@ -39,7 +39,7 @@
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.tipoMaestro, "TipoMaestro1")
+            <label>Tipo</label>
         </div>
         <div class="editor-field">
             @Html.DropDownList("tipoMaestro", String.Empty)
@@ -47,7 +47,7 @@
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.contraseñaMaestro)
+           <label>Contraseña</label>
         </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.contraseñaMaestro)
@@ -55,7 +55,7 @@
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.saltContraseña)
+            <label>Salt Contraseña</label>
         </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.saltContraseña)
@@ -63,15 +63,10 @@
         </div>
 
         <p>
-            <input type="submit" value="Create" />
+            <input type="submit" value="Guardar" />
         </p>
     </fieldset>
 }
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
-
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }

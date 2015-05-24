@@ -11,6 +11,8 @@ namespace ActividadesComplementarias.Controllers
 {
     public class MaestroController : Controller
     {
+        string idMaestro="",contraseña="",salt="";
+        
         private CreditosComplementariosEntities db = new CreditosComplementariosEntities();
 
         //
@@ -20,19 +22,6 @@ namespace ActividadesComplementarias.Controllers
         {
             var maestros = db.Maestros.Include(m => m.Departamento).Include(m => m.TipoMaestro1);
             return View(maestros.ToList());
-        }
-
-        //
-        // GET: /Maestro/Details/5
-
-        public ActionResult Details(int id = 0)
-        {
-            Maestros maestros = db.Maestros.Find(id);
-            if (maestros == null)
-            {
-                return HttpNotFound();
-            }
-            return View(maestros);
         }
 
         //
@@ -67,7 +56,7 @@ namespace ActividadesComplementarias.Controllers
         //
         // GET: /Maestro/Edit/5
 
-        public ActionResult Edit(int id = 0)
+        public ActionResult Edit(string id = "")
         {
             Maestros maestros = db.Maestros.Find(id);
             if (maestros == null)
@@ -83,8 +72,7 @@ namespace ActividadesComplementarias.Controllers
         // POST: /Maestro/Edit/5
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(Maestros maestros)
+        public ActionResult Edit( Maestros maestros)
         {
             if (ModelState.IsValid)
             {

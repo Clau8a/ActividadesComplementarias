@@ -5,18 +5,21 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Departamento</h2>
+<div>
+    <span class="tituloh2">Departamento</span>
 
-<p>
-    @Html.ActionLink("Crear nuevo Departamento", "Create")
-</p>
+    <span>
+        <a href="/Departamento/Create" class="addNew"><span class="glyphicon glyphicon-plus"></span></a>
+    </span>
+</div>
+
 <table>
     <tr>
         <th>
-            <label>ID Departamento</label>
+            <label>Clave Departamento</label>
         </th>
         <th>
-           <label>Nombre de Departamento</label>
+           <label>Departamento</label>
         </th>
         <th></th>
     </tr>
@@ -30,9 +33,8 @@
             @Html.DisplayFor(modelItem => item.nombreDepartamento)
         </td>
         <td>
-            @Html.ActionLink("Editar", "Edit", new { id=item.idDepartamento }) |
-            @Html.ActionLink("Detalles", "Details", new {id=item.idDepartamento}) |
-            @Html.ActionLink("Eliminar", "Delete", new { id=item.idDepartamento  })
+            <a href="/Departamento/Edit/@item.idDepartamento"><span class=""></span></a> |
+            <a href="/Departamento/Delete/@item.idDepartamento"><span class""></span></a>
         </td>
     </tr>
 }

@@ -5,14 +5,11 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Create</h2>
+<h2>Crear Estudiante</h2>
 
 @using (Html.BeginForm()) {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
-
-    <fieldset>
-        <legend>Estudiante</legend>
 
         <div class="editor-label">
             <label>Numero de Control Estudiante</label>
@@ -46,7 +43,13 @@
             @Html.ValidationMessageFor(model => model.estatusEstudiante)
         </div>
 
-        <!--numero de creditos complementarios-->
+        <div class="editor-label">
+            <label>Num de Crpéditos</label>
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.creditosComplementarios)
+            @Html.ValidationMessageFor(model => model.creditosComplementarios)
+        </div>
 
         <div class="editor-label">
             <label>Contraseña</label>
@@ -56,16 +59,20 @@
             @Html.ValidationMessageFor(model => model.contraseñaEstudiante)
         </div>
 
-        <!-- Salt de contraseña -->
+        <div class="editor-label">
+            <label>Salt Contraseña</label>
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.saltContraseña)
+            @Html.ValidationMessageFor(model => model.saltContraseña)
+        </div>
         <p>
             <input type="submit" value="Create" />
         </p>
-    </fieldset>
+
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
