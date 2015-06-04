@@ -22,17 +22,22 @@ namespace ActividadesComplementarias.Controllers
         ActividadesComplementarias.Models.Maestros maestro;
         // Post: /Account/
         [HttpPost]
-        public RedirectResult IniciarSesion(string user, string password)
+        public ActionResult IniciarSesion(string user, string password)
         {
             if ((user != "") && (password != ""))
             {
-                if (findUser(user,password))
+                if (findUser(user, password))
                 {
-                    if (tipoUsuario == 'E')
+                    if (tipoUsuario == 'E')///Agregar el tipo de usuario
                         Session["uxid"] = estudiante.nombreEstudiante;
                     else
                         Session["uxid"] = maestro.nombreMaestro;
-                       
+
+                }
+                else 
+                {
+                    ViewBag.wrongUser = true;
+                    return View(user, password);
                 }
             }
             return Redirect("/Home/Index");

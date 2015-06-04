@@ -5,60 +5,60 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<div class="col-lg-10 col-lg-offset-1">
+    <div id="agregar">
+        <span><a href="/ActividadComplementaria/Create" class="addNew"><span class="glyphicon glyphicon-plus"></span></a> <b>  Agregar Nuevo</b></span>
+    </div>
+    <table class="table table-bordered table-hover">
+        <tr>
+            <th>
+                <label>Clave Acividad</label>
+            </th>
+            <th>
+                <label>Nombre</label>
+            </th>
+            <th>
+                <label>Descripción</label>
+            </th>
+            <th>
+               <label>Carrera</label>
+            </th>
+            <th>
+                <label>Modalidad</label>
+            </th>
+            <th>
+                <label>No. Créditos</label>
+            </th>
+            <th></th>
+        </tr>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table>
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.idActividadComplementaria)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.nombreActComplementaria)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.descripcion)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Carrera1.nombreCarrera)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.modalidad)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.noCreditos)
-        </th>
-        <th></th>
-    </tr>
+        @foreach (var item in Model)
+        {
+            <tr class="success">
+                <td >
+                    @Html.DisplayFor(modelItem => item.idActividadComplementaria)
+                </td>
+                <td >
+                    @Html.DisplayFor(modelItem => item.nombreActComplementaria)
+                </td>
+                <td >
+                    @Html.DisplayFor(modelItem => item.descripcion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Carrera1.nombreCarrera)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.modalidad)
+                </td>
+                <td >
+                    @Html.DisplayFor(modelItem => item.noCreditos)
+                </td>
+                <td style="width:105px;">
+                    <a href="/Departamento/Edit/@item.idActividadComplementaria"><span id="edit" class="glyphicon glyphicon-pencil cuadrado"></span></a>
+                    <a href="/Departamento/Delete/@item.idActividadComplementaria"><span id="delete" class="glyphicon glyphicon-remove cuadrado"></span></a>
+                </td>
+            </tr>
+        }
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.idActividadComplementaria)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.nombreActComplementaria)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.descripcion)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Carrera1.nombreCarrera)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.modalidad)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.noCreditos)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.idActividadComplementaria}) |
-            @Html.ActionLink("Details", "Details", new { id=item.idActividadComplementaria }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.idActividadComplementaria })
-        </td>
-    </tr>
-}
-
-</table>
+    </table>
+</div>

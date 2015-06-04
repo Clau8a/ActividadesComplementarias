@@ -10,7 +10,7 @@
 <p>
     @Html.ActionLink("Crear Nueva Carrera", "Create")
 </p>
-<table>
+<table class="table table-bordered table-hover">
     <tr>
         <th>
             <label>Clave Carrera</label>
@@ -21,20 +21,21 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.idCarrera)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.nombreCarrera)
-        </td>
-        <td>
-            @Html.ActionLink("Editar", "Edit", new { id=item.idCarrera }) |
-            @Html.ActionLink("Detalles", "Details", new { id = item.idCarrera }) |
-            @Html.ActionLink("Eliminar", "Delete", new { id = item.idCarrera })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.idCarrera)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.nombreCarrera)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { id = item.idCarrera }) |
+                @Html.ActionLink("Detalles", "Details", new { id = item.idCarrera }) |
+                @Html.ActionLink("Eliminar", "Delete", new { id = item.idCarrera })
+            </td>
+        </tr>
+    }
 
 </table>

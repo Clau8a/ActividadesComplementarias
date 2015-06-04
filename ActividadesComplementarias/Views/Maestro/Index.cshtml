@@ -10,7 +10,7 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table>
+<table class="table table-bordered table-hover">
     <tr>
         <th>
             <label>Clave Maestro</label>
@@ -24,27 +24,29 @@
         <th>
             <label>Tipo</label>
         </th>
+        <th>    </th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.idMaestro)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.nombreMaestro)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Departamento.nombreDepartamento)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TipoMaestro1.tipoMaestro1)
-        </td>
-        <td>
-            @Html.ActionLink("Editar", "Edit", new { id=item.idMaestro }) |
-            @Html.ActionLink("Eliminar", "Delete", new { id=item.idMaestro })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.idMaestro)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.nombreMaestro)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Departamento.nombreDepartamento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TipoMaestro1.tipoMaestro1)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { id = item.idMaestro }) |
+                @Html.ActionLink("Eliminar", "Delete", new { id = item.idMaestro })
+            </td>
+        </tr>
+    }
 
 </table>

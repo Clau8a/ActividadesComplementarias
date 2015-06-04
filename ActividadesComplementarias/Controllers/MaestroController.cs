@@ -11,8 +11,6 @@ namespace ActividadesComplementarias.Controllers
 {
     public class MaestroController : Controller
     {
-        string idMaestro="",contraseña="",salt="";
-        
         private CreditosComplementariosEntities db = new CreditosComplementariosEntities();
 
         //
@@ -56,7 +54,7 @@ namespace ActividadesComplementarias.Controllers
         //
         // GET: /Maestro/Edit/5
 
-        public ActionResult Edit(string id = "")
+        public ActionResult Edit(string id = null)
         {
             Maestros maestros = db.Maestros.Find(id);
             if (maestros == null)
@@ -72,7 +70,8 @@ namespace ActividadesComplementarias.Controllers
         // POST: /Maestro/Edit/5
 
         [HttpPost]
-        public ActionResult Edit( Maestros maestros)
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(Maestros maestros)
         {
             if (ModelState.IsValid)
             {
@@ -88,7 +87,7 @@ namespace ActividadesComplementarias.Controllers
         //
         // GET: /Maestro/Delete/5
 
-        public ActionResult Delete(int id = 0)
+        public ActionResult Delete(string id = null)
         {
             Maestros maestros = db.Maestros.Find(id);
             if (maestros == null)
@@ -103,7 +102,7 @@ namespace ActividadesComplementarias.Controllers
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(string id)
         {
             Maestros maestros = db.Maestros.Find(id);
             db.Maestros.Remove(maestros);

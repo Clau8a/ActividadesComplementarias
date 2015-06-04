@@ -5,17 +5,20 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Crear Nuevo Departamento</h2>
+<div class="col-lg-4 col-lg-offset-4">
 
-@using (Html.BeginForm()) {
-    @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true)
+    <h3>Crear Nuevo Departamento</h3>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
 
         <div class="editor-label">
             <label>ID Departamento</label>
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.idDepartamento)
+            @Html.EditorFor(model => model.idDepartamento, "", new { @class = "inputForm" })
             @Html.ValidationMessageFor(model => model.idDepartamento)
         </div>
 
@@ -27,13 +30,10 @@
             @Html.ValidationMessageFor(model => model.nombreDepartamento)
         </div>
 
-        <p>
-            <input type="submit" value="Crear" />
-        </p>
-}
-
-<div>
-    @Html.ActionLink("Regresar a list de Departamento", "Index")
+        <div class="botones">
+            <input class="btn-success" type="submit" value="Guardar" />
+        </div>
+    }
 </div>
 
 @section Scripts {

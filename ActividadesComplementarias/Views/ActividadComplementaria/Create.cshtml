@@ -5,14 +5,17 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Create</h2>
+<div class="col-lg-6 col-lg-offset-3" >
+    <h2>Agregar Actividad Complementaria</h2>
+</div>
+<div class="col-lg-4 col-lg-offset-4">
 
-@using (Html.BeginForm()) {
-    @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true)
 
-    <fieldset>
-        <legend>ActividadComplementaria</legend>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+
 
         <div class="editor-label">
             @Html.LabelFor(model => model.idActividadComplementaria)
@@ -23,7 +26,7 @@
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.nombreActComplementaria)
+            <label>Actividad Complementaria</label>
         </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.nombreActComplementaria)
@@ -31,7 +34,7 @@
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.descripcion)
+            <label>Descripción</label>
         </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.descripcion)
@@ -39,7 +42,7 @@
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.carrera, "Carrera1")
+            <label>Carrera</label>
         </div>
         <div class="editor-field">
             @Html.DropDownList("carrera", String.Empty)
@@ -47,7 +50,7 @@
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.modalidad)
+            <label>Modalidad</label>
         </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.modalidad)
@@ -55,23 +58,20 @@
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.noCreditos)
+            <label>No. Créditos</label>
         </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.noCreditos)
             @Html.ValidationMessageFor(model => model.noCreditos)
         </div>
 
-        <p>
-            <input type="submit" value="Create" />
-        </p>
-    </fieldset>
-}
+        <div class="botones">
+            <input class="btn-success" type="submit" value="Guardar" />
+        </div>
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
+    }
 </div>
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }

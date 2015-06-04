@@ -1,0 +1,44 @@
+﻿body 
+{
+
+    background-color:rgba(0, 148, 255,0.1);
+}
+.col-lg-4 
+{
+    text-align: center;
+    background: rgba(60,184,120,0.75);
+    padding-bottom:25px;
+}
+.col-lg-8 
+{
+    text-align: center;
+    background: rgba(60,184,120,0.75);
+    padding-bottom:15px;
+}
+.btn-signin
+{
+    width:100%;
+}
+p 
+{
+    margin-top: 10px;
+    margin-bottom:10px; 
+}
+#izq, #der 
+{
+   height:250px;
+}
+#izq 
+{
+    border-right:solid;
+}
+#contenido 
+{
+    padding-top:10px;
+    padding-bottom:20px;
+    text-align:justify;
+}
+#lema 
+{
+    text-align:center;
+}

@@ -1,0 +1,71 @@
+﻿@model IEnumerable<ActividadesComplementarias.Models.ActividadComplementaria>
+
+@{
+    ViewBag.Title = "Actividades";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Actividades Complementarias</h2>
+
+
+@{
+    int cont = 0;
+    string color = "";
+    }
+@foreach (var item in Model)
+{
+    cont++;
+    switch(cont)
+    {
+        case 1:
+            color= "rgb(60,184,120)";
+        break;
+        case 2:
+            color = "rgb(23, 105, 195)";
+        break;
+        case 3:
+            color = "rgb(200, 10, 15)";
+        break;
+        case 4:
+        color = "rgb(2,134,5)";
+        break;
+    }
+    
+    <div class="col-lg-3 actividades" style="background-color:@color;">
+        <div >
+            <div >
+                <h4>@Html.DisplayFor(modelItem => item.nombreActComplementaria)</h4>
+                <div class="icon">
+                    <i class="glyphicon glyphicon-ok"></i>
+                </div>
+                <div class="">
+                    <div class="descripcion">
+                        <label>Descripción: </label>
+                        @Html.DisplayFor(modelItem => item.descripcion)
+                    </div>
+                    <div class="descripcion">
+                        <label><b>Carrera: </b></label>
+                        @Html.DisplayFor(modelItem => item.Carrera1.nombreCarrera)
+                    </div>
+                    <div class="descripcion">
+                        <label><b>Carrera: </b></label>
+                        @Html.DisplayFor(modelItem => item.modalidad)
+                    </div>
+                    <div class="descripcion">
+                        <label><b>No. Créditos: </b></label>
+                        @Html.DisplayFor(modelItem => item.noCreditos)
+                    </div>
+                </div>
+            </div>
+            <div  >
+                <a href="/Inscripcion/create/@item.idActividadComplementaria" class="btn btn-lg btn-primary btn-block" >Inscribirme</a>
+            </div>
+        </div>
+    </div>
+    if (cont == 4)
+    {
+        cont = 0;
+    }
+}
+
+
