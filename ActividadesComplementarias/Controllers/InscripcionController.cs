@@ -16,16 +16,39 @@ namespace ActividadesComplementarias.Controllers
         //
         // GET: /Inscripcion/
 
-        public ActionResult Index()
+        public ActionResult Index(int id=0)
         {
-            var actividadcursada = db.ActividadCursada.Include(a => a.ActividadComplementaria).Include(a => a.Estudiante).Include(a => a.Maestros);
-            return View(actividadcursada.ToList());
+            if (id != 0)
+            { 
+                var cursadas= from cur in db.ActividadCursada
+                              where cur.idEstudiante==id
+                                  select cur;
+                var curs =cursadas.Include(a => a.ActividadComplementaria).Include(a => a.Estudiante).Include(a => a.Maestros);
+                return View(curs.ToList());
+            }
+            else
+            {
+                var actividadcursada = db.ActividadCursada.Include(a => a.ActividadComplementaria).Include(a => a.Estudiante).Include(a => a.Maestros);
+                return View(actividadcursada.ToList());
+            }
         }
 
-        public ActionResult Actividades()
+        public ActionResult Actividades(int id=0)
         {
-            var actividadcomplementaria = db.ActividadComplementaria.Include(a => a.Carrera1);
-            return View(actividadcomplementaria.ToList());
+            Estudiante student = db.Estudiante.Find(id);
+            if (id != 0) 
+            {
+                var actividades= from ac in db.ActividadComplementaria
+                                     where ac.carrera==student.carrera
+                                     select ac;
+                var filtro = actividades.Include(a => a.Carrera1);
+                return View(filtro.ToList());
+            }
+            else 
+            { 
+                var actividadcomplementaria = db.ActividadComplementaria.Include(a => a.Carrera1);
+                return View(actividadcomplementaria.ToList());
+            }
         }
         //
         // GET: /Inscripcion/Details/5
@@ -49,7 +72,15 @@ namespace ActividadesComplementarias.Controllers
             {
                 var actividad = db.ActividadComplementaria.Find(id);
                 ViewBag.idActComplementaria = actividad.nombreActComplementaria;
-                ViewBag.idEstudiante = Session["uxid"].ToString();
+                ViewBag.idActComplementaria = new SelectList(db.ActividadComplementaria, "idActividadComplementaria", "nombreActComplementaria",id);
+                string student1=Session["uxid"].ToString();
+                var estudiante = from student in db.Estudiante
+                                 where student.nombreEstudiante == student1
+                                 select student;
+                foreach (var item in estudiante)
+                {
+                    ViewBag.idEstudiante = new SelectList(db.Estudiante, "idEstudiante", "nombreEstudiante", item.idEstudiante);
+                }
             }
             ViewBag.mestro = new SelectList(db.Maestros, "idMaestro", "nombreMaestro");
             return View();
@@ -60,15 +91,9 @@ namespace ActividadesComplementarias.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(ActividadCursada actividadcursada, string idEstudiante)
+        public ActionResult Create(ActividadCursada actividadcursada)
         {
-            var estudiante= from student in db.Estudiante
-                            where student.nombreEstudiante==idEstudiante
-                                select student;
-            foreach(var item in estudiante)
-            {
-                actividadcursada.idEstudiante = item.idEstudiante;
-            }
+            
             
             if (ModelState.IsValid)
             {

@@ -20,17 +20,39 @@
                 </div>
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
+                 @{
+                         if (Session["user.tipo"].ToString() == "J") { 
                         <li role="presentation">@Html.ActionLink("Departamentos", "Index", "Departamento")</li>
                         <li role="presentation">@Html.ActionLink("Carreras", "Index", "Carrera")</li>
                         <li role="presentation">@Html.ActionLink("Estudiante", "Index", "Estudiante")</li>
                         <li role="presentation">@Html.ActionLink("Maestros", "Index", "Maestro")</li>
                         <li role="presentation">@Html.ActionLink("Actividad Complementaria", "Index", "ActividadComplementaria")</li>
-                        <li role="presentation">@Html.ActionLink("Inscripción", "Index", "Inscripcion")</li>
+ 
+                                <li role="presentation">@Html.ActionLink("Inscritos", "Index", "Inscripcion")</li>
 
+                         }
+                         else
+                         {
+                             if (Session["user.tipo"].ToString() == "C")
+                             {
+                                <li role="presentation">@Html.ActionLink("Historial Estudiante", "Index", "Inscripcion")</li>
+                             }
+                             else 
+                             { 
+                                <li role="presentation"><a href="/Inscripcion/Index/@Session["user.id"].ToString()">Mis actividades</a></li>
+                                <li role="presentation"><a href="/Inscripcion/Actividades/@Session["user.id"].ToString()">Inscripciones</a></li>
+                             }
+                         }
+                   }
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <!--DEBE SE UN DROPDOWN QUE TE PERMITA CERRAR SESION-->
-                        <li><a href="#"><span class="glyphicon glyphicon-user"></span>@Session["uxid"].ToString()</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span>@Session["uxid"].ToString()<b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li>@Html.ActionLink("Cerrar Sesión", "Logout", "Cuenta")</li>
+                            </ul>
+                        </li>
                     </ul>
                 </div>
             </div>

@@ -28,8 +28,12 @@ namespace ActividadesComplementarias.Controllers
             {
                 if (findUser(user, password))
                 {
-                    if (tipoUsuario == 'E')///Agregar el tipo de usuario
+                    Session["user.tipo"] = tipoUsuario;
+                    if (tipoUsuario == 'E')
+                    {///Agregar el tipo de usuario
                         Session["uxid"] = estudiante.nombreEstudiante;
+                        Session["user.id"] = estudiante.idEstudiante;
+                    }
                     else
                         Session["uxid"] = maestro.nombreMaestro;
 
@@ -37,7 +41,7 @@ namespace ActividadesComplementarias.Controllers
                 else 
                 {
                     ViewBag.wrongUser = true;
-                    return View(user, password);
+                    return View();
                 }
             }
             return Redirect("/Home/Index");
@@ -79,5 +83,14 @@ namespace ActividadesComplementarias.Controllers
             }
         }
 
+        public ActionResult Logout()
+        {
+            Session.Clear();
+            Session.Abandon();
+            Response.Cache.SetCacheability(HttpCacheability.NoCache);
+            Response.Cache.SetExpires(DateTime.UtcNow.AddHours(-1));
+            Response.Cache.SetNoStore();
+            return Redirect("/Home/Index");
+        }
     }
 }

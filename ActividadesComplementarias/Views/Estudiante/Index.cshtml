@@ -5,53 +5,57 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Estudiantes</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table table-bordered table-hover">
-    <tr>
-        <th>
-            <label>Numero de Control</label>
-        </th>
-        <th>
-            <label>Nombre</label>
-        </th>
-        <th>
-            <label>Carrera</label>
-        </th>
-        <th>
-            <label>Status</label>
-        </th>
-        <th>
-            <label>Num de Créditos</label>
-        </th>
-    </tr>
 
-    @foreach (var item in Model)
-    {
+<div class="col-lg-8 col-lg-offset-2">
+    <h2>Estudiantes</h2>
+    <div id="agregar">
+        <span><a href="/Estudiante/Create" class="addNew"><span class="glyphicon glyphicon-plus"></span></a> <b>  Agregar Nuevo</b></span>
+    </div>
+    <table class="table table-bordered table-hover">
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.idEstudiante)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.nombreEstudiante)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Carrera1.nombreCarrera)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.estatusEstudiante)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.creditosComplementarios)
-            </td>
-            <td>
-                @Html.ActionLink("Editar", "Edit", new { id = item.idEstudiante }) |
-                @Html.ActionLink("Eliminar", "Delete", new { id = item.idEstudiante })
-            </td>
+            <th>
+                <label>Numero de Control</label>
+            </th>
+            <th>
+                <label>Nombre</label>
+            </th>
+            <th>
+                <label>Carrera</label>
+            </th>
+            <th>
+                <label>Activo</label>
+            </th>
+            <th>
+                <label>Num de Créditos</label>
+            </th>
+            <th></th>
         </tr>
-    }
 
-</table>
+        @foreach (var item in Model)
+        {
+            <tr class="success">
+                <td>
+                    @Html.DisplayFor(modelItem => item.idEstudiante)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.nombreEstudiante)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Carrera1.nombreCarrera)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.estatusEstudiante)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.creditosComplementarios)
+                </td>
+                <td style="width:105px;">
+                    <a href="/Estudiante/Edit/@item.idEstudiante"><span id="edit" class="glyphicon glyphicon-pencil cuadrado"></span></a>
+                    <a href="/Estudiante/Delete/@item.idEstudiante"><span id="delete" class="glyphicon glyphicon-remove cuadrado"></span></a>
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

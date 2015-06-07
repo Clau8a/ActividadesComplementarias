@@ -4,7 +4,7 @@
     ViewBag.Title = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<div class="col-lg-6 col-lg-offset-3">
+<div class="col-lg-6 col-lg-offset-3" style="text-align:left;">
     <h2>Inscripción</h2>
 
     @using (Html.BeginForm())
@@ -13,7 +13,7 @@
         @Html.ValidationSummary(true)
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.idAvtividadCursada)
+            <label>id</label>
         </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.idAvtividadCursada)
@@ -21,10 +21,10 @@
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.idActComplementaria, "ActividadComplementaria")
+            @Html.LabelFor(model => model.idActComplementaria, "Actividad Complementaria")
         </div>
         <div class="editor-field">
-            <input class="text-box single-line" data-val="true" data-val-required="El campo actividad complementaria es obligatorio." id="idActComplementaria" name="idActComplementaria" type="text" value="@ViewBag.idActComplementaria">
+            @Html.DropDownList("idActComplementaria", String.Empty)
             @Html.ValidationMessageFor(model => model.idActComplementaria)
         </div>
 
@@ -32,12 +32,12 @@
             @Html.LabelFor(model => model.idEstudiante, "Estudiante")
         </div>
         <div class="editor-field">
-            <input class="text-box single-line" data-val="true" data-val-required="El campo actividad complementaria es obligatorio." id="idEstudiante" name="idEstudiante" type="text" value="@ViewBag.idEstudiante">
+            @Html.DropDownList("idEstudiante", String.Empty)
             @Html.ValidationMessageFor(model => model.idEstudiante)
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.estatusActividad)
+            @Html.LabelFor(model => model.estatusActividad,"Estatus")
         </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.estatusActividad)
@@ -45,7 +45,7 @@
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.periodo)
+            @Html.LabelFor(model => model.periodo, "Periodo")
         </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.periodo)
@@ -53,7 +53,7 @@
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.mestro, "Maestros")
+            @Html.LabelFor(model => model.mestro, "Maestro")
         </div>
         <div class="editor-field">
             @Html.DropDownList("mestro", String.Empty)

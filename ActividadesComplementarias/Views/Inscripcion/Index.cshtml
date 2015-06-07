@@ -5,60 +5,75 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table>
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.idAvtividadCursada)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.idActComplementaria)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.idEstudiante)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.estatusActividad)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.periodo)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.mestro)
-        </th>
-        <th></th>
-    </tr>
+<div class="col-lg-8 col-lg-offset-2">
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.idAvtividadCursada)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.idActComplementaria)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.idEstudiante)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.estatusActividad)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.periodo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.mestro)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-        </td>
-    </tr>
-}
 
-</table>
+    @{
+        if (Session["user.tipo"].ToString() == "C")
+        {<form method="get" style="margin-bottom:20px; text-align:center;">
+            
+             <h4>
+                 <span>
+                     Num. Control Estudiante
+
+                     <input name="id" id="id" type="text" style="width:50%;" />
+                 </span>
+             </h4>
+             <input class="btn-success" type="submit" value="Buscar" style="margin-top:15px; width:50%;" />
+        </form>
+        }
+
+    }
+    <table class="table table-bordered table-hover" >
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.idAvtividadCursada)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.idActComplementaria)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.idEstudiante)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.estatusActividad)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.periodo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.mestro)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr class="success">
+                <td>
+                    @Html.DisplayFor(modelItem => item.idAvtividadCursada)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ActividadComplementaria.nombreActComplementaria)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.idEstudiante)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.estatusActividad)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.periodo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.mestro)
+                </td>
+                <td>
+                    @Html.ActionLink("Acreditar", "Edit", new { /* id=item.PrimaryKey */ })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
