@@ -21,6 +21,9 @@
             <th>
                 <label>Carrera</label>
             </th>
+            <th>
+                <label>Departamento</label>
+            </th>
             <th></th>
         </tr>
 
@@ -32,6 +35,9 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.nombreCarrera)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Departamento1.nombreDepartamento)
                 </td>
                 <td>
                     <a href="/Carrera/Edit/@item.idCarrera"><span id="edit" class="glyphicon glyphicon-pencil cuadrado"></span></a>

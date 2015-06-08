@@ -4,12 +4,14 @@
     ViewBag.Title = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<link href="~/Content/css/bootstrap-switch.css" rel="stylesheet" />
+<div class="col-lg-4 col-lg-offset-4">
+    <h2>Crear Estudiante</h2>
 
-<h2>Crear Estudiante</h2>
-
-@using (Html.BeginForm()) {
-    @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true)
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
 
         <div class="editor-label">
             <label>Numero de Control Estudiante</label>
@@ -39,16 +41,9 @@
             <label>Estatus estudiante</label>
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.estatusEstudiante)
+            <input type="checkbox" data-on-text="Activo" data-off-text="No"  data-val="true" data-val-required="El campo estatusEstudiante es obligatorio." id="estatusEstudiante" name="estatusEstudiante" value="true" checked>
+          
             @Html.ValidationMessageFor(model => model.estatusEstudiante)
-        </div>
-
-        <div class="editor-label">
-            <label>Num de Crpéditos</label>
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.creditosComplementarios)
-            @Html.ValidationMessageFor(model => model.creditosComplementarios)
         </div>
 
         <div class="editor-label">
@@ -59,21 +54,20 @@
             @Html.ValidationMessageFor(model => model.contraseñaEstudiante)
         </div>
 
-        <div class="editor-label">
-            <label>Salt Contraseña</label>
+        <div class="botones">
+            <input class="btn-success" type="submit" value="Create" />
         </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.saltContraseña)
-            @Html.ValidationMessageFor(model => model.saltContraseña)
-        </div>
-        <p>
-            <input type="submit" value="Create" />
-        </p>
 
-}
+    }
+
+</div>
 
 
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }
+<script src="~/Scripts/jquery-1.11.3.js"></script>
+<script src="~/Content/js/bootstrap-switch.js"></script>
+<script>
+    $("[name='estatusEstudiante']").bootstrapSwitch();
+</script>

@@ -18,7 +18,21 @@ namespace ActividadesComplementarias.Controllers
 
         public ActionResult Index()
         {
-            return View(db.Carrera.ToList());
+            var carrera = db.Carrera.Include(c => c.Departamento1);
+            return View(carrera.ToList());
+        }
+
+        //
+        // GET: /Carrera/Details/5
+
+        public ActionResult Details(int id = 0)
+        {
+            Carrera carrera = db.Carrera.Find(id);
+            if (carrera == null)
+            {
+                return HttpNotFound();
+            }
+            return View(carrera);
         }
 
         //
@@ -26,6 +40,7 @@ namespace ActividadesComplementarias.Controllers
 
         public ActionResult Create()
         {
+            ViewBag.departamento = new SelectList(db.Departamento, "idDepartamento", "nombreDepartamento");
             return View();
         }
 
@@ -43,6 +58,7 @@ namespace ActividadesComplementarias.Controllers
                 return RedirectToAction("Index");
             }
 
+            ViewBag.departamento = new SelectList(db.Departamento, "idDepartamento", "nombreDepartamento", carrera.departamento);
             return View(carrera);
         }
 
@@ -56,6 +72,7 @@ namespace ActividadesComplementarias.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.departamento = new SelectList(db.Departamento, "idDepartamento", "nombreDepartamento", carrera.departamento);
             return View(carrera);
         }
 
@@ -72,6 +89,7 @@ namespace ActividadesComplementarias.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.departamento = new SelectList(db.Departamento, "idDepartamento", "nombreDepartamento", carrera.departamento);
             return View(carrera);
         }
 

@@ -28,22 +28,22 @@
     <table class="table table-bordered table-hover" >
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.idAvtividadCursada)
+                <label>Folio</label>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.idActComplementaria)
+                <label>Actividad Complementaria</label>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.idEstudiante)
+                <label>Num. Control</label>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.estatusActividad)
+                <label>Status</label>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.periodo)
+                <label>Periodo</label>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.mestro)
+                <label>Maestro</label>
             </th>
             <th></th>
         </tr>
@@ -70,7 +70,17 @@
                     @Html.DisplayFor(modelItem => item.mestro)
                 </td>
                 <td>
-                    @Html.ActionLink("Acreditar", "Edit", new { /* id=item.PrimaryKey */ })
+                    @{
+                        if(Session["User.Tipo"].ToString()=="J")
+                        {
+                            @Html.ActionLink("Acreditar", "Acreditar", new { id = item.idAvtividadCursada })<br />
+                            <a href="/PDF/GenerarPdf/@item.idAvtividadCursada">Constancia</a>
+                        }
+                        if (Session["User.Tipo"].ToString() == "E" && @item.estatusActividad=="Cursando")
+                        {
+                            <a href="/PDF/GenerarPdfAcuse/@item.idAvtividadCursada">Acuse</a><br />
+                        }
+                    }
                 </td>
             </tr>
         }

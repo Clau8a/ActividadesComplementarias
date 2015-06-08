@@ -4,12 +4,13 @@
     ViewBag.Title = "CAS - Editar Carrera";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<div class="col-lg-4 col-lg-offset-4">
+    <h2>Editar Carrera</h2>
 
-<h2>Editar Carrera</h2>
-
-@using (Html.BeginForm()) {
-    @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true)
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
 
         <div class="editor-label">
             <label>Clave Carrea</label>
@@ -27,13 +28,21 @@
             @Html.ValidationMessageFor(model => model.nombreCarrera)
         </div>
 
-        <p>
-            <input type="submit" value="Guardar" />
-        </p>
-}
+        <div class="editor-label">
+            @Html.LabelFor(model => model.departamento, "Departamento")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("departamento", String.Empty)
+            @Html.ValidationMessageFor(model => model.departamento)
+        </div>
 
+        <div class="botones">
+            <input class="btn-success" type="submit" value="Guardar" />
+        </div>
+    }
 
+</div>
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }

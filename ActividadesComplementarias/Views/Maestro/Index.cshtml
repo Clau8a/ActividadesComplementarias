@@ -5,48 +5,48 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table table-bordered table-hover">
-    <tr>
-        <th>
-            <label>Clave Maestro</label>
-        </th>
-        <th>
-            <label>Nombre Maestro</label>
-        </th>
-        <th>
-            <label>Departamento</label>
-        </th>
-        <th>
-            <label>Tipo</label>
-        </th>
-        <th>    </th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
-        <tr class="success">
-            <td>
-                @Html.DisplayFor(modelItem => item.idMaestro)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.nombreMaestro)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Departamento.nombreDepartamento)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TipoMaestro1.tipoMaestro1)
-            </td>
-            <td>
-                @Html.ActionLink("Editar", "Edit", new { id = item.idMaestro }) |
-                @Html.ActionLink("Eliminar", "Delete", new { id = item.idMaestro })
-            </td>
+<div class="col-lg-8 col-lg-offset-2">
+    <h2>Maestros</h2>
+    <div id="agregar">
+        <span><a href="/Maestro/Create" class="addNew"><span class="glyphicon glyphicon-plus"></span></a> <b>  Agregar Nuevo</b></span>
+    </div>
+    <table class="table table-bordered table-hover">
+        <tr>
+            <th>
+                <label>Clave Maestro</label>
+            </th>
+            <th>
+                <label>Nombre Maestro</label>
+            </th>
+            <th>
+                <label>Departamento</label>
+            </th>
+            <th>
+                <label>Tipo</label>
+            </th>
+            <th>    </th>
         </tr>
-    }
 
-</table>
+        @foreach (var item in Model)
+        {
+            <tr class="success">
+                <td>
+                    @Html.DisplayFor(modelItem => item.idMaestro)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.nombreMaestro)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Departamento.nombreDepartamento)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TipoMaestro1.tipoMaestro1)
+                </td>
+                <td style="width:105px;">
+                    <a href="/Maestro/Edit/@item.idMaestro"><span id="edit" class="glyphicon glyphicon-pencil cuadrado"></span></a>
+                    <a href="/Maestro/Delete/@item.idMaestro"><span id="delete" class="glyphicon glyphicon-remove cuadrado"></span></a>
+                </td>
+            </tr>
+        }
+    </table>
+</div>

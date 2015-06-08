@@ -5,11 +5,13 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Editar Departamento</h2>
+<div class="col-lg-4 col-lg-offset-4">
+    <h2>Editar Departamento</h2>
 
-@using (Html.BeginForm()) {
-    @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true)
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
 
         <div class="editor-label">
             <label>ID Departamento</label>
@@ -27,14 +29,11 @@
             @Html.ValidationMessageFor(model => model.nombreDepartamento)
         </div>
 
-        <p>
-            <input type="submit" value="Guardar" />
-        </p>
-   
-}
+        <div class="botones">
+            <input class="btn-success" type="submit" value="Guardar" />
+        </div>
 
-<div>
-    @Html.ActionLink("Regresar a lista de Departamento", "Index")
+    }
 </div>
 
 @section Scripts {

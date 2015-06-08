@@ -93,8 +93,7 @@ namespace ActividadesComplementarias.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(ActividadCursada actividadcursada)
         {
-            
-            
+            actividadcursada.estatusActividad = "Cursando";
             if (ModelState.IsValid)
             {
                 db.ActividadCursada.Add(actividadcursada);
@@ -106,6 +105,14 @@ namespace ActividadesComplementarias.Controllers
             return View(actividadcursada);
         }
 
+        public ActionResult Acreditar(int id = 0)
+        {
+            ActividadCursada actividadcursada = db.ActividadCursada.Find(id);
+            actividadcursada.estatusActividad = "Acreditada";
+            db.Entry(actividadcursada).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
         //
         // GET: /Inscripcion/Edit/5
 

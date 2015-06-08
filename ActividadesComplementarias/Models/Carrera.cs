@@ -22,8 +22,10 @@ namespace ActividadesComplementarias.Models
     
         public int idCarrera { get; set; }
         public string nombreCarrera { get; set; }
+        public int departamento { get; set; }
     
         public virtual ICollection<ActividadComplementaria> ActividadComplementaria { get; set; }
         public virtual ICollection<Estudiante> Estudiante { get; set; }
+        public virtual Departamento Departamento1 { get; set; }
     }
 }

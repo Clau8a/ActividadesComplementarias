@@ -1,31 +1,41 @@
 ﻿@model ActividadesComplementarias.Models.Carrera
 
 @{
-    ViewBag.Title = "CAS - Eliminar Carrera";
+     ViewBag.Title = "CAS - Eliminar Carrera";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Eliminar Carrera</h2>
+<div class="col-lg-4 col-lg-offset-4">
+    <h2>Eliminar Carrera</h2>
 
-<h3>¿Esta seguro de que desea eliminar esto?</h3>
+    <h3>¿Esta seguro de que desea eliminar esto?</h3>
 
     <div class="display-label">
-         <label>Clave Carrera</label>
+        <label>Clave Carrera</label>
     </div>
     <div class="display-field">
         @Html.DisplayFor(model => model.idCarrera)
     </div>
-        <br />
+
     <div class="display-label">
-         <label>Carrera</label>
+        <label>Carrera</label>
     </div>
     <div class="display-field">
         @Html.DisplayFor(model => model.nombreCarrera)
     </div>
-@using (Html.BeginForm()) {
-    @Html.AntiForgeryToken()
-    <p>
-        <input type="submit" value="Eliminar" /> |
-        @Html.ActionLink("Regresar a lista de Carreras", "Index")
-    </p>
-}
+
+    <div class="display-label">
+        <label>Departamento</label>
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Departamento1.nombreDepartamento)
+    </div>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <div class="botones">
+            <input class="btn-success" type="submit" value="Eliminar" />
+        </div>
+    }
+</div>

@@ -28,6 +28,7 @@
     <EntitySetMapping Name="Carrera">
       <EntityTypeMapping TypeName="CreditosComplementariosModel.Carrera">
         <MappingFragment StoreEntitySet="Carrera">
+          <ScalarProperty Name="departamento" ColumnName="departamento" />
           <ScalarProperty Name="idCarrera" ColumnName="idCarrera" />
           <ScalarProperty Name="nombreCarrera" ColumnName="nombreCarrera" />
         </MappingFragment>

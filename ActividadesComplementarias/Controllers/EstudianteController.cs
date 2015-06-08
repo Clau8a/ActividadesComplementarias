@@ -38,6 +38,7 @@ namespace ActividadesComplementarias.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(Estudiante estudiante)
         {
+            estudiante.creditosComplementarios = 0;
             if (ModelState.IsValid)
             {
                 db.Estudiante.Add(estudiante);

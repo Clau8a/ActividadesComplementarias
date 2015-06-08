@@ -5,9 +5,10 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Delete</h2>
+<div class="col-lg-4 col-lg-offset-4">
+    <h3>Eliminar Departamento</h3>
 
-<h3>¿Esta seguro de que desea eliminar esto?</h3>
+    <h4>¿Esta seguro de que desea eliminar esto?</h4>
 
     <div class="display-label">
         <label>ID Departamento</label>
@@ -17,16 +18,17 @@
     </div>
     <br />
     <div class="display-label">
-         <label>Nombre de Departamento</label>
+        <label>Nombre de Departamento</label>
     </div>
     <div class="display-field">
         @Html.DisplayFor(model => model.nombreDepartamento)
     </div>
 
-@using (Html.BeginForm()) {
-    @Html.AntiForgeryToken()
-    <p>
-        <input type="submit" value="Eliminar" /> |
-        @Html.ActionLink("Regresar a lista de Departamento", "Index")
-    </p>
-}
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <div class="botones">
+            <input class="btn-success" type="submit" value="Eliminar" />
+        </div>
+    }
+</div>

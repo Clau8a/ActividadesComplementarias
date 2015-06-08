@@ -35,6 +35,8 @@
     <Property Name="nombreCarrera" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
     <NavigationProperty Name="ActividadComplementaria" Relationship="Self.FK_ActividadComplementaria_Disciplina" FromRole="Carrera" ToRole="ActividadComplementaria" />
     <NavigationProperty Name="Estudiante" Relationship="Self.FK_Estudiante_Disciplina" FromRole="Carrera" ToRole="Estudiante" />
+    <Property Name="departamento" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Departamento1" Relationship="CreditosComplementariosModel.FK_Carrera_Departamento" FromRole="Carrera" ToRole="Departamento" />
   </EntityType>
   <EntityType Name="Departamento">
     <Key>
@@ -43,6 +45,7 @@
     <Property Name="idDepartamento" Type="Int32" Nullable="false" />
     <Property Name="nombreDepartamento" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
     <NavigationProperty Name="Maestros" Relationship="Self.FK_Maestros_Departamento" FromRole="Departamento" ToRole="Maestros" />
+    <NavigationProperty Name="Carrera" Relationship="CreditosComplementariosModel.FK_Carrera_Departamento" FromRole="Departamento" ToRole="Carrera" />
   </EntityType>
   <EntityType Name="Estudiante">
     <Key>
@@ -180,6 +183,10 @@
       <End Role="TipoMaestro" EntitySet="TipoMaestro" />
       <End Role="Maestros" EntitySet="Maestros" />
     </AssociationSet>
+    <AssociationSet Name="FK_Carrera_Departamento" Association="CreditosComplementariosModel.FK_Carrera_Departamento">
+      <End Role="Departamento" EntitySet="Departamento" />
+      <End Role="Carrera" EntitySet="Carrera" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="TipoMaestro">
     <Key>
@@ -198,6 +205,18 @@
       </Principal>
       <Dependent Role="Maestros">
         <PropertyRef Name="tipoMaestro" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Carrera_Departamento">
+    <End Type="CreditosComplementariosModel.Departamento" Role="Departamento" Multiplicity="1" />
+    <End Type="CreditosComplementariosModel.Carrera" Role="Carrera" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Departamento">
+        <PropertyRef Name="idDepartamento" />
+      </Principal>
+      <Dependent Role="Carrera">
+        <PropertyRef Name="departamento" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

@@ -33,3 +33,4 @@ C:\Users\Claudita\Documents\Visual Studio 2013\Projects\ActividadesComplementari
 C:\Users\Claudita\Documents\Visual Studio 2013\Projects\ActividadesComplementarias\ActividadesComplementarias.Tests\obj\Debug\ActividadesComplementarias.Tests.csprojResolveAssemblyReference.cache
 C:\Users\Claudita\Documents\Visual Studio 2013\Projects\ActividadesComplementarias\ActividadesComplementarias.Tests\obj\Debug\ActividadesComplementarias.Tests.dll
 C:\Users\Claudita\Documents\Visual Studio 2013\Projects\ActividadesComplementarias\ActividadesComplementarias.Tests\obj\Debug\ActividadesComplementarias.Tests.pdb
+C:\Users\Claudita\Documents\Visual Studio 2013\Projects\ActividadesComplementarias\ActividadesComplementarias.Tests\bin\Debug\itextsharp.dll

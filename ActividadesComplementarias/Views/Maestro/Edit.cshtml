@@ -4,12 +4,13 @@
     ViewBag.Title = "Edit";
     Layout = "~/Views/Shared/_Layout.cshtml";    
 }
+<div class="col-lg-4 col-lg-offset-4">
+    <h2>Editar Mestro</h2>
 
-<h2>Editar Mestro</h2>
-
-@using (Html.BeginForm()) {
-    @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true)
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
 
 
         <div class="editor-label">
@@ -43,17 +44,17 @@
             @Html.DropDownList("tipoMaestro", String.Empty)
             @Html.ValidationMessageFor(model => model.tipoMaestro)
         </div>
-        <input id="contraseñaMaestro" name="contraseñaMaestro" value="@Model.contraseñaMaestro" hidden/>
+        <input id="contraseñaMaestro" name="contraseñaMaestro" value="@Model.contraseñaMaestro" hidden />
         <input id="saltContraseña" name="saltContraseña" value="@Model.saltContraseña" hidden />
 
 
 
-        <p>
-            <input type="submit" value="Save" />
-        </p>
+        <div class="botones">
+            <input class="btn-success" type="submit" value="Save" />
+        </div>
 
-}
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
+    }
+</div>
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }

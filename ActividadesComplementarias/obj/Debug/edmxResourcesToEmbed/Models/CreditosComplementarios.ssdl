@@ -28,6 +28,7 @@
     </Key>
     <Property Name="idCarrera" Type="int" Nullable="false" />
     <Property Name="nombreCarrera" Type="varchar" MaxLength="60" Nullable="false" />
+    <Property Name="departamento" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Departamento">
     <Key>
@@ -114,6 +115,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Carrera_Departamento">
+    <End Role="Departamento" Type="Self.Departamento" Multiplicity="1" />
+    <End Role="Carrera" Type="Self.Carrera" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Departamento">
+        <PropertyRef Name="idDepartamento" />
+      </Principal>
+      <Dependent Role="Carrera">
+        <PropertyRef Name="departamento" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Estudiante_Disciplina">
     <End Role="Carrera" Type="Self.Carrera" Multiplicity="1" />
     <End Role="Estudiante" Type="Self.Estudiante" Multiplicity="*" />
@@ -173,6 +186,10 @@
     <AssociationSet Name="FK_ActividadCursada_Maestros" Association="Self.FK_ActividadCursada_Maestros">
       <End Role="Maestros" EntitySet="Maestros" />
       <End Role="ActividadCursada" EntitySet="ActividadCursada" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Carrera_Departamento" Association="Self.FK_Carrera_Departamento">
+      <End Role="Departamento" EntitySet="Departamento" />
+      <End Role="Carrera" EntitySet="Carrera" />
     </AssociationSet>
     <AssociationSet Name="FK_Estudiante_Disciplina" Association="Self.FK_Estudiante_Disciplina">
       <End Role="Carrera" EntitySet="Carrera" />

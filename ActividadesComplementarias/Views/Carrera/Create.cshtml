@@ -1,15 +1,17 @@
 ﻿@model ActividadesComplementarias.Models.Carrera
 
 @{
-    ViewBag.Title = "CAS - Crear Carrera";
+    ViewBag.Title = "ECAS - Crear Carrera";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Crear Nueva Carrera</h2>
+<div class="col-lg-4 col-lg-offset-4">
+    <h2>Crear Nueva Carrera</h2>
 
-@using (Html.BeginForm()) {
-    @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true)
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
 
 
         <div class="editor-label">
@@ -21,22 +23,27 @@
         </div>
 
         <div class="editor-label">
-           <label>Carrera</label>
+            <label>Carrera</label>
         </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.nombreCarrera)
             @Html.ValidationMessageFor(model => model.nombreCarrera)
         </div>
 
-        <p>
-            <input type="submit" value="Crear" />
-        </p>
-}
+        <div class="editor-label">
+            @Html.LabelFor(model => model.departamento, "Departamento")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("departamento", String.Empty)
+            @Html.ValidationMessageFor(model => model.departamento)
+        </div>
 
-<div>
-    @Html.ActionLink("Regresar a la lista", "Index")
+        <div class="botones">
+            <input class="btn-success" type="submit" value="Crear" />
+        </div>
+    }
+
 </div>
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }

@@ -4,41 +4,41 @@
     ViewBag.Title = "Delete";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<div class="col-lg-4 col-lg-offset-4">
+    <h2>Eliminar Estudiante</h2>
 
-<h2>Eliminar Estudiante</h2>
-
-<h3>Are you sure you want to delete this?</h3>
+    <h3>¿Seguro que desea eliminar Estudiante?</h3>
 
     <div class="display-label">
-         <label>Número de Control</label>
+        <label>Número de Control</label>
     </div>
     <div class="display-field">
         @Html.DisplayFor(model => model.idEstudiante)
     </div>
 
     <div class="display-label">
-         <label>nombreEstudiante)
+        <label>nombreEstudiante)
     </div>
     <div class="display-field">
         @Html.DisplayFor(model => model.nombreEstudiante)
     </div>
 
     <div class="display-label">
-         <label>Carrera</label>
+        <label>Carrera</label>
     </div>
     <div class="display-field">
         @Html.DisplayFor(model => model.Carrera1.nombreCarrera)
     </div>
 
     <div class="display-label">
-         <label>Etatus</label>
+        <label>Etatus</label>
     </div>
     <div class="display-field">
         @Html.DisplayFor(model => model.estatusEstudiante)
     </div>
 
     <div class="display-label">
-         <label>Num de créditos</label>
+        <label>Num de créditos</label>
     </div>
     <div class="display-field">
         @Html.DisplayFor(model => model.creditosComplementarios)
@@ -59,9 +59,11 @@
         @Html.ValidationMessageFor(model => model.saltContraseña)
     </div>
 
-@using (Html.BeginForm()) {
-    @Html.AntiForgeryToken()
-    <p>
-        <input type="submit" value="Eliminar" /> 
-    </p>
-}
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <div>
+            <input class="btn-success" type="submit" value="Eliminar" />
+        </div>
+    }
+</div>
