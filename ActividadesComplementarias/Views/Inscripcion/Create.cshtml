@@ -40,7 +40,8 @@
             @Html.LabelFor(model => model.periodo, "Periodo")
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.periodo)
+            <input class="text-box single-line" id="periodo" name="periodo" type="text" value="@ViewBag.periodo" readonly>
+            
             @Html.ValidationMessageFor(model => model.periodo)
         </div>
 
@@ -52,9 +53,9 @@
             @Html.ValidationMessageFor(model => model.mestro)
         </div>
 
-        <p>
-            <input type="submit" value="Create" />
-        </p>
+        <div class="botones">
+            <input class="btn-success" type="submit" value="Confirmar" />
+        </div>
     }
 </div>
 

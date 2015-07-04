@@ -9,53 +9,59 @@
 
     <h3>¿Seguro que desea aliminar la actividad?</h3>
 
-        <div class="display-label">
-            <label>Clave Actividad Complementaria</label>
-        </div>
-        <div class="display-field">
-            @Html.DisplayFor(model => model.idActividadComplementaria)
-        </div>
+    <div class="display-label">
+        <label>Clave Actividad Complementaria</label>
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.idActividadComplementaria)
+    </div>
 
-        <div class="display-label">
-            <label>Nombre Actividad</label>
-        </div>
-        <div class="display-field">
-            @Html.DisplayFor(model => model.nombreActComplementaria)
-        </div>
+    <div class="display-label">
+        <label>Nombre Actividad</label>
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.nombreActComplementaria)
+    </div>
 
-        <div class="display-label">
-            <label>Descripción</label>
-        </div>
-        <div class="display-field">
-            @Html.DisplayFor(model => model.descripcion)
-        </div>
+    <div class="display-label">
+        <label>Descripción</label>
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.descripcion)
+    </div>
 
-        <div class="display-label">
-            <label>Carrera</label>
-        </div>
-        <div class="display-field">
-            @Html.DisplayFor(model => model.Carrera1.nombreCarrera)
-        </div>
+    <div class="display-label">
+        <label>Carrera</label>
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Carrera1.nombreCarrera)
+    </div>
 
-        <div class="display-label">
-            <label>Modalidad</label>
-        </div>
-        <div class="display-field">
-            @Html.DisplayFor(model => model.modalidad)
-        </div>
+    <div class="display-label">
+        <label>Modalidad</label>
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.modalidad)
+    </div>
 
-        <div class="display-label">
-            <label>No. Créditos</label>
-        </div>
-        <div class="display-field">
-            @Html.DisplayFor(model => model.noCreditos)
-        </div>
+    <div class="display-label">
+        <label>No. Créditos</label>
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.noCreditos)
+    </div>
 
-    @using (Html.BeginForm())
-    {
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.Maestros.nombreMaestro)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Maestros.nombreMaestro)
+    </div>
+    </fieldset>
+    @using (Html.BeginForm()) {
         @Html.AntiForgeryToken()
-        <div class="botones">
-            <input class="btn-success" type="submit" value="Eliminar" /> 
-        </div>
-    }
+<div class="botones">
+    <input class="btn-success" type="submit" value="Eliminar" />
+</div>
+}
 </div>

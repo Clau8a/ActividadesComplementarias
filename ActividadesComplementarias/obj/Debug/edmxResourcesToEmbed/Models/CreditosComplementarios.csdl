@@ -12,6 +12,8 @@
     <Property Name="noCreditos" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Carrera1" Relationship="Self.FK_ActividadComplementaria_Disciplina" FromRole="ActividadComplementaria" ToRole="Carrera" />
     <NavigationProperty Name="ActividadCursada" Relationship="Self.FK_ActividadCursada_ActividadComplementaria" FromRole="ActividadComplementaria" ToRole="ActividadCursada" />
+    <Property Name="maestro" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Maestros" Relationship="CreditosComplementariosModel.FK_ActividadComplementaria_Maestros" FromRole="ActividadComplementaria" ToRole="Maestros" />
   </EntityType>
   <EntityType Name="ActividadCursada">
     <Key>
@@ -74,6 +76,7 @@
     <Property Name="contraseñaMaestro" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="saltContraseña" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="TipoMaestro1" Relationship="CreditosComplementariosModel.FK_Maestros_TipoMaestro" FromRole="Maestros" ToRole="TipoMaestro" />
+    <NavigationProperty Name="ActividadComplementaria" Relationship="CreditosComplementariosModel.FK_ActividadComplementaria_Maestros" FromRole="Maestros" ToRole="ActividadComplementaria" />
   </EntityType>
   <Association Name="FK_ActividadComplementaria_Disciplina">
     <End Role="Carrera" Type="Self.Carrera" Multiplicity="1" />
@@ -187,6 +190,11 @@
       <End Role="Departamento" EntitySet="Departamento" />
       <End Role="Carrera" EntitySet="Carrera" />
     </AssociationSet>
+    <AssociationSet Name="FK_ActividadComplementaria_Maestros" Association="CreditosComplementariosModel.FK_ActividadComplementaria_Maestros">
+      <End Role="Maestros" EntitySet="Maestros" />
+      <End Role="ActividadComplementaria" EntitySet="ActividadComplementaria" />
+    </AssociationSet>
+    <EntitySet Name="sysdiagrams" EntityType="CreditosComplementariosModel.sysdiagrams" />
   </EntityContainer>
   <EntityType Name="TipoMaestro">
     <Key>
@@ -220,4 +228,26 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_ActividadComplementaria_Maestros">
+    <End Type="CreditosComplementariosModel.Maestros" Role="Maestros" Multiplicity="0..1" />
+    <End Type="CreditosComplementariosModel.ActividadComplementaria" Role="ActividadComplementaria" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Maestros">
+        <PropertyRef Name="idMaestro" />
+      </Principal>
+      <Dependent Role="ActividadComplementaria">
+        <PropertyRef Name="maestro" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
 </Schema>

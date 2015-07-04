@@ -1,0 +1,64 @@
+﻿@model IEnumerable<ActividadesComplementarias.Models.Estudiante>
+
+@{
+    ViewBag.Title = "List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="col-lg-8 col-lg-offset-2">
+    <h2>Estudiantes</h2>
+    <div id="agregar">
+        <span><a href="/Estudiante/Create" class="addNew"><span class="glyphicon glyphicon-plus"></span></a> <b>  Agregar Nuevo</b></span>
+    </div>
+    <table class="table table-bordered table-hover">
+        <tr>
+            <th>
+                <label>Numero de Control</label>
+            </th>
+            <th>
+                <label>Nombre</label>
+            </th>
+            <th>
+                <label>Carrera</label>
+            </th>
+            <th>
+                <label>Activo</label>
+            </th>
+            <th>
+                <label>Num de Créditos</label>
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr class="success">
+                <td>
+                    @Html.DisplayFor(modelItem => item.idEstudiante)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.nombreEstudiante)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.carrera)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.estatusEstudiante)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.creditosComplementarios)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.contraseñaEstudiante)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.saltContraseña)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.idEstudiante })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

@@ -17,6 +17,7 @@ namespace ActividadesComplementarias.Models
         public Maestros()
         {
             this.ActividadCursada = new HashSet<ActividadCursada>();
+            this.ActividadComplementaria = new HashSet<ActividadComplementaria>();
         }
     
         public string idMaestro { get; set; }
@@ -29,5 +30,6 @@ namespace ActividadesComplementarias.Models
         public virtual ICollection<ActividadCursada> ActividadCursada { get; set; }
         public virtual Departamento Departamento { get; set; }
         public virtual TipoMaestro TipoMaestro1 { get; set; }
+        public virtual ICollection<ActividadComplementaria> ActividadComplementaria { get; set; }
     }
 }

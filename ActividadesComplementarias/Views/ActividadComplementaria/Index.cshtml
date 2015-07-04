@@ -21,7 +21,7 @@
                 <label>Descripción</label>
             </th>
             <th>
-               <label>Carrera</label>
+                <label>Carrera</label>
             </th>
             <th>
                 <label>Modalidad</label>
@@ -29,19 +29,20 @@
             <th>
                 <label>No. Créditos</label>
             </th>
+            <th>Maestro</th>
             <th></th>
         </tr>
 
         @foreach (var item in Model)
         {
             <tr class="success">
-                <td >
+                <td>
                     @Html.DisplayFor(modelItem => item.idActividadComplementaria)
                 </td>
-                <td >
+                <td>
                     @Html.DisplayFor(modelItem => item.nombreActComplementaria)
                 </td>
-                <td >
+                <td>
                     @Html.DisplayFor(modelItem => item.descripcion)
                 </td>
                 <td>
@@ -50,12 +51,17 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.modalidad)
                 </td>
-                <td >
+                <td>
                     @Html.DisplayFor(modelItem => item.noCreditos)
                 </td>
-                <td style="width:105px;">
+                <td>
+                    @Html.DisplayFor(modelItem => item.Maestros.nombreMaestro)
+                </td>
+                <td style="width:150px;">
+                    <a href="/ActividadComplementaria/List/@item.idActividadComplementaria"><span id="edit" class="glyphicon glyphicon-list cuadrado"></span></a>
                     <a href="/ActividadComplementaria/Edit/@item.idActividadComplementaria"><span id="edit" class="glyphicon glyphicon-pencil cuadrado"></span></a>
                     <a href="/ActividadComplementaria/Delete/@item.idActividadComplementaria"><span id="delete" class="glyphicon glyphicon-remove cuadrado"></span></a>
+
                 </td>
             </tr>
         }

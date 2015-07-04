@@ -73,10 +73,13 @@
                     @{
                         if(Session["User.Tipo"].ToString()=="J")
                         {
-                            @Html.ActionLink("Acreditar", "Acreditar", new { id = item.idAvtividadCursada })<br />
+                            if (@item.estatusActividad == "Cursando")
+                            { 
+                                @Html.ActionLink("Acreditar", "Acreditar", new { id = item.idAvtividadCursada })<br />
+                            }
                             <a href="/PDF/GenerarPdf/@item.idAvtividadCursada">Constancia</a>
                         }
-                        if (Session["User.Tipo"].ToString() == "E" && @item.estatusActividad=="Cursando")
+                        if (Session["User.Tipo"].ToString() == "E" && @item.estatusActividad=="Acreditada")
                         {
                             <a href="/PDF/GenerarPdfAcuse/@item.idAvtividadCursada">Acuse</a><br />
                         }

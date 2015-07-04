@@ -20,6 +20,8 @@
         <EntityTypeShape EntityType="CreditosComplementariosModel.TipoMaestro" Width="1.5" PointX="0.75" PointY="6.625" />
         <AssociationConnector Association="CreditosComplementariosModel.FK_Maestros_TipoMaestro" />
         <AssociationConnector Association="CreditosComplementariosModel.FK_Carrera_Departamento" />
+        <AssociationConnector Association="CreditosComplementariosModel.FK_ActividadComplementaria_Maestros" />
+        <EntityTypeShape EntityType="CreditosComplementariosModel.sysdiagrams" Width="1.5" PointX="5.375" PointY="6.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

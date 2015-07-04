@@ -5,7 +5,6 @@
     <title>@ViewBag.Title</title>
 
     <link href="~/Content/css/bootstrap.css" rel="stylesheet" />
-    <link href="~/Content/css/bootstrap.min.css" rel="stylesheet" />
     <link href="~/Content/css/style.css" rel="stylesheet" />
     <link href="~/Content/css/bootstrap-switch.css" rel="stylesheet" />
 </head>
@@ -13,7 +12,7 @@
     <div>
         <nav class="navbar navbar-inverse ">
             <div id="Logos" class="col-lg-12">
-                <h1> <span><img src="~/Content/logoith.png" /></span><span> Instituto Tecnológico de Hermosillo</span></h1>
+                <h1> ECAS <span><img src="~/Content/logoith.png" /></span><span> Instituto Tecnológico de Hermosillo</span></h1>
             </div>
             <div class="container">
                 <div class="navbar-header">
@@ -36,7 +35,7 @@
                          {
                              if (Session["user.tipo"].ToString() == "C")
                              {
-                                <li role="presentation">@Html.ActionLink("Historial Estudiante", "Index", "Inscripcion")</li>
+                                <li role="presentation" class="active">@Html.ActionLink("Historial Estudiante", "Index", "Inscripcion")</li>
                              }
                              else 
                              { 

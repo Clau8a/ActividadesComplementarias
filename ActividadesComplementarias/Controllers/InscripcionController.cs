@@ -70,6 +70,7 @@ namespace ActividadesComplementarias.Controllers
         {
             if (id != 0)
             {
+                ViewBag.periodo=CalculaPeriodo();
                 var actividad = db.ActividadComplementaria.Find(id);
                 ViewBag.idActComplementaria = actividad.nombreActComplementaria;
                 ViewBag.idActComplementaria = new SelectList(db.ActividadComplementaria, "idActividadComplementaria", "nombreActComplementaria",id);
@@ -98,7 +99,7 @@ namespace ActividadesComplementarias.Controllers
             {
                 db.ActividadCursada.Add(actividadcursada);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return Redirect("/Inscripcion/Index/"+actividadcursada.idEstudiante);
             }
 
             ViewBag.mestro = new SelectList(db.Maestros, "idMaestro", "nombreMaestro", actividadcursada.mestro);
@@ -172,6 +173,19 @@ namespace ActividadesComplementarias.Controllers
             db.ActividadCursada.Remove(actividadcursada);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        public string CalculaPeriodo() 
+        {
+            var perioAño = DateTime.Today.Year;
+            int month=DateTime.Today.Month;
+            string per="";
+            if (month <= 6)
+                per = "-1";
+            else
+                per = "-2";
+            string periodo = perioAño + per;
+            return periodo;
         }
 
         protected override void Dispose(bool disposing)

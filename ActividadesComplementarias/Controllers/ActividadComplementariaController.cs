@@ -18,8 +18,21 @@ namespace ActividadesComplementarias.Controllers
 
         public ActionResult Index()
         {
-            var actividadcomplementaria = db.ActividadComplementaria.Include(a => a.Carrera1);
-            return View(actividadcomplementaria.ToList());
+            string id = Session["user.id"].ToString();
+            Maestros maestro = db.Maestros.Find(id);
+
+
+            var actividadcomplementaria = db.ActividadComplementaria.Include(a => a.Carrera1).Include(a => a.Maestros);
+            var actCom = actividadcomplementaria.Where(s=>s.Carrera1.departamento==maestro.departamentoMaestro);
+            return View(actCom.ToList());
+        }
+
+        public ActionResult List(int id=0)
+        {
+            //Carrera y departamento filtrar y ver como regresar a los estudiantes 
+            
+            var estudiante = db.Estudiante.Include(e => e.Carrera1);
+            return View(estudiante.ToList());
         }
 
         //
@@ -41,6 +54,7 @@ namespace ActividadesComplementarias.Controllers
         public ActionResult Create()
         {
             ViewBag.carrera = new SelectList(db.Carrera, "idCarrera", "nombreCarrera");
+            ViewBag.maestro = new SelectList(db.Maestros, "idMaestro", "nombreMaestro");
             return View();
         }
 
@@ -59,6 +73,7 @@ namespace ActividadesComplementarias.Controllers
             }
 
             ViewBag.carrera = new SelectList(db.Carrera, "idCarrera", "nombreCarrera", actividadcomplementaria.carrera);
+            ViewBag.maestro = new SelectList(db.Maestros, "idMaestro", "nombreMaestro", actividadcomplementaria.maestro);
             return View(actividadcomplementaria);
         }
 
@@ -73,6 +88,7 @@ namespace ActividadesComplementarias.Controllers
                 return HttpNotFound();
             }
             ViewBag.carrera = new SelectList(db.Carrera, "idCarrera", "nombreCarrera", actividadcomplementaria.carrera);
+            ViewBag.maestro = new SelectList(db.Maestros, "idMaestro", "nombreMaestro", actividadcomplementaria.maestro);
             return View(actividadcomplementaria);
         }
 
@@ -90,6 +106,7 @@ namespace ActividadesComplementarias.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.carrera = new SelectList(db.Carrera, "idCarrera", "nombreCarrera", actividadcomplementaria.carrera);
+            ViewBag.maestro = new SelectList(db.Maestros, "idMaestro", "nombreMaestro", actividadcomplementaria.maestro);
             return View(actividadcomplementaria);
         }
 

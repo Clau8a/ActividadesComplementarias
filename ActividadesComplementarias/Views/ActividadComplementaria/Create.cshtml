@@ -65,11 +65,20 @@
             @Html.ValidationMessageFor(model => model.noCreditos)
         </div>
 
-        <div class="botones">
-            <input class="btn-success" type="submit" value="Guardar" />
+        <div class="editor-label">
+            @Html.LabelFor(model => model.maestro, "Maestros")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("maestro", String.Empty)
+            @Html.ValidationMessageFor(model => model.maestro)
         </div>
 
-    }
+
+<div class="botones">
+    <input class="btn-success" type="submit" value="Guardar" />
+</div>
+
+}
 </div>
 
     @section Scripts {

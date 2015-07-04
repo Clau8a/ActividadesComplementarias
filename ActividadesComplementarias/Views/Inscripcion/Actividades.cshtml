@@ -15,30 +15,30 @@
 @foreach (var item in Model)
 {
     cont++;
-    switch(cont)
+    switch (cont)
     {
         case 1:
-            color= "rgb(60,184,120)";
-        break;
+            color = "rgb(60,184,120)";
+            break;
         case 2:
             color = "rgb(23, 105, 195)";
-        break;
+            break;
         case 3:
             color = "rgb(200, 10, 15)";
-        break;
+            break;
         case 4:
-        color = "rgb(2,134,5)";
-        break;
+            color = "rgb(2,134,5)";
+            break;
     }
-    
-    <div class="col-lg-3 actividades" style="background-color:@color;">
-        <div >
-            <div >
+    <div class="col-lg-3  actividadesWrapper" style="background-color:@color;" >
+        <div class=" actividades">
+        <div>
+            <div>
                 <h3>@Html.DisplayFor(modelItem => item.nombreActComplementaria)</h3>
                 <div class="icon">
                     <i class="glyphicon glyphicon-ok"></i>
                 </div>
-                <div class="">
+                <div >
                     <div class="descripcion">
                         <label>Descripción: </label>
                         @Html.DisplayFor(modelItem => item.descripcion)
@@ -57,11 +57,13 @@
                     </div>
                 </div>
             </div>
-            <div  >
-                <a href="/Inscripcion/create/@item.idActividadComplementaria" class="btn btn-lg btn-primary btn-block" >Inscribirme</a>
-            </div>
         </div>
     </div>
+        <div class="actividadesBtn">
+            <a href="/Inscripcion/create/@item.idActividadComplementaria" class="btn btn-success btn-block boton">Inscribirme</a>
+        </div>
+    </div>
+
     if (cont == 4)
     {
         cont = 0;

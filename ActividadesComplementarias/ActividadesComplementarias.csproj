@@ -131,9 +131,9 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\ActividadComplementariaController.cs" />
     <Compile Include="Controllers\CarreraController.cs" />
     <Compile Include="Controllers\CuentaController.cs" />
-    <Compile Include="Controllers\ActividadComplementariaController.cs" />
     <Compile Include="Controllers\DepartamentoController.cs" />
     <Compile Include="Controllers\EstudianteController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -174,6 +174,9 @@
       <DependentUpon>CreditosComplementarios.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Maestros.cs">
+      <DependentUpon>CreditosComplementarios.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sysdiagrams.cs">
       <DependentUpon>CreditosComplementarios.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TipoMaestro.cs">
@@ -322,10 +325,6 @@
     <Content Include="Views\Estudiante\Create.cshtml" />
     <Content Include="Views\Estudiante\Edit.cshtml" />
     <Content Include="Views\Estudiante\Delete.cshtml" />
-    <Content Include="Views\ActividadComplementaria\Index.cshtml" />
-    <Content Include="Views\ActividadComplementaria\Create.cshtml" />
-    <Content Include="Views\ActividadComplementaria\Edit.cshtml" />
-    <Content Include="Views\ActividadComplementaria\Delete.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Cuenta\IniciarSesion.cshtml" />
     <Content Include="Views\Maestro\Index.cshtml" />
@@ -341,6 +340,11 @@
     <Content Include="Views\Carrera\Create.cshtml" />
     <Content Include="Views\Carrera\Edit.cshtml" />
     <Content Include="Views\Carrera\Delete.cshtml" />
+    <Content Include="Views\ActividadComplementaria\Index.cshtml" />
+    <Content Include="Views\ActividadComplementaria\Create.cshtml" />
+    <Content Include="Views\ActividadComplementaria\Edit.cshtml" />
+    <Content Include="Views\ActividadComplementaria\Delete.cshtml" />
+    <Content Include="Views\ActividadComplementaria\List.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

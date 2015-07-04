@@ -35,7 +35,12 @@ namespace ActividadesComplementarias.Controllers
                         Session["user.id"] = estudiante.idEstudiante;
                     }
                     else
+                    {
                         Session["uxid"] = maestro.nombreMaestro;
+                        Session["user.id"] = maestro.idMaestro;
+                        if (tipoUsuario == 'C')
+                            return Redirect("/Inscripcion");
+                    }
 
                 }
                 else 
