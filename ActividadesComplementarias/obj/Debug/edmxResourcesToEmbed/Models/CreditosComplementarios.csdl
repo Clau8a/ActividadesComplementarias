@@ -9,7 +9,7 @@
     <Property Name="descripcion" Type="String" MaxLength="140" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="carrera" Type="Int32" Nullable="false" />
     <Property Name="modalidad" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="noCreditos" Type="Int32" Nullable="false" />
+    <Property Name="noCreditos" Type="Double" Nullable="false" />
     <NavigationProperty Name="Carrera1" Relationship="Self.FK_ActividadComplementaria_Disciplina" FromRole="ActividadComplementaria" ToRole="Carrera" />
     <NavigationProperty Name="ActividadCursada" Relationship="Self.FK_ActividadCursada_ActividadComplementaria" FromRole="ActividadComplementaria" ToRole="ActividadCursada" />
     <Property Name="maestro" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />

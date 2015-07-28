@@ -18,8 +18,20 @@ namespace ActividadesComplementarias.Controllers
 
         public ActionResult Index()
         {
-            var carrera = db.Carrera.Include(c => c.Departamento1);
-            return View(carrera.ToList());
+
+            if (Session["user.tipo"].ToString() == "J" || Session["user.tipo"].ToString() == "C")
+            {
+                string id = Session["user.id"].ToString();
+                Maestros maestro = db.Maestros.Find(id);
+                var carrera1 = db.Carrera.Include(c => c.Departamento1);
+                var cpd = carrera1.Where(s=> s.departamento == maestro.departamentoMaestro);
+                return View(cpd.ToList());
+            }
+            else
+            {
+                var carrera = db.Carrera.Include(c => c.Departamento1);
+                return View(carrera.ToList());
+            }
         }
 
         //

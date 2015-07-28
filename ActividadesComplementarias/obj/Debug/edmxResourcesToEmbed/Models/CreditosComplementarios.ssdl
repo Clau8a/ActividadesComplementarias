@@ -9,7 +9,7 @@
     <Property Name="descripcion" Type="varchar" MaxLength="140" Nullable="false" />
     <Property Name="carrera" Type="int" Nullable="false" />
     <Property Name="modalidad" Type="varchar" MaxLength="20" Nullable="false" />
-    <Property Name="noCreditos" Type="int" Nullable="false" />
+    <Property Name="noCreditos" Type="float" Nullable="false" />
     <Property Name="maestro" Type="varchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="ActividadCursada">

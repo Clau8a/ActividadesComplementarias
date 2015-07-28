@@ -24,7 +24,7 @@ namespace ActividadesComplementarias.Models
         public string descripcion { get; set; }
         public int carrera { get; set; }
         public string modalidad { get; set; }
-        public int noCreditos { get; set; }
+        public double noCreditos { get; set; }
         public string maestro { get; set; }
     
         public virtual Carrera Carrera1 { get; set; }

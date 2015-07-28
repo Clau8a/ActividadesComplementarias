@@ -17,7 +17,24 @@ namespace ActividadesComplementarias.Controllers
             {
                 return RedirectToAction("IniciarSesion", "Cuenta");
             }
-            return View();
+            else 
+            {
+                if (Session["user.tipo"].ToString() == "J")
+                {
+                    return RedirectToAction("Index", "Departamento");
+                }
+                else 
+                {
+                    if (Session["user.tipo"].ToString() == "C")
+                        return RedirectToAction("Index", "Inscripcion");
+                    else 
+                    {
+                        string id = Session["user.id"].ToString();
+                        return Redirect("/Inscripcion/Index/"+id);
+                    }
+                }
+
+            }
         }
 
     }

@@ -64,8 +64,8 @@ C:\Users\Claudita\Documents\Visual Studio 2012\Projects\actividadescomplementari
 C:\Users\Claudita\Documents\Visual Studio 2012\Projects\actividadescomplementarias\ActividadesComplementarias\bin\es\System.Web.WebPages.resources.dll
 C:\Users\Claudita\Documents\Visual Studio 2012\Projects\actividadescomplementarias\ActividadesComplementarias\bin\es\System.Web.WebPages.Deployment.resources.dll
 C:\Users\Claudita\Documents\Visual Studio 2012\Projects\actividadescomplementarias\ActividadesComplementarias\bin\es\System.Web.WebPages.Razor.resources.dll
-C:\Users\Claudita\Documents\Visual Studio 2012\Projects\actividadescomplementarias\ActividadesComplementarias\obj\Debug\ActividadesComplementarias.csprojResolveAssemblyReference.cache
 C:\Users\Claudita\Documents\Visual Studio 2012\Projects\actividadescomplementarias\ActividadesComplementarias\obj\Debug\ActividadesComplementarias.Recursos.Recursos.resources
 C:\Users\Claudita\Documents\Visual Studio 2012\Projects\actividadescomplementarias\ActividadesComplementarias\obj\Debug\ActividadesComplementarias.csproj.GenerateResource.Cache
 C:\Users\Claudita\Documents\Visual Studio 2012\Projects\actividadescomplementarias\ActividadesComplementarias\obj\Debug\ActividadesComplementarias.dll
 C:\Users\Claudita\Documents\Visual Studio 2012\Projects\actividadescomplementarias\ActividadesComplementarias\obj\Debug\ActividadesComplementarias.pdb
+C:\Users\Claudita\Documents\Visual Studio 2012\Projects\actividadescomplementarias\ActividadesComplementarias\bin\ActividadesComplementarias.dll.config
