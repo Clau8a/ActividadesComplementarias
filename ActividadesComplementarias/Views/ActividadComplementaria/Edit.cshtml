@@ -37,11 +37,11 @@
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.carrera, "Carrera")
+            @Html.LabelFor(model => model.departamento, "Carrera")
         </div>
         <div class="editor-field">
-            @Html.DropDownList("carrera", String.Empty)
-            @Html.ValidationMessageFor(model => model.carrera)
+            @Html.DropDownList("departamento", String.Empty)
+            @Html.ValidationMessageFor(model => model.departamento)
         </div>
 
         <div class="editor-label">
@@ -69,7 +69,7 @@
         </div>
 
 <div class="botones">
-    <input class="btn-success" type="submit" value="Guardad " />
+    <input class="btn-success" type="submit" value="Guardar" />
 </div>
 
 }

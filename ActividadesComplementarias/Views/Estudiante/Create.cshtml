@@ -36,16 +36,6 @@
             @Html.DropDownList("carrera", "sin seleccionar")
             @Html.ValidationMessageFor(model => model.carrera)
         </div>
-
-        <div class="editor-label">
-            <label>Estatus estudiante</label>
-        </div>
-        <div class="editor-field">
-            <input type="checkbox" data-on-text="Activo" data-off-text="No"  data-val="true" data-val-required="El campo estatusEstudiante es obligatorio." id="estatusEstudiante" name="estatusEstudiante" value="true" checked>
-          
-            @Html.ValidationMessageFor(model => model.estatusEstudiante)
-        </div>
-
         <div class="editor-label">
             <label>Contraseña</label>
         </div>
@@ -66,8 +56,3 @@
     @section Scripts {
         @Scripts.Render("~/bundles/jqueryval")
     }
-<script src="~/Scripts/jquery-1.11.3.js"></script>
-<script src="~/Content/js/bootstrap-switch.js"></script>
-<script>
-    $("[name='estatusEstudiante']").bootstrapSwitch();
-</script>

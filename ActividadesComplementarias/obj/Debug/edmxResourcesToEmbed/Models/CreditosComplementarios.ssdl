@@ -7,7 +7,7 @@
     <Property Name="idActividadComplementaria" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="nombreActComplementaria" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="descripcion" Type="varchar" MaxLength="140" Nullable="false" />
-    <Property Name="carrera" Type="int" Nullable="false" />
+    <Property Name="departamento" Type="int" Nullable="false" />
     <Property Name="modalidad" Type="varchar" MaxLength="20" Nullable="false" />
     <Property Name="noCreditos" Type="float" Nullable="false" />
     <Property Name="maestro" Type="varchar" MaxLength="50" />
@@ -45,7 +45,6 @@
     <Property Name="idEstudiante" Type="int" Nullable="false" />
     <Property Name="nombreEstudiante" Type="varchar" MaxLength="60" Nullable="false" />
     <Property Name="carrera" Type="int" Nullable="false" />
-    <Property Name="estatusEstudiante" Type="bit" Nullable="false" />
     <Property Name="creditosComplementarios" Type="int" />
     <Property Name="contraseñaEstudiante" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="saltContraseña" Type="varchar" MaxLength="50" />
@@ -78,15 +77,15 @@
     <Property Name="idTipoMaestro" Type="char" MaxLength="1" Nullable="false" />
     <Property Name="tipoMaestro" Type="varchar" MaxLength="50" Nullable="false" />
   </EntityType>
-  <Association Name="FK_ActividadComplementaria_Disciplina">
-    <End Role="Carrera" Type="Self.Carrera" Multiplicity="1" />
+  <Association Name="FK_ActividadComplementaria_Departamento">
+    <End Role="Departamento" Type="Self.Departamento" Multiplicity="1" />
     <End Role="ActividadComplementaria" Type="Self.ActividadComplementaria" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Carrera">
-        <PropertyRef Name="idCarrera" />
+      <Principal Role="Departamento">
+        <PropertyRef Name="idDepartamento" />
       </Principal>
       <Dependent Role="ActividadComplementaria">
-        <PropertyRef Name="carrera" />
+        <PropertyRef Name="departamento" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -195,8 +194,8 @@
     <EntitySet Name="Maestros" EntityType="Self.Maestros" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TipoMaestro" EntityType="Self.TipoMaestro" Schema="dbo" store:Type="Tables" />
-    <AssociationSet Name="FK_ActividadComplementaria_Disciplina" Association="Self.FK_ActividadComplementaria_Disciplina">
-      <End Role="Carrera" EntitySet="Carrera" />
+    <AssociationSet Name="FK_ActividadComplementaria_Departamento" Association="Self.FK_ActividadComplementaria_Departamento">
+      <End Role="Departamento" EntitySet="Departamento" />
       <End Role="ActividadComplementaria" EntitySet="ActividadComplementaria" />
     </AssociationSet>
     <AssociationSet Name="FK_ActividadComplementaria_Maestros" Association="Self.FK_ActividadComplementaria_Maestros">

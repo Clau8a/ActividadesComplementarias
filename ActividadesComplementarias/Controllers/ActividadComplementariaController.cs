@@ -20,10 +20,8 @@ namespace ActividadesComplementarias.Controllers
         {
             string id = Session["user.id"].ToString();
             Maestros maestro = db.Maestros.Find(id);
-
-
-            var actividadcomplementaria = db.ActividadComplementaria.Include(a => a.Carrera1).Include(a => a.Maestros);
-            var actCom = actividadcomplementaria.Where(s=>s.Carrera1.departamento==maestro.departamentoMaestro);
+            var actividadcomplementaria = db.ActividadComplementaria.Include(a => a.Departamento1).Include(a => a.Maestros);
+            var actCom = actividadcomplementaria.Where(s => s.Departamento1.idDepartamento == maestro.departamentoMaestro || s.departamento == 123457);
             return View(actCom.ToList());
         }
 
@@ -72,7 +70,7 @@ namespace ActividadesComplementarias.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.carrera = new SelectList(db.Carrera, "idCarrera", "nombreCarrera", actividadcomplementaria.carrera);
+            ViewBag.carrera = new SelectList(db.Carrera, "idDepartamento", "nombreCarrera", actividadcomplementaria.departamento);
             ViewBag.maestro = new SelectList(db.Maestros, "idMaestro", "nombreMaestro", actividadcomplementaria.maestro);
             return View(actividadcomplementaria);
         }
@@ -87,7 +85,7 @@ namespace ActividadesComplementarias.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.carrera = new SelectList(db.Carrera, "idCarrera", "nombreCarrera", actividadcomplementaria.carrera);
+            ViewBag.carrera = new SelectList(db.Carrera, "idDepartamento", "nombreCarrera", actividadcomplementaria.departamento);
             ViewBag.maestro = new SelectList(db.Maestros, "idMaestro", "nombreMaestro", actividadcomplementaria.maestro);
             return View(actividadcomplementaria);
         }
@@ -105,7 +103,7 @@ namespace ActividadesComplementarias.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.carrera = new SelectList(db.Carrera, "idCarrera", "nombreCarrera", actividadcomplementaria.carrera);
+            ViewBag.carrera = new SelectList(db.Carrera, "idDepartamento", "nombreCarrera", actividadcomplementaria.departamento);
             ViewBag.maestro = new SelectList(db.Maestros, "idMaestro", "nombreMaestro", actividadcomplementaria.maestro);
             return View(actividadcomplementaria);
         }

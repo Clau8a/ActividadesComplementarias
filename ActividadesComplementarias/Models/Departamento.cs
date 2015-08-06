@@ -18,6 +18,7 @@ namespace ActividadesComplementarias.Models
         {
             this.Maestros = new HashSet<Maestros>();
             this.Carrera = new HashSet<Carrera>();
+            this.ActividadComplementaria = new HashSet<ActividadComplementaria>();
         }
     
         public int idDepartamento { get; set; }
@@ -25,5 +26,6 @@ namespace ActividadesComplementarias.Models
     
         public virtual ICollection<Maestros> Maestros { get; set; }
         public virtual ICollection<Carrera> Carrera { get; set; }
+        public virtual ICollection<ActividadComplementaria> ActividadComplementaria { get; set; }
     }
 }

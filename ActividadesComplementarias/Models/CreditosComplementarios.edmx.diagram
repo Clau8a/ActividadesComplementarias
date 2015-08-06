@@ -5,14 +5,11 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="c86b3e7c4aea42b0959c4eb092610622" Name="Diagram1">
-        <EntityTypeShape EntityType="CreditosComplementariosModel.ActividadComplementaria" Width="1.5" PointX="3" PointY="1.25" IsExpanded="true" />
         <EntityTypeShape EntityType="CreditosComplementariosModel.ActividadCursada" Width="1.5" PointX="5.25" PointY="2.625" IsExpanded="true" />
         <EntityTypeShape EntityType="CreditosComplementariosModel.Carrera" Width="1.5" PointX="0.75" PointY="3.125" IsExpanded="true" />
         <EntityTypeShape EntityType="CreditosComplementariosModel.Departamento" Width="1.5" PointX="0.75" PointY="9.25" IsExpanded="true" />
         <EntityTypeShape EntityType="CreditosComplementariosModel.Estudiante" Width="1.5" PointX="3" PointY="4.5" IsExpanded="true" />
         <EntityTypeShape EntityType="CreditosComplementariosModel.Maestros" Width="1.5" PointX="3" PointY="9" IsExpanded="true" />
-        <AssociationConnector Association="CreditosComplementariosModel.FK_ActividadComplementaria_Disciplina" ManuallyRouted="false" />
-        <AssociationConnector Association="CreditosComplementariosModel.FK_ActividadCursada_ActividadComplementaria" ManuallyRouted="false" />
         <AssociationConnector Association="CreditosComplementariosModel.FK_ActividadCursada_Estudiante" ManuallyRouted="false" />
         <AssociationConnector Association="CreditosComplementariosModel.FK_ActividadCursada_Maestros" ManuallyRouted="false" />
         <AssociationConnector Association="CreditosComplementariosModel.FK_Estudiante_Disciplina" ManuallyRouted="false" />
@@ -20,8 +17,11 @@
         <EntityTypeShape EntityType="CreditosComplementariosModel.TipoMaestro" Width="1.5" PointX="0.75" PointY="6.625" />
         <AssociationConnector Association="CreditosComplementariosModel.FK_Maestros_TipoMaestro" />
         <AssociationConnector Association="CreditosComplementariosModel.FK_Carrera_Departamento" />
-        <AssociationConnector Association="CreditosComplementariosModel.FK_ActividadComplementaria_Maestros" />
         <EntityTypeShape EntityType="CreditosComplementariosModel.sysdiagrams" Width="1.5" PointX="5.375" PointY="6.75" />
+        <EntityTypeShape EntityType="CreditosComplementariosModel.ActividadComplementaria" Width="2.25" PointX="5.25" PointY="10.5" />
+        <AssociationConnector Association="CreditosComplementariosModel.FK_ActividadComplementaria_Departamento" />
+        <AssociationConnector Association="CreditosComplementariosModel.FK_ActividadComplementaria_Maestros" />
+        <AssociationConnector Association="CreditosComplementariosModel.FK_ActividadCursada_ActividadComplementaria" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

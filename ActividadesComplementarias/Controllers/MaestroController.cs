@@ -18,8 +18,12 @@ namespace ActividadesComplementarias.Controllers
 
         public ActionResult Index()
         {
+            string id = Session["user.id"].ToString();
+            Maestros maestro = db.Maestros.Find(id);
+
             var maestros = db.Maestros.Include(m => m.Departamento).Include(m => m.TipoMaestro1);
-            return View(maestros.ToList());
+            var teacher = maestros.Where(s => s.departamentoMaestro == maestro.departamentoMaestro);
+            return View(teacher.ToList());
         }
 
         //

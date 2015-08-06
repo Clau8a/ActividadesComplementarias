@@ -22,13 +22,13 @@ namespace ActividadesComplementarias.Models
         public int idActividadComplementaria { get; set; }
         public string nombreActComplementaria { get; set; }
         public string descripcion { get; set; }
-        public int carrera { get; set; }
+        public int departamento { get; set; }
         public string modalidad { get; set; }
         public double noCreditos { get; set; }
         public string maestro { get; set; }
     
-        public virtual Carrera Carrera1 { get; set; }
-        public virtual ICollection<ActividadCursada> ActividadCursada { get; set; }
+        public virtual Departamento Departamento1 { get; set; }
         public virtual Maestros Maestros { get; set; }
+        public virtual ICollection<ActividadCursada> ActividadCursada { get; set; }
     }
 }

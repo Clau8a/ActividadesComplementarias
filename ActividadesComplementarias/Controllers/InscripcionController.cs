@@ -39,14 +39,14 @@ namespace ActividadesComplementarias.Controllers
             if (id != 0) 
             {
                 var actividades= from ac in db.ActividadComplementaria
-                                     where ac.carrera==student.carrera
+                                 where ac.Departamento1.idDepartamento == student.Carrera1.departamento || ac.departamento == 123457
                                      select ac;
-                var filtro = actividades.Include(a => a.Carrera1);
+                var filtro = actividades.Include(a => a.Departamento1);
                 return View(filtro.ToList());
             }
             else 
             { 
-                var actividadcomplementaria = db.ActividadComplementaria.Include(a => a.Carrera1);
+                var actividadcomplementaria = db.ActividadComplementaria.Include(a => a.Departamento1);
                 return View(actividadcomplementaria.ToList());
             }
         }

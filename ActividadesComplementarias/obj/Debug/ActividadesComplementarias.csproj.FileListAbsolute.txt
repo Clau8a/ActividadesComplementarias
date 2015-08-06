@@ -69,3 +69,4 @@ C:\Users\Claudita\Documents\Visual Studio 2012\Projects\actividadescomplementari
 C:\Users\Claudita\Documents\Visual Studio 2012\Projects\actividadescomplementarias\ActividadesComplementarias\obj\Debug\ActividadesComplementarias.dll
 C:\Users\Claudita\Documents\Visual Studio 2012\Projects\actividadescomplementarias\ActividadesComplementarias\obj\Debug\ActividadesComplementarias.pdb
 C:\Users\Claudita\Documents\Visual Studio 2012\Projects\actividadescomplementarias\ActividadesComplementarias\bin\ActividadesComplementarias.dll.config
+C:\Users\Claudita\Documents\Visual Studio 2012\Projects\actividadescomplementarias\ActividadesComplementarias\obj\Debug\ActividadesComplementarias.csprojResolveAssemblyReference.cache

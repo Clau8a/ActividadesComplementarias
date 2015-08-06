@@ -22,7 +22,6 @@ namespace ActividadesComplementarias.Models
         public int idEstudiante { get; set; }
         public string nombreEstudiante { get; set; }
         public int carrera { get; set; }
-        public bool estatusEstudiante { get; set; }
         public Nullable<int> creditosComplementarios { get; set; }
         public string contraseñaEstudiante { get; set; }
         public string saltContraseña { get; set; }

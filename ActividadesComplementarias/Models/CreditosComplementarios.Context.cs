@@ -25,7 +25,6 @@ namespace ActividadesComplementarias.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public DbSet<ActividadComplementaria> ActividadComplementaria { get; set; }
         public DbSet<ActividadCursada> ActividadCursada { get; set; }
         public DbSet<Carrera> Carrera { get; set; }
         public DbSet<Departamento> Departamento { get; set; }
@@ -33,5 +32,6 @@ namespace ActividadesComplementarias.Models
         public DbSet<Maestros> Maestros { get; set; }
         public DbSet<TipoMaestro> TipoMaestro { get; set; }
         public DbSet<sysdiagrams> sysdiagrams { get; set; }
+        public DbSet<ActividadComplementaria> ActividadComplementaria { get; set; }
     }
 }
