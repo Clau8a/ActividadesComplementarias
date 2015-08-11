@@ -12,27 +12,20 @@
         @Html.AntiForgeryToken()
         @Html.ValidationSummary(true)
 
-        <div class="editor-label">
-            <label>id</label>
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.idAvtividadCursada)
-            @Html.ValidationMessageFor(model => model.idAvtividadCursada)
-        </div>
+        
 
         <div class="editor-label">
             @Html.LabelFor(model => model.idActComplementaria, "Actividad Complementaria")
         </div>
         <div class="editor-field">
-            @Html.DropDownList("idActComplementaria", String.Empty)
-            @Html.ValidationMessageFor(model => model.idActComplementaria)
+            <input class="text-box single-line" type="text" id="actividad" name="actividad" value="@ViewBag.idActComplementaria" readonly />
         </div>
 
         <div class="editor-label">
             @Html.LabelFor(model => model.idEstudiante, "Estudiante")
         </div>
         <div class="editor-field">
-            @Html.DropDownList("idEstudiante", String.Empty)
+            <input class="text-box single-line" type="text" id="student" name="student" value="@ViewBag.idEstudiante" readonly />
             @Html.ValidationMessageFor(model => model.idEstudiante)
         </div>
 
@@ -49,7 +42,8 @@
             @Html.LabelFor(model => model.mestro, "Maestro")
         </div>
         <div class="editor-field">
-            @Html.DropDownList("mestro", String.Empty)
+            <input class="text-box single-line" type="text" id="mestro"  name="mestro" value="@ViewBag.mestro" readonly />
+           
             @Html.ValidationMessageFor(model => model.mestro)
         </div>
 

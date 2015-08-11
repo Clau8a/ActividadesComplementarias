@@ -76,17 +76,24 @@ namespace ActividadesComplementarias.Controllers
                 ViewBag.periodo=CalculaPeriodo();
                 var actividad = db.ActividadComplementaria.Find(id);
                 ViewBag.idActComplementaria = actividad.nombreActComplementaria;
-                ViewBag.idActComplementaria = new SelectList(db.ActividadComplementaria, "idActividadComplementaria", "nombreActComplementaria",id);
+                //ViewBag.idActComplementaria = //new SelectList(db.ActividadComplementaria, "idActividadComplementaria", "nombreActComplementaria",id);
                 string student1=Session["uxid"].ToString();
                 var estudiante = from student in db.Estudiante
                                  where student.nombreEstudiante == student1
                                  select student;
                 foreach (var item in estudiante)
                 {
-                    ViewBag.idEstudiante = new SelectList(db.Estudiante, "idEstudiante", "nombreEstudiante", item.idEstudiante);
+                    ViewBag.idEstudiante = item.nombreEstudiante;//new SelectList(db.Estudiante, "idEstudiante", "nombreEstudiante", item.idEstudiante);
+                }
+                var maestro = from teacher in db.Maestros
+                                 where teacher.idMaestro == actividad.maestro
+                                 select teacher;
+                foreach (var item in maestro) 
+                {
+                    ViewBag.mestro = item.nombreMaestro;//new SelectList(db.Maestros, "idMaestro", "nombreMaestro",item.idMaestro);
                 }
             }
-            ViewBag.mestro = new SelectList(db.Maestros, "idMaestro", "nombreMaestro");
+            
             return View();
         }
 
@@ -95,9 +102,34 @@ namespace ActividadesComplementarias.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(ActividadCursada actividadcursada)
+        public ActionResult Create(ActividadCursada actividadcursada,string student,string actividad)
         {
+            actividadcursada.idAvtividadCursada = 0;
             actividadcursada.estatusActividad = "Cursando";
+
+            var stu = from s in db.Estudiante
+                         where s.nombreEstudiante == student
+                         select s;
+            foreach (var item in stu)
+            {
+                actividadcursada.idEstudiante = item.idEstudiante;
+            }
+
+            var ac = from act in db.ActividadComplementaria
+                     where act.nombreActComplementaria == actividad
+                     select act;
+            foreach (var item in ac)
+            {
+                actividadcursada.idActComplementaria = item.idActividadComplementaria;
+            }
+
+            var ma = from m in db.Maestros
+                     where m.nombreMaestro == actividadcursada.mestro
+                     select m;
+            foreach (var item in ma)
+            {
+                actividadcursada.mestro = item.idMaestro;
+            }
             if (ModelState.IsValid)
             {
                 db.ActividadCursada.Add(actividadcursada);
@@ -105,7 +137,7 @@ namespace ActividadesComplementarias.Controllers
                 return Redirect("/Inscripcion/Index/"+actividadcursada.idEstudiante);
             }
 
-            ViewBag.mestro = new SelectList(db.Maestros, "idMaestro", "nombreMaestro", actividadcursada.mestro);
+            
             return View(actividadcursada);
         }
 
@@ -117,15 +149,14 @@ namespace ActividadesComplementarias.Controllers
             db.Entry(actividadcursada).State = EntityState.Modified;
             ActividadComplementaria ac = db.ActividadComplementaria.Find(actividadcursada.idActComplementaria);
             Estudiante es = db.Estudiante.Find(actividadcursada.idEstudiante);
+            if((es.creditosComplementarios+=ac.noCreditos)>5)
             es.creditosComplementarios += ac.noCreditos;
             db.Entry(es).State = EntityState.Modified;
-
-
-
 
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+
         //
         // GET: /Inscripcion/Edit/5
 

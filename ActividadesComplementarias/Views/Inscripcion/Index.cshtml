@@ -6,7 +6,7 @@
 }
 
 
-<div class="col-lg-8 col-lg-offset-2">
+<div class="col-lg-10 col-lg-offset-1">
 
 
     @{
@@ -27,17 +27,16 @@
     }
     <table class="table table-bordered table-hover" >
         <tr>
-            <th>
-                <label>Folio</label>
-            </th>
+@{
+        if (Session["user.tipo"].ToString() == "C")
+        {
+            <th>Estudiante</th>
+            <th>Carrera</th>
+        }
+
+}
             <th>
                 <label>Actividad Complementaria</label>
-            </th>
-            <th>
-                <label>Num. Control</label>
-            </th>
-            <th>
-                <label>Status</label>
             </th>
             <th>
                 <label>Periodo</label>
@@ -45,29 +44,34 @@
             <th>
                 <label>Maestro</label>
             </th>
+            <th>
+                <label>Status</label>
+            </th>
             <th></th>
         </tr>
 
         @foreach (var item in Model)
         {
             <tr class="success">
-                <td>
-                    @Html.DisplayFor(modelItem => item.idAvtividadCursada)
-                </td>
+@{
+        if (Session["user.tipo"].ToString() == "C")
+        {
+                <td>@Html.DisplayFor(modelItem => item.Estudiante.nombreEstudiante)</td>
+                <td>@Html.DisplayFor(modelItem => item.Estudiante.Carrera1.nombreCarrera)</td>
+        }
+
+}
                 <td>
                     @Html.DisplayFor(modelItem => item.ActividadComplementaria.nombreActComplementaria)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.idEstudiante)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.estatusActividad)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.periodo)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.mestro)
+                    @Html.DisplayFor(modelItem => item.Maestros.nombreMaestro)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.estatusActividad)
                 </td>
                 <td>
                     @{

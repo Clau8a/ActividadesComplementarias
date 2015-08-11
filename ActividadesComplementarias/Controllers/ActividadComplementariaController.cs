@@ -34,7 +34,6 @@ namespace ActividadesComplementarias.Controllers
             
             var actcomp = db.ActividadComplementaria.Find(id);
             ViewBag.Actividad = actcomp.nombreActComplementaria;
-
             return View(acticur.ToList());
         }
 
@@ -58,6 +57,8 @@ namespace ActividadesComplementarias.Controllers
         {
             ViewBag.departamento = new SelectList(db.Departamento, "idDepartamento", "nombreDepartamento");
             ViewBag.maestro = new SelectList(db.Maestros, "idMaestro", "nombreMaestro");
+            
+
             return View();
         }
 
