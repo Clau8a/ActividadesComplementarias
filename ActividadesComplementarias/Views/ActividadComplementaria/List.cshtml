@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ActividadesComplementarias.Models.Estudiante>
+﻿@model IEnumerable<ActividadesComplementarias.Models.ActividadCursada>
 
 @{
     ViewBag.Title = "List";
@@ -6,7 +6,7 @@
 }
 
 <div class="col-lg-8 col-lg-offset-2">
-    <h2>Estudiantes</h2>
+    <h2>@ViewBag.Actividad</h2>
     <div id="agregar">
         <span><a href="/Estudiante/Create" class="addNew"><span class="glyphicon glyphicon-plus"></span></a> <b>  Agregar Nuevo</b></span>
     </div>
@@ -19,13 +19,13 @@
                 <label>Nombre</label>
             </th>
             <th>
-                <label>Departamneto</label>
+                <label>Carrera</label>
             </th>
             <th>
-                <label>Activo</label>
+                <label>No. de Créditos</label>
             </th>
             <th>
-                <label>Num de Créditos</label>
+                <label>Periodo</label>
             </th>
             <th></th>
         </tr>
@@ -37,24 +37,22 @@
                     @Html.DisplayFor(modelItem => item.idEstudiante)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.nombreEstudiante)
+                    @Html.DisplayFor(modelItem => item.Estudiante.nombreEstudiante)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.departamento)
+                    @Html.DisplayFor(modelItem => item.Estudiante.Carrera1.nombreCarrera)
                 </td>
                 
                 <td>
-                    @Html.DisplayFor(modelItem => item.creditosComplementarios)
+                    @Html.DisplayFor(modelItem => item.Estudiante.creditosComplementarios)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.contraseñaEstudiante)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.saltContraseña)
+                    @Html.DisplayFor(modelItem =>item.periodo)
                 </td>
                 <td>
                     @Html.ActionLink("Edit", "Edit", new { id = item.idEstudiante })
                 </td>
+                
             </tr>
         }
 

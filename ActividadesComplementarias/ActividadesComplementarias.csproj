@@ -176,6 +176,9 @@
     <Compile Include="Models\Maestros.cs">
       <DependentUpon>CreditosComplementarios.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Modalidad.cs">
+      <DependentUpon>CreditosComplementarios.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\sysdiagrams.cs">
       <DependentUpon>CreditosComplementarios.tt</DependentUpon>
     </Compile>

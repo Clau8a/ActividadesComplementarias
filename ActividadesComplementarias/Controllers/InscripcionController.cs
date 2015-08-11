@@ -28,8 +28,11 @@ namespace ActividadesComplementarias.Controllers
             }
             else
             {
+                string id1 = Session["user.id"].ToString();
+                Maestros maestro = db.Maestros.Find(id1);
                 var actividadcursada = db.ActividadCursada.Include(a => a.ActividadComplementaria).Include(a => a.Estudiante).Include(a => a.Maestros);
-                return View(actividadcursada.ToList());
+                var inscritos = actividadcursada.Where(s => s.ActividadComplementaria.Departamento1.idDepartamento == maestro.departamentoMaestro || s.ActividadComplementaria.Departamento1.idDepartamento == 123457);
+                return View(inscritos.ToList());
             }
         }
 
@@ -108,9 +111,18 @@ namespace ActividadesComplementarias.Controllers
 
         public ActionResult Acreditar(int id = 0)
         {
+            //sumar los creditos
             ActividadCursada actividadcursada = db.ActividadCursada.Find(id);
             actividadcursada.estatusActividad = "Acreditada";
             db.Entry(actividadcursada).State = EntityState.Modified;
+            ActividadComplementaria ac = db.ActividadComplementaria.Find(actividadcursada.idActComplementaria);
+            Estudiante es = db.Estudiante.Find(actividadcursada.idEstudiante);
+            es.creditosComplementarios += ac.noCreditos;
+            db.Entry(es).State = EntityState.Modified;
+
+
+
+
             db.SaveChanges();
             return RedirectToAction("Index");
         }

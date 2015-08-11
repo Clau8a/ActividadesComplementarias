@@ -28,9 +28,14 @@ namespace ActividadesComplementarias.Controllers
         public ActionResult List(int id=0)
         {
             //Carrera y departamento filtrar y ver como regresar a los estudiantes 
+            var acti= db.ActividadCursada.Include(a=> a.Estudiante);
+            var acticur = acti.Where(a => a.idActComplementaria == id);
+
             
-            var estudiante = db.Estudiante.Include(e => e.Carrera1);
-            return View(estudiante.ToList());
+            var actcomp = db.ActividadComplementaria.Find(id);
+            ViewBag.Actividad = actcomp.nombreActComplementaria;
+
+            return View(acticur.ToList());
         }
 
         //
@@ -51,7 +56,7 @@ namespace ActividadesComplementarias.Controllers
 
         public ActionResult Create()
         {
-            ViewBag.carrera = new SelectList(db.Carrera, "idCarrera", "nombreCarrera");
+            ViewBag.departamento = new SelectList(db.Departamento, "idDepartamento", "nombreDepartamento");
             ViewBag.maestro = new SelectList(db.Maestros, "idMaestro", "nombreMaestro");
             return View();
         }
@@ -63,6 +68,7 @@ namespace ActividadesComplementarias.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(ActividadComplementaria actividadcomplementaria)
         {
+            actividadcomplementaria.idActividadComplementaria = 0;
             if (ModelState.IsValid)
             {
                 db.ActividadComplementaria.Add(actividadcomplementaria);
@@ -85,7 +91,8 @@ namespace ActividadesComplementarias.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.carrera = new SelectList(db.Carrera, "idDepartamento", "nombreCarrera", actividadcomplementaria.departamento);
+            //ViewBag.departamento = new SelectList(db.Departamento, "idDepartamento", "nombreDepartamento");
+            ViewBag.departamento = new SelectList(db.Departamento, "idDepartamento", "nombreDepartamento", actividadcomplementaria.departamento);
             ViewBag.maestro = new SelectList(db.Maestros, "idMaestro", "nombreMaestro", actividadcomplementaria.maestro);
             return View(actividadcomplementaria);
         }

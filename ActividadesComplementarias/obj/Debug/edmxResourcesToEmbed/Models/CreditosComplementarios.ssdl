@@ -45,7 +45,7 @@
     <Property Name="idEstudiante" Type="int" Nullable="false" />
     <Property Name="nombreEstudiante" Type="varchar" MaxLength="60" Nullable="false" />
     <Property Name="carrera" Type="int" Nullable="false" />
-    <Property Name="creditosComplementarios" Type="int" />
+    <Property Name="creditosComplementarios" Type="float" />
     <Property Name="contraseñaEstudiante" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="saltContraseña" Type="varchar" MaxLength="50" />
   </EntityType>
@@ -59,6 +59,16 @@
     <Property Name="tipoMaestro" Type="char" MaxLength="1" Nullable="false" />
     <Property Name="contraseñaMaestro" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="saltContraseña" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'CreditosComplementarios.dbo.Modalidad' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <EntityType Name="Modalidad">
+    <Key>
+      <PropertyRef Name="idModalidad" />
+      <PropertyRef Name="nomModalidad" />
+    </Key>
+    <Property Name="idModalidad" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nomModalidad" Type="varchar" MaxLength="50" Nullable="false" />
   </EntityType>
   <EntityType Name="sysdiagrams">
     <Key>
@@ -194,6 +204,12 @@
     <EntitySet Name="Maestros" EntityType="Self.Maestros" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TipoMaestro" EntityType="Self.TipoMaestro" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Modalidad" EntityType="Self.Modalidad" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+[Modalidad].[idModalidad] AS [idModalidad], 
+[Modalidad].[nomModalidad] AS [nomModalidad]
+FROM [dbo].[Modalidad] AS [Modalidad]</DefiningQuery>
+    </EntitySet>
     <AssociationSet Name="FK_ActividadComplementaria_Departamento" Association="Self.FK_ActividadComplementaria_Departamento">
       <End Role="Departamento" EntitySet="Departamento" />
       <End Role="ActividadComplementaria" EntitySet="ActividadComplementaria" />
