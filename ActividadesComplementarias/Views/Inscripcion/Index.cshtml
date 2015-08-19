@@ -23,8 +23,15 @@
              <input class="btn-success" type="submit" value="Buscar" style="margin-top:15px; width:50%;" />
         </form>
         }
+        if (Session["user.tipo"].ToString() == "E")
+        {
+            <div class="col-lg-5">
+                <label>Creditos Totales: </label>
+                <label> @ViewBag.TotalCreditos </label>
+            </div>
+        }
 
-    }
+}
     <table class="table table-bordered table-hover" >
         <tr>
 @{
@@ -33,14 +40,16 @@
             <th>Estudiante</th>
             <th>Carrera</th>
         }
+        
 
-}
+}           
             <th>
                 <label>Actividad Complementaria</label>
             </th>
             <th>
                 <label>Periodo</label>
             </th>
+            <th><label>Créditos</label></th>
             <th>
                 <label>Maestro</label>
             </th>
@@ -67,6 +76,7 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.periodo)
                 </td>
+                <td>@Html.DisplayFor(modelItem => item.ActividadComplementaria.noCreditos)</td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Maestros.nombreMaestro)
                 </td>

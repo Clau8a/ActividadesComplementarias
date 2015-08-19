@@ -86,13 +86,5 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Modalidad">
-      <EntityTypeMapping TypeName="CreditosComplementariosModel.Modalidad">
-        <MappingFragment StoreEntitySet="Modalidad">
-          <ScalarProperty Name="nomModalidad" ColumnName="nomModalidad" />
-          <ScalarProperty Name="idModalidad" ColumnName="idModalidad" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

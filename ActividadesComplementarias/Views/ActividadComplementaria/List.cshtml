@@ -47,12 +47,23 @@
                     @Html.DisplayFor(modelItem => item.Estudiante.creditosComplementarios)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem =>item.periodo)
+                    @Html.DisplayFor(modelItem => item.periodo)
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.idEstudiante })
+                    @{
+                            if (Session["User.Tipo"].ToString() == "J" || Session["User.Tipo"].ToString() == "X")
+                            {
+                                if (@item.estatusActividad == "Cursando")
+                                {
+                                    @Html.ActionLink("Acreditar", "Acreditar", new { id = item.idAvtividadCursada })
+
+                                }
+                            }
+                    }
                 </td>
-                
+
+
+
             </tr>
         }
 

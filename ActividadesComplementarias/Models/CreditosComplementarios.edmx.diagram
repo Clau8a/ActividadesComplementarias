@@ -22,7 +22,6 @@
         <AssociationConnector Association="CreditosComplementariosModel.FK_ActividadComplementaria_Departamento" />
         <AssociationConnector Association="CreditosComplementariosModel.FK_ActividadComplementaria_Maestros" />
         <AssociationConnector Association="CreditosComplementariosModel.FK_ActividadCursada_ActividadComplementaria" />
-        <EntityTypeShape EntityType="CreditosComplementariosModel.Modalidad" Width="1.5" PointX="0.75" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

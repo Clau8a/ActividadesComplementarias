@@ -33,6 +33,5 @@ namespace ActividadesComplementarias.Models
         public DbSet<TipoMaestro> TipoMaestro { get; set; }
         public DbSet<sysdiagrams> sysdiagrams { get; set; }
         public DbSet<ActividadComplementaria> ActividadComplementaria { get; set; }
-        public DbSet<Modalidad> Modalidad { get; set; }
     }
 }

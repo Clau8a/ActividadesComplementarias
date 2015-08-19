@@ -18,11 +18,19 @@ namespace ActividadesComplementarias.Controllers
 
         public ActionResult Index()
         {
+            
             string id = Session["user.id"].ToString();
             Maestros maestro = db.Maestros.Find(id);
             var actividadcomplementaria = db.ActividadComplementaria.Include(a => a.Departamento1).Include(a => a.Maestros);
-            var actCom = actividadcomplementaria.Where(s => s.Departamento1.idDepartamento == maestro.departamentoMaestro || s.departamento == 123457);
-            return View(actCom.ToList());
+            if (Session["user.tipo"].ToString()=="X") 
+            {
+                var actCom = actividadcomplementaria.Where(s => s.modalidad == "Extraescolar");
+                return View(actCom.ToList());
+            }
+            else{
+                var actCom = actividadcomplementaria.Where(s => s.Departamento1.idDepartamento == maestro.departamentoMaestro || s.departamento == 123457 );
+                return View(actCom.ToList());
+            }
         }
 
         public ActionResult List(int id=0)
@@ -35,6 +43,24 @@ namespace ActividadesComplementarias.Controllers
             var actcomp = db.ActividadComplementaria.Find(id);
             ViewBag.Actividad = actcomp.nombreActComplementaria;
             return View(acticur.ToList());
+        }
+
+        public ActionResult Acreditar(int id = 0)
+        {
+            //sumar los creditos
+            ActividadCursada actividadcursada = db.ActividadCursada.Find(id);
+            actividadcursada.estatusActividad = "Acreditada";
+            db.Entry(actividadcursada).State = EntityState.Modified;
+            ActividadComplementaria ac = db.ActividadComplementaria.Find(actividadcursada.idActComplementaria);
+            Estudiante es = db.Estudiante.Find(actividadcursada.idEstudiante);
+            if ((es.creditosComplementarios + ac.noCreditos) > 5)
+                es.creditosComplementarios = 5;
+            else
+                es.creditosComplementarios += ac.noCreditos;
+            db.Entry(es).State = EntityState.Modified;
+
+            db.SaveChanges();
+            return RedirectToAction("Index");
         }
 
         //

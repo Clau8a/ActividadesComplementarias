@@ -155,7 +155,6 @@
       <End Role="ActividadComplementaria" EntitySet="ActividadComplementaria" />
       <End Role="ActividadCursada" EntitySet="ActividadCursada" />
     </AssociationSet>
-    <EntitySet Name="Modalidad" EntityType="CreditosComplementariosModel.Modalidad" />
   </EntityContainer>
   <EntityType Name="TipoMaestro">
     <Key>
@@ -250,12 +249,4 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityType Name="Modalidad">
-    <Key>
-      <PropertyRef Name="idModalidad" />
-      <PropertyRef Name="nomModalidad" />
-    </Key>
-    <Property Name="idModalidad" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="nomModalidad" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-  </EntityType>
 </Schema>

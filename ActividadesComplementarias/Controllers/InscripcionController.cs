@@ -20,10 +20,12 @@ namespace ActividadesComplementarias.Controllers
         {
             if (id != 0)
             { 
+                Estudiante es= db.Estudiante.Find(id);
                 var cursadas= from cur in db.ActividadCursada
                               where cur.idEstudiante==id
                                   select cur;
                 var curs =cursadas.Include(a => a.ActividadComplementaria).Include(a => a.Estudiante).Include(a => a.Maestros);
+                ViewBag.TotalCreditos = es.creditosComplementarios;
                 return View(curs.ToList());
             }
             else
@@ -42,7 +44,7 @@ namespace ActividadesComplementarias.Controllers
             if (id != 0) 
             {
                 var actividades= from ac in db.ActividadComplementaria
-                                 where ac.Departamento1.idDepartamento == student.Carrera1.departamento || ac.departamento == 123457
+                                 where ac.Departamento1.idDepartamento == student.Carrera1.departamento || ac.departamento == 123457 || ac.departamento == 123459
                                      select ac;
                 var filtro = actividades.Include(a => a.Departamento1);
                 return View(filtro.ToList());
@@ -149,7 +151,9 @@ namespace ActividadesComplementarias.Controllers
             db.Entry(actividadcursada).State = EntityState.Modified;
             ActividadComplementaria ac = db.ActividadComplementaria.Find(actividadcursada.idActComplementaria);
             Estudiante es = db.Estudiante.Find(actividadcursada.idEstudiante);
-            if((es.creditosComplementarios+=ac.noCreditos)>5)
+            if ((es.creditosComplementarios + ac.noCreditos) > 5)
+                es.creditosComplementarios = 5;
+            else
             es.creditosComplementarios += ac.noCreditos;
             db.Entry(es).State = EntityState.Modified;
 

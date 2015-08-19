@@ -77,8 +77,13 @@ namespace ActividadesComplementarias.Controllers
                 {
                     if (passwd == maestro.contraseñaMaestro)
                     {
-                        tipoUsuario = Convert.ToChar(maestro.tipoMaestro);
-                        return true;
+                        if (maestro.tipoMaestro != "N")
+                        {
+                            tipoUsuario = Convert.ToChar(maestro.tipoMaestro);
+                            return true;
+                        }
+                        else
+                            return false;
                     }
                     else
                         return false;

@@ -46,6 +46,7 @@
       <HintPath>D:\itextsharp.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.ReportViewer.WebForms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -176,9 +177,6 @@
       <DependentUpon>CreditosComplementarios.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Maestros.cs">
-      <DependentUpon>CreditosComplementarios.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Modalidad.cs">
       <DependentUpon>CreditosComplementarios.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\sysdiagrams.cs">
@@ -365,6 +363,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Recursos.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Acuse.rdlc" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -27,7 +27,7 @@
                         <li role="presentation">@Html.ActionLink("Estudiante", "Index", "Estudiante")</li>
                         <li role="presentation">@Html.ActionLink("Maestros", "Index", "Maestro")</li>
                         <li role="presentation">@Html.ActionLink("Actividad Complementaria", "Index", "ActividadComplementaria")</li>
- 
+
                                 <li role="presentation">@Html.ActionLink("Inscritos", "Index", "Inscripcion")</li>
 
                          }
@@ -37,10 +37,19 @@
                              {
                                 <li role="presentation" class="active">@Html.ActionLink("Historial Estudiante", "Index", "Inscripcion")</li>
                              }
-                             else 
-                             { 
-                                <li role="presentation"><a href="/Inscripcion/Index/@Session["user.id"].ToString()">Mis actividades</a></li>
-                                <li role="presentation"><a href="/Inscripcion/Actividades/@Session["user.id"].ToString()">Inscripciones</a></li>
+                             else
+                             {
+                                 if (Session["user.tipo"].ToString() == "X")
+                                 {
+                                    <li role="presentation">@Html.ActionLink("Actividad Complementaria", "Index", "ActividadComplementaria")</li>
+                                 }
+                                 else
+                                 {
+                                    <li role="presentation"><a href="/Inscripcion/Index/@Session["user.id"].ToString()">Mis actividades</a></li>
+                                       
+                                    
+                                    <li role="presentation"><a href="/Inscripcion/Actividades/@Session["user.id"].ToString()">Inscripciones</a></li>
+                                }
                              }
                          }
                    }
