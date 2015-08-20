@@ -93,14 +93,21 @@
                             }
                             <a href="/PDF/GenerarPdf/@item.idAvtividadCursada">Constancia</a>
                         }
-                        if (Session["User.Tipo"].ToString() == "E" && @item.estatusActividad=="Acreditada")
+                        if (Session["User.Tipo"].ToString() == "E" && @item.estatusActividad == "Acreditada")
                         {
-                            <a href="/PDF/GenerarPdfAcuse/@item.idAvtividadCursada">Acuse</a><br />
+                            <a href="" onclick="Print(@item.idAvtividadCursada)">Acuse</a><br />
                         }
                     }
                 </td>
             </tr>
         }
-
     </table>
 </div>
+
+<script>
+
+    function Print(id) {
+        var url = "/PDF/Acuse/" +  id ;
+        window.open(url, "blank");
+    }
+</script>

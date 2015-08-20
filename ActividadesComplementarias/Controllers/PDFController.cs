@@ -8,6 +8,7 @@ using System.Data;
 using System.Data.Entity;
 using ActividadesComplementarias.Models;
 using iTextSharp.text.pdf;
+using Microsoft.Reporting.WebForms;
 
 namespace ActividadesComplementarias.Controllers
 {
@@ -45,7 +46,7 @@ namespace ActividadesComplementarias.Controllers
             pdfFormFields.SetField("Anio", DateTime.Today.Year.ToString());
             pdfFormFields.SetField("ProfesorFirma", "Luis Bravos");
             pdfFormFields.SetField("JefeDepartamentoFirma", "Joel Mendoza");
-            pdfFormFields.SetField("Departamento", "Sistemas e Informatica");
+            pdfFormFields.SetField("Departamento", actCursada.Estudiante.Carrera1.Departamento1.nombreDepartamento);
             
 
             pdfStamper.FormFlattening = true;
@@ -55,38 +56,33 @@ namespace ActividadesComplementarias.Controllers
 
         }
 
-        public void GenerarPdfAcuse(int id) // id = num_certificado_nac
+        public ActionResult Acuse(int id) // id = num_certificado_nac
         {
             ActividadCursada actCursada = db.ActividadCursada.Find(id);
-            byte[] Acuse = Recursos.Recursos.AcuseActComp;
-            MemoryStream AcuseComp = new MemoryStream();
-
-            PdfReader pdfReader = new PdfReader(Acuse);
-            PdfStamper pdfStamper = new PdfStamper(pdfReader, AcuseComp);
-            AcroFields pdfFormFields = pdfStamper.AcroFields;
-
-            pdfFormFields.SetField("ActividadComplementaria", actCursada.ActividadComplementaria.nombreActComplementaria);
-            pdfFormFields.SetField("Estudiante", actCursada.Estudiante.nombreEstudiante);
-            pdfFormFields.SetField("NoControl", actCursada.Estudiante.idEstudiante.ToString());
             
-            pdfStamper.FormFlattening = true;
-            pdfStamper.Close();
+            LocalReport lr = new LocalReport();
+            string path = Path.Combine(Server.MapPath("~/Resources"), "Acuse.rdlc");
+            lr.ReportPath = path;
 
-            DescagarAcuse(id, AcuseComp);
+            ReportParameter[] parametro= new ReportParameter[5];
+            parametro[0] = new ReportParameter("estudiante",actCursada.Estudiante.nombreEstudiante);
+            parametro[1] = new ReportParameter("ctrlnum", actCursada.Estudiante.idEstudiante.ToString());
+            parametro[2] = new ReportParameter("periodo", actCursada.periodo);
+            parametro[3] = new ReportParameter("creditos", actCursada.ActividadComplementaria.noCreditos.ToString());
+            parametro[4] = new ReportParameter("AC", actCursada.ActividadComplementaria.nombreActComplementaria);
 
-        }
-
-        public void DescagarAcuse(int idActa, MemoryStream AcuseComp)
-        {
-            const string nombre = "AcuseActividadesComplementarias.pdf";
-            byte[] bytesInStream = AcuseComp.ToArray();
-            AcuseComp.Close();
-
-            Response.Clear();
+            lr.SetParameters(parametro);
             Response.ContentType = "application/force-download";
-            Response.AddHeader("content-disposition", "attachment;    filename=" + nombre);
-            Response.BinaryWrite(bytesInStream);
-            Response.End();
+            string reportType = "PDF";
+            string mimeType;
+            string encoding;
+            string fileNameExtension;
+            Warning[] warnings;
+            string[] streams;
+            byte[] renderedBytes;
+            renderedBytes = lr.Render(reportType, null, out mimeType, out encoding, out fileNameExtension, out streams, out warnings);
+            return File(renderedBytes, mimeType);
+
         }
 
         public void Descagar(int idActa, MemoryStream ActComp)

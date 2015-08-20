@@ -27,6 +27,7 @@
             <th>
                 <label>Periodo</label>
             </th>
+            <th>Status</th>
             <th></th>
         </tr>
 
@@ -49,6 +50,7 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.periodo)
                 </td>
+                <td>@Html.DisplayFor(modelItem => item.estatusActividad)</td>
                 <td>
                     @{
                             if (Session["User.Tipo"].ToString() == "J" || Session["User.Tipo"].ToString() == "X")
