@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DTListas" targetNamespace="http://tempuri.org/DTListas.xsd" xmlns:mstns="http://tempuri.org/DTListas.xsd" xmlns="http://tempuri.org/DTListas.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DTListas" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DTListas" msprop:Generator_UserDSName="DTListas">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="DTListas" msprop:Generator_TableClassName="DTListasDataTable" msprop:Generator_TableVarName="tableDTListas" msprop:Generator_TablePropName="_DTListas" msprop:Generator_RowDeletingName="DTListasRowDeleting" msprop:Generator_RowChangingName="DTListasRowChanging" msprop:Generator_RowEvHandlerName="DTListasRowChangeEventHandler" msprop:Generator_RowDeletedName="DTListasRowDeleted" msprop:Generator_UserTableName="DTListas" msprop:Generator_RowChangedName="DTListasRowChanged" msprop:Generator_RowEvArgName="DTListasRowChangeEvent" msprop:Generator_RowClassName="DTListasRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="idEstudiante" msprop:Generator_ColumnVarNameInTable="columnidEstudiante" msprop:Generator_ColumnPropNameInRow="idEstudiante" msprop:Generator_ColumnPropNameInTable="idEstudianteColumn" msprop:Generator_UserColumnName="idEstudiante" type="xs:string" minOccurs="0" />
+              <xs:element name="nombreEstudiante" msprop:Generator_ColumnVarNameInTable="columnnombreEstudiante" msprop:Generator_ColumnPropNameInRow="nombreEstudiante" msprop:Generator_ColumnPropNameInTable="nombreEstudianteColumn" msprop:Generator_UserColumnName="nombreEstudiante" type="xs:string" minOccurs="0" />
+              <xs:element name="nombreCarrera" msprop:Generator_ColumnVarNameInTable="columnnombreCarrera" msprop:Generator_ColumnPropNameInRow="nombreCarrera" msprop:Generator_ColumnPropNameInTable="nombreCarreraColumn" msprop:Generator_UserColumnName="nombreCarrera" type="xs:string" minOccurs="0" />
+              <xs:element name="creditosComplementarios" msprop:Generator_ColumnVarNameInTable="columncreditosComplementarios" msprop:Generator_ColumnPropNameInRow="creditosComplementarios" msprop:Generator_ColumnPropNameInTable="creditosComplementariosColumn" msprop:Generator_UserColumnName="creditosComplementarios" type="xs:string" minOccurs="0" />
+              <xs:element name="periodo" msprop:Generator_ColumnVarNameInTable="columnperiodo" msprop:Generator_ColumnPropNameInRow="periodo" msprop:Generator_ColumnPropNameInTable="periodoColumn" msprop:Generator_UserColumnName="periodo" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -9,6 +9,11 @@
     <link href="~/Content/css/bootstrap-switch.css" rel="stylesheet" />
 </head>
 <body>
+    <style>
+        .navbar-nav > li > a {
+        color:white;
+        }
+    </style>
     <div>
         <nav class="navbar navbar-inverse ">
             <div id="Logos" class="col-lg-12">
@@ -24,11 +29,11 @@
                          if (Session["user.tipo"].ToString() == "J") { 
                         <li role="presentation">@Html.ActionLink("Departamentos", "Index", "Departamento")</li>
                         <li role="presentation">@Html.ActionLink("Carreras", "Index", "Carrera")</li>
-                        <li role="presentation">@Html.ActionLink("Estudiante", "Index", "Estudiante")</li>
+                        @*<li role="presentation">@Html.ActionLink("Estudiante", "Index", "Estudiante")</li>*@
                         <li role="presentation">@Html.ActionLink("Maestros", "Index", "Maestro")</li>
                         <li role="presentation">@Html.ActionLink("Actividad Complementaria", "Index", "ActividadComplementaria")</li>
 
-                                <li role="presentation">@Html.ActionLink("Inscritos", "Index", "Inscripcion")</li>
+                                @*<li role="presentation">@Html.ActionLink("Inscritos", "Index", "Inscripcion")</li>*@
 
                          }
                          else
@@ -39,20 +44,36 @@
                              }
                              else
                              {
-                                 if (Session["user.tipo"].ToString() == "X")
+                                 if (Session["user.tipo"].ToString() == "X" || Session["User.Tipo"].ToString() == "D")
                                  {
                                     <li role="presentation">@Html.ActionLink("Actividad Complementaria", "Index", "ActividadComplementaria")</li>
                                  }
                                  else
                                  {
                                     <li role="presentation"><a href="/Inscripcion/Index/@Session["user.id"].ToString()">Mis actividades</a></li>
-                                       
                                     
-                                    <li role="presentation"><a href="/Inscripcion/Actividades/@Session["user.id"].ToString()">Inscripciones</a></li>
-                                }
+                                     string estu = Session["user.id"].ToString();
+                                     int ides = Convert.ToInt32(estu);
+                                     string creditos="";
+                                     ActividadesComplementarias.Models.CreditosComplementariosEntities db = new ActividadesComplementarias.Models.CreditosComplementariosEntities();
+                                     var est = from e in db.Estudiante
+                                               where e.idEstudiante == ides
+                                               select e;
+                                     foreach (var item in est)
+                                     {
+                                         creditos = Convert.ToString(item.creditosComplementarios);
+                                     }
+
+                                     if (creditos != "5")
+                                     {
+                                        <li role="presentation"><a href="/Inscripcion/Actividades/@Session["user.id"].ToString()">Inscripciones</a></li>
+                                     }
+                                    
+
+                                 }
                              }
                          }
-                   }
+}
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <!--DEBE SE UN DROPDOWN QUE TE PERMITA CERRAR SESION-->

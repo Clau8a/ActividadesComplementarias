@@ -19,7 +19,7 @@ namespace ActividadesComplementarias.Controllers
         public ActionResult Index()
         {
 
-            if (Session["user.tipo"].ToString() == "J" || Session["user.tipo"].ToString() == "C")
+            if (Session["user.tipo"].ToString() == "D" || Session["user.tipo"].ToString() == "C")
             {
                 string id = Session["user.id"].ToString();
                 Maestros maestro = db.Maestros.Find(id);

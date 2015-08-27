@@ -176,7 +176,25 @@
     <Compile Include="Models\Estudiante.cs">
       <DependentUpon>CreditosComplementarios.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\listAsistencia_Result.cs">
+      <DependentUpon>CreditosComplementarios.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\lst_byAcred_Result.cs">
+      <DependentUpon>CreditosComplementarios.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\lst_byact_Result.cs">
+      <DependentUpon>CreditosComplementarios.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Maestros.cs">
+      <DependentUpon>CreditosComplementarios.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Modalidad.cs">
+      <DependentUpon>CreditosComplementarios.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>CreditosComplementarios.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_helpdiagrams_Result.cs">
       <DependentUpon>CreditosComplementarios.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\sysdiagrams.cs">
@@ -191,6 +209,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Recursos.resx</DependentUpon>
     </Compile>
+    <Compile Include="Resources\DTListas.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DTListas.xsd</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\css\bootstrap-switch.css" />
@@ -202,6 +225,8 @@
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\fonts\glyphicons-halflings-white.png" />
     <Content Include="Content\fonts\glyphicons-halflings.png" />
+    <Content Include="Content\img\logoSEP.jpg" />
+    <Content Include="Content\img\sepinst.png" />
     <Content Include="Content\js\bootstrap-switch.js" />
     <Content Include="Content\js\bootstrap.js" />
     <Content Include="Content\js\bootstrap.min.js" />
@@ -264,6 +289,12 @@
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Content\css\bootstrap-theme.css.map" />
+    <Content Include="Content\css\bootstrap.css.map" />
     <EntityDeploy Include="Models\CreditosComplementarios.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>CreditosComplementarios.Designer.cs</LastGenOutput>
@@ -281,14 +312,19 @@
       <DependentUpon>CreditosComplementarios.edmx</DependentUpon>
       <LastGenOutput>CreditosComplementarios.cs</LastGenOutput>
     </Content>
-    <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="Content\fonts\glyphicons-halflings-regular.woff2" />
-    <Content Include="Content\css\bootstrap-theme.css.map" />
-    <Content Include="Content\css\bootstrap.css.map" />
     <None Include="Resources\ActComplementariasPlantilla.pdf" />
     <None Include="Resources\AcuseActComp.pdf" />
+    <Content Include="Resources\DTListas.xsc">
+      <DependentUpon>DTListas.xsd</DependentUpon>
+    </Content>
+    <None Include="Resources\DTListas.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DTListas.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="Resources\DTListas.xss">
+      <DependentUpon>DTListas.xsd</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -351,7 +387,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\img\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -365,6 +400,9 @@
       <LastGenOutput>Recursos.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Acuse.rdlc" />
+    <EmbeddedResource Include="Resources\Constancia.rdlc" />
+    <EmbeddedResource Include="Resources\ListasAsistencia.rdlc" />
+    <EmbeddedResource Include="Resources\ListasPorActividad.rdlc" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

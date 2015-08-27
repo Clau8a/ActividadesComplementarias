@@ -12,6 +12,9 @@ namespace ActividadesComplementarias.Models
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Objects;
+    using System.Data.Objects.DataClasses;
+    using System.Linq;
     
     public partial class CreditosComplementariosEntities : DbContext
     {
@@ -25,13 +28,169 @@ namespace ActividadesComplementarias.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public DbSet<ActividadComplementaria> ActividadComplementaria { get; set; }
         public DbSet<ActividadCursada> ActividadCursada { get; set; }
         public DbSet<Carrera> Carrera { get; set; }
         public DbSet<Departamento> Departamento { get; set; }
         public DbSet<Estudiante> Estudiante { get; set; }
         public DbSet<Maestros> Maestros { get; set; }
-        public DbSet<TipoMaestro> TipoMaestro { get; set; }
+        public DbSet<Modalidad> Modalidad { get; set; }
         public DbSet<sysdiagrams> sysdiagrams { get; set; }
-        public DbSet<ActividadComplementaria> ActividadComplementaria { get; set; }
+        public DbSet<TipoMaestro> TipoMaestro { get; set; }
+    
+        [EdmFunction("CreditosComplementariosEntities", "listAsistencia")]
+        public virtual IQueryable<listAsistencia_Result> listAsistencia(Nullable<int> id_actcomp, string periodo)
+        {
+            var id_actcompParameter = id_actcomp.HasValue ?
+                new ObjectParameter("id_actcomp", id_actcomp) :
+                new ObjectParameter("id_actcomp", typeof(int));
+    
+            var periodoParameter = periodo != null ?
+                new ObjectParameter("periodo", periodo) :
+                new ObjectParameter("periodo", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<listAsistencia_Result>("[CreditosComplementariosEntities].[listAsistencia](@id_actcomp, @periodo)", id_actcompParameter, periodoParameter);
+        }
+    
+        [EdmFunction("CreditosComplementariosEntities", "lst_byact")]
+        public virtual IQueryable<lst_byact_Result> lst_byact(Nullable<int> id_actcomp, string periodo)
+        {
+            var id_actcompParameter = id_actcomp.HasValue ?
+                new ObjectParameter("id_actcomp", id_actcomp) :
+                new ObjectParameter("id_actcomp", typeof(int));
+    
+            var periodoParameter = periodo != null ?
+                new ObjectParameter("periodo", periodo) :
+                new ObjectParameter("periodo", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<lst_byact_Result>("[CreditosComplementariosEntities].[lst_byact](@id_actcomp, @periodo)", id_actcompParameter, periodoParameter);
+        }
+    
+        public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
+        {
+            var diagramnameParameter = diagramname != null ?
+                new ObjectParameter("diagramname", diagramname) :
+                new ObjectParameter("diagramname", typeof(string));
+    
+            var owner_idParameter = owner_id.HasValue ?
+                new ObjectParameter("owner_id", owner_id) :
+                new ObjectParameter("owner_id", typeof(int));
+    
+            var versionParameter = version.HasValue ?
+                new ObjectParameter("version", version) :
+                new ObjectParameter("version", typeof(int));
+    
+            var definitionParameter = definition != null ?
+                new ObjectParameter("definition", definition) :
+                new ObjectParameter("definition", typeof(byte[]));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_alterdiagram", diagramnameParameter, owner_idParameter, versionParameter, definitionParameter);
+        }
+    
+        public virtual int sp_creatediagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
+        {
+            var diagramnameParameter = diagramname != null ?
+                new ObjectParameter("diagramname", diagramname) :
+                new ObjectParameter("diagramname", typeof(string));
+    
+            var owner_idParameter = owner_id.HasValue ?
+                new ObjectParameter("owner_id", owner_id) :
+                new ObjectParameter("owner_id", typeof(int));
+    
+            var versionParameter = version.HasValue ?
+                new ObjectParameter("version", version) :
+                new ObjectParameter("version", typeof(int));
+    
+            var definitionParameter = definition != null ?
+                new ObjectParameter("definition", definition) :
+                new ObjectParameter("definition", typeof(byte[]));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_creatediagram", diagramnameParameter, owner_idParameter, versionParameter, definitionParameter);
+        }
+    
+        public virtual int sp_dropdiagram(string diagramname, Nullable<int> owner_id)
+        {
+            var diagramnameParameter = diagramname != null ?
+                new ObjectParameter("diagramname", diagramname) :
+                new ObjectParameter("diagramname", typeof(string));
+    
+            var owner_idParameter = owner_id.HasValue ?
+                new ObjectParameter("owner_id", owner_id) :
+                new ObjectParameter("owner_id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_dropdiagram", diagramnameParameter, owner_idParameter);
+        }
+    
+        public virtual ObjectResult<sp_helpdiagramdefinition_Result> sp_helpdiagramdefinition(string diagramname, Nullable<int> owner_id)
+        {
+            var diagramnameParameter = diagramname != null ?
+                new ObjectParameter("diagramname", diagramname) :
+                new ObjectParameter("diagramname", typeof(string));
+    
+            var owner_idParameter = owner_id.HasValue ?
+                new ObjectParameter("owner_id", owner_id) :
+                new ObjectParameter("owner_id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_helpdiagramdefinition_Result>("sp_helpdiagramdefinition", diagramnameParameter, owner_idParameter);
+        }
+    
+        public virtual ObjectResult<sp_helpdiagrams_Result> sp_helpdiagrams(string diagramname, Nullable<int> owner_id)
+        {
+            var diagramnameParameter = diagramname != null ?
+                new ObjectParameter("diagramname", diagramname) :
+                new ObjectParameter("diagramname", typeof(string));
+    
+            var owner_idParameter = owner_id.HasValue ?
+                new ObjectParameter("owner_id", owner_id) :
+                new ObjectParameter("owner_id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_helpdiagrams_Result>("sp_helpdiagrams", diagramnameParameter, owner_idParameter);
+        }
+    
+        public virtual int sp_renamediagram(string diagramname, Nullable<int> owner_id, string new_diagramname)
+        {
+            var diagramnameParameter = diagramname != null ?
+                new ObjectParameter("diagramname", diagramname) :
+                new ObjectParameter("diagramname", typeof(string));
+    
+            var owner_idParameter = owner_id.HasValue ?
+                new ObjectParameter("owner_id", owner_id) :
+                new ObjectParameter("owner_id", typeof(int));
+    
+            var new_diagramnameParameter = new_diagramname != null ?
+                new ObjectParameter("new_diagramname", new_diagramname) :
+                new ObjectParameter("new_diagramname", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_renamediagram", diagramnameParameter, owner_idParameter, new_diagramnameParameter);
+        }
+    
+        public virtual int sp_upgraddiagrams()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_upgraddiagrams");
+        }
+    
+        [EdmFunction("CreditosComplementariosEntities", "slctPeriodo")]
+        public virtual IQueryable<string> slctPeriodo()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<string>("[CreditosComplementariosEntities].[slctPeriodo]()");
+        }
+    
+        [EdmFunction("CreditosComplementariosEntities", "lst_byAcred")]
+        public virtual IQueryable<lst_byAcred_Result> lst_byAcred(Nullable<int> id_estud, Nullable<int> id_actcomp, string periodo)
+        {
+            var id_estudParameter = id_estud.HasValue ?
+                new ObjectParameter("id_estud", id_estud) :
+                new ObjectParameter("id_estud", typeof(int));
+    
+            var id_actcompParameter = id_actcomp.HasValue ?
+                new ObjectParameter("id_actcomp", id_actcomp) :
+                new ObjectParameter("id_actcomp", typeof(int));
+    
+            var periodoParameter = periodo != null ?
+                new ObjectParameter("periodo", periodo) :
+                new ObjectParameter("periodo", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<lst_byAcred_Result>("[CreditosComplementariosEntities].[lst_byAcred](@id_estud, @id_actcomp, @periodo)", id_estudParameter, id_actcompParameter, periodoParameter);
+        }
     }
 }

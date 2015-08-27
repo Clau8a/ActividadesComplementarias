@@ -29,6 +29,7 @@
             <th>
                 <label>No. Créditos</label>
             </th>
+            <th><label>Cupo</label></th>
             <th>Maestro</th>
             <th></th>
         </tr>
@@ -54,6 +55,7 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.noCreditos)
                 </td>
+                <td>@Html.DisplayFor(modelItem => item.cupo)</td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Maestros.nombreMaestro)
                 </td>

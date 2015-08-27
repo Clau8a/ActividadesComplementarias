@@ -4,11 +4,41 @@
     ViewBag.Title = "List";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+<style>
+    #agregar {
+    margin-bottom:30px;
+    }
+</style>
 <div class="col-lg-8 col-lg-offset-2">
     <h2>@ViewBag.Actividad</h2>
     <div id="agregar">
-        <span><a href="/Estudiante/Create" class="addNew"><span class="glyphicon glyphicon-plus"></span></a> <b>  Agregar Nuevo</b></span>
+            
+        @{
+            if(Session["user.tipo"].ToString() == "J")
+            {
+                <form>
+                    <div class="col-lg-4">
+                        @Html.DropDownList("periodoFiltro", (IEnumerable<SelectListItem>)ViewBag.periodo)
+                    </div>
+                    <div class="col-lg-1"><button class="btn btn-primary" type="submit">Filtrar</button></div>
+
+                </form>
+            }
+        }
+        <div class="col-lg-3 col-lg-offset-1">
+            <label id="idActCompl" hidden>@ViewBag.idActCompl</label>
+            <div class="btn-group">
+                <button type="button" class="btn  btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                    <i class="glyphicon glyphicon-print"></i>Imprimir
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a href="" id="btnPDF" onclick="printList('PDF')">Lista Asistencia</a></li>
+                    <li><a href="" onclick="printListAcreditados('PDF')">Lista estudiantes acreditados</a></li>
+                    <li><a href="" onclick="printListAcreditadosCola('PDF')">Constancia Acreditados</a></li>
+                </ul>
+            </div>
+        </div>
     </div>
     <table class="table table-bordered table-hover">
         <tr>
@@ -27,7 +57,7 @@
             <th>
                 <label>Periodo</label>
             </th>
-            <th>Status</th>
+            <th>status</th>
             <th></th>
         </tr>
 
@@ -43,7 +73,7 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Estudiante.Carrera1.nombreCarrera)
                 </td>
-                
+
                 <td>
                     @Html.DisplayFor(modelItem => item.Estudiante.creditosComplementarios)
                 </td>
@@ -53,21 +83,41 @@
                 <td>@Html.DisplayFor(modelItem => item.estatusActividad)</td>
                 <td>
                     @{
-                            if (Session["User.Tipo"].ToString() == "J" || Session["User.Tipo"].ToString() == "X")
+            if (Session["User.Tipo"].ToString() == "J" || Session["User.Tipo"].ToString() == "X" || Session["User.Tipo"].ToString() == "D")
                             {
                                 if (@item.estatusActividad == "Cursando")
                                 {
                                     @Html.ActionLink("Acreditar", "Acreditar", new { id = item.idAvtividadCursada })
-
                                 }
+                                <a href="/PDF/GenerarPdf/@item.idAvtividadCursada" target="_blank">Constancia</a>
                             }
-                    }
+}
                 </td>
-
-
 
             </tr>
         }
 
     </table>
 </div>
+<script src="~/Scripts/jquery-1.11.3.min.js"></script>
+<script src="~/Content/js/bootstrap.js"></script>
+<script>
+
+    $('.dropdown-toggle').dropdown();
+
+    function printList(ext) {
+        var id = $('#idActCompl').text();
+        var url = '/ActividadComplementaria/printListAsistencia/' + '?id=' + $('#idActCompl').text() + '&ext=' + ext + '&periodo=' + $("#periodoFiltro").val();
+        window.open(url, "blank");
+    }
+    function printListAcreditados(ext) {
+        var id = $('#idActCompl').text();
+        var url = '/ActividadComplementaria/printReportList/' + '?id=' + $('#idActCompl').text() + '&ext=' + ext + '&periodo=' + $("#periodoFiltro").val();
+        window.open(url, "blank");
+    }
+    function printListAcreditadosCola(ext) {
+        var id = $('#idActCompl').text();
+        var url = '/PDF/Cola/' + '?id=' + $('#idActCompl').text() +'&periodo=' + $("#periodoFiltro").val();
+        window.open(url, "blank");
+    }
+</script>

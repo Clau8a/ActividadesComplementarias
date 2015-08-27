@@ -6,6 +6,9 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using ActividadesComplementarias.Models;
+using Microsoft.Reporting.WebForms;
+using Newtonsoft.Json;
+using System.IO;
 
 namespace ActividadesComplementarias.Controllers
 {
@@ -28,20 +31,40 @@ namespace ActividadesComplementarias.Controllers
                 return View(actCom.ToList());
             }
             else{
-                var actCom = actividadcomplementaria.Where(s => s.Departamento1.idDepartamento == maestro.departamentoMaestro || s.departamento == 123457 );
-                return View(actCom.ToList());
+                if (Session["user.tipo"].ToString() == "J") 
+                {
+                    return View(actividadcomplementaria.ToList());
+                }
+                else 
+                { 
+                    var actCom = actividadcomplementaria.Where( s => s.Departamento1.idDepartamento == maestro.departamentoMaestro || s.departamento == 123457 );
+                    return View(actCom.ToList());
+                }
             }
         }
 
-        public ActionResult List(int id=0)
+        public ActionResult List(int id = 0, string periodoFiltro = null)
         {
             //Carrera y departamento filtrar y ver como regresar a los estudiantes 
             var acti= db.ActividadCursada.Include(a=> a.Estudiante);
             var acticur = acti.Where(a => a.idActComplementaria == id);
 
+            if (Session["user.tipo"].ToString() == "X" || Session["user.tipo"].ToString() == "D") 
+            {
+                string periodos = CalculaPeriodo();
+                acticur = acti.Where(a => a.idActComplementaria == id && a.periodo == periodos);
+            }
+            
+                if (periodoFiltro != null)
+                {
+                    acticur = acti.Where(a => a.idActComplementaria == id && a.periodo == periodoFiltro);
+                }
+            
+            ViewBag.periodo =new SelectList(db.slctPeriodo());
             
             var actcomp = db.ActividadComplementaria.Find(id);
             ViewBag.Actividad = actcomp.nombreActComplementaria;
+            ViewBag.idActCompl = id;
             return View(acticur.ToList());
         }
 
@@ -173,5 +196,117 @@ namespace ActividadesComplementarias.Controllers
             db.Dispose();
             base.Dispose(disposing);
         }
+
+        public ActionResult printReportList(int id = 0, string ext = null,string periodo=null)
+        {
+            ActividadComplementaria ac = db.ActividadComplementaria.Find(id);
+            LocalReport lr = new LocalReport();
+            string pathReport = Path.Combine(Server.MapPath("~/Resources"), "ListasPorActividad.rdlc");
+            lr.ReportPath = pathReport;
+
+            ReportParameter[] parametro = new ReportParameter[3];
+            parametro[0] = new ReportParameter("ac", ac.nombreActComplementaria);
+            if (Session["user.tipo"].ToString() == "X" || Session["user.tipo"].ToString() == "D")
+            {
+                periodo = CalculaPeriodo();
+                parametro[1] = new ReportParameter("periodo", periodo);
+            }
+            else
+            {
+                parametro[1] = new ReportParameter("periodo", periodo);
+            }
+            parametro[2] = new ReportParameter("maestro", ac.Maestros.nombreMaestro);
+
+            lr.SetParameters(parametro);
+
+            string json = JsonConvert.SerializeObject(db.lst_byact(id, periodo));
+
+
+            DataTable dtDetalleTF = JsonConvert.DeserializeObject<DataTable>(json);
+            DataSet DSDetalleTF = new DataSet();
+            DSDetalleTF.Tables.Add(dtDetalleTF);
+            ReportDataSource rdtsDetalleTF = new ReportDataSource();
+            rdtsDetalleTF.Name = "DSListas";
+            rdtsDetalleTF.Value = DSDetalleTF.Tables[0];
+            lr.DataSources.Add(rdtsDetalleTF);
+            if (ext == "Excel")
+            {
+                Response.AddHeader("content-disposition", "attachment;    filename=DetalleTrabajo" + id + " -" + DateTime.Today.ToShortDateString() + ".xls");
+            }
+            string reportType = ext;
+            string mimeType;
+            string encoding;
+            string fileNameExtension;
+            //string deviceInfo = "<DeviceInfo>" + "  <OutputFormat>" + reportType + "</OutputFormat>" + "  <PageWidth>8.5in</PageWidth>" + "  <PageHeight>11in</PageHeight>" + "  <MarginTop>0.5in</MarginTop>" + "  <MarginLeft>1in</MarginLeft>" + "  <MarginRight>1in</MarginRight>" + "  <MarginBottom>0.5in</MarginBottom>" + "</DeviceInfo>";
+            Warning[] warnings;
+            string[] streams;
+            byte[] renderedBytes;
+            renderedBytes = lr.Render(reportType, null, out mimeType, out encoding, out fileNameExtension, out streams, out warnings);
+            return File(renderedBytes, mimeType);
+        }
+
+        public ActionResult printListAsistencia(int id = 0, string ext = null, string periodo = null)
+        {
+            ActividadComplementaria ac = db.ActividadComplementaria.Find(id);
+            LocalReport lr = new LocalReport();
+            string pathReport = Path.Combine(Server.MapPath("~/Resources"), "ListasAsistencia.rdlc");
+            lr.ReportPath = pathReport;
+
+            ReportParameter[] parametro = new ReportParameter[3];
+            parametro[0] = new ReportParameter("ac", ac.nombreActComplementaria);
+            if (Session["user.tipo"].ToString() == "X" || Session["user.tipo"].ToString() == "D")
+            {
+                periodo = CalculaPeriodo();
+                parametro[1] = new ReportParameter("periodo", periodo);
+            }
+            else
+            {
+                parametro[1] = new ReportParameter("periodo", periodo);
+            }
+            parametro[2] = new ReportParameter("maestro", ac.Maestros.nombreMaestro);
+
+            lr.SetParameters(parametro);
+
+            string json = JsonConvert.SerializeObject(db.listAsistencia(id,periodo));
+
+
+            DataTable dtDetalleTF = JsonConvert.DeserializeObject<DataTable>(json);
+            DataSet DSDetalleTF = new DataSet();
+            DSDetalleTF.Tables.Add(dtDetalleTF);
+            ReportDataSource rdtsDetalleTF = new ReportDataSource();
+            rdtsDetalleTF.Name = "DSAsistencia";
+            rdtsDetalleTF.Value = DSDetalleTF.Tables[0];
+            lr.DataSources.Add(rdtsDetalleTF);
+
+            if (ext == "Excel")
+            {
+                Response.AddHeader("content-disposition", "attachment;    filename=DetalleTrabajo" + id + " -" + DateTime.Today.ToShortDateString() + ".xls");
+            }
+            string reportType = ext;
+            string mimeType;
+            string encoding;
+            string fileNameExtension;
+            //string deviceInfo = "<DeviceInfo>" + "  <OutputFormat>" + reportType + "</OutputFormat>" + "  <PageWidth>8.5in</PageWidth>" + "  <PageHeight>11in</PageHeight>" + "  <MarginTop>0.5in</MarginTop>" + "  <MarginLeft>1in</MarginLeft>" + "  <MarginRight>1in</MarginRight>" + "  <MarginBottom>0.5in</MarginBottom>" + "</DeviceInfo>";
+            Warning[] warnings;
+            string[] streams;
+            byte[] renderedBytes;
+            renderedBytes = lr.Render(reportType, null, out mimeType, out encoding, out fileNameExtension, out streams, out warnings);
+            return File(renderedBytes, mimeType);
+        }
+
+        public string CalculaPeriodo()
+        {
+            var perioAño = DateTime.Today.Year;
+            int month = DateTime.Today.Month;
+            string per = "";
+            if (month <= 6)
+                per = "-1";
+            else
+                per = "-2";
+            string periodo = perioAño + per;
+            return periodo;
+        }
     }
+
+
 }

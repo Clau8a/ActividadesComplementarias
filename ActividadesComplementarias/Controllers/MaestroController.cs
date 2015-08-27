@@ -22,8 +22,8 @@ namespace ActividadesComplementarias.Controllers
             Maestros maestro = db.Maestros.Find(id);
 
             var maestros = db.Maestros.Include(m => m.Departamento).Include(m => m.TipoMaestro1);
-            var teacher = maestros.Where(s => s.departamentoMaestro == maestro.departamentoMaestro);
-            return View(teacher.ToList());
+
+            return View(maestros.ToList());
         }
 
         //

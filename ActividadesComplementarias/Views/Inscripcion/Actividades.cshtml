@@ -51,6 +51,14 @@
                         @Html.DisplayFor(modelItem => item.modalidad)
                     </div>
                     <div class="descripcion">
+                        <label><b>Cupo: </b></label>
+                        @Html.DisplayFor(modelItem => item.cupo)
+                    </div>
+                    <div class="descripcion">
+                        <label><b>Total Inscritos: </b></label>
+                        @Html.DisplayFor(modelItem => item.inscritos)
+                    </div>
+                    <div class="descripcion">
                         <label><b>No. Créditos: </b></label>
                         @Html.DisplayFor(modelItem => item.noCreditos)
                     </div>
@@ -61,11 +69,11 @@
 @{
     ActividadesComplementarias.Models.CreditosComplementariosEntities db = new ActividadesComplementarias.Models.CreditosComplementariosEntities();
     
-     bool mostrar= true;
+     bool mostrar= true,cupo=true;
      string x = Session["user.id"].ToString();
      int ides = Convert.ToInt32(x);
     var cursando= from c in db.ActividadCursada
-                      where c.idEstudiante==ides && c.estatusActividad=="Cursando"
+                  where c.idEstudiante == ides && c.estatusActividad == "Cursando" || c.idEstudiante == ides && c.estatusActividad == "Acreditada"
                       select c;
     foreach(var item2 in cursando)
     {
@@ -73,7 +81,18 @@
         {
             mostrar=false;
         }
+        
     }
+        if (item.cupo == item.inscritos)
+        {
+            mostrar = false;
+            cupo = false;
+        }
+        else
+        {
+
+            cupo = true;
+        }
         if(mostrar==true)
         {
             <div class="actividadesBtn">
@@ -82,9 +101,19 @@
         }
         else
         {
-            <div class="actividadesBtn">
-                <a href="#" class="btn btn-success btn-block boton disabled" disabled>Ya inscrito</a>
-            </div>
+
+            if (cupo == false)
+            {
+                <div class="actividadesBtn">
+                    <a href="#" class="btn btn-success btn-block boton disabled" disabled>Grupo Cerrado</a>
+                </div>
+            }
+            else
+            {
+                <div class="actividadesBtn">
+                    <a href="#" class="btn btn-success btn-block boton disabled" disabled>Ya inscrito</a>
+                </div>
+            }
         }
 }
     </div>

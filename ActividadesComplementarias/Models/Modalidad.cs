@@ -12,17 +12,9 @@ namespace ActividadesComplementarias.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class ActividadCursada
+    public partial class Modalidad
     {
-        public int idAvtividadCursada { get; set; }
-        public int idActComplementaria { get; set; }
-        public int idEstudiante { get; set; }
-        public string estatusActividad { get; set; }
-        public string periodo { get; set; }
-        public string mestro { get; set; }
-    
-        public virtual ActividadComplementaria ActividadComplementaria { get; set; }
-        public virtual Estudiante Estudiante { get; set; }
-        public virtual Maestros Maestros { get; set; }
+        public int idModalidad { get; set; }
+        public string nomModalidad { get; set; }
     }
 }

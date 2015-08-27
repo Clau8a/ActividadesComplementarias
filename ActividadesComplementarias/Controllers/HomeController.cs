@@ -29,7 +29,7 @@ namespace ActividadesComplementarias.Controllers
                         return RedirectToAction("Index", "Inscripcion");
                     else 
                     {
-                        if (Session["user.tipo"].ToString() == "X")
+                        if (Session["user.tipo"].ToString() == "X" || Session["user.tipo"].ToString() == "D")
                         {
                             return RedirectToAction("Index", "ActividadComplementaria");
                         }

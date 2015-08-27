@@ -12,10 +12,10 @@
         @Html.AntiForgeryToken()
         @Html.ValidationSummary(true)
 
-        <div class="editor-label">
+        <div class="editor-label" hidden>
             <label>Clave Actividad</label>
         </div>
-        <div class="editor-field">
+        <div class="editor-field" hidden>
             @Html.EditorFor(model => model.idActividadComplementaria)
             @Html.ValidationMessageFor(model => model.idActividadComplementaria)
         </div>
@@ -37,7 +37,7 @@
         </div>
 
         <div class="editor-label">
-            <label>Departamneto</label>
+            <label>Departamento</label>
         </div>
         <div class="editor-field">
             @Html.DropDownList("departamento", String.Empty)
@@ -58,6 +58,14 @@
         <div class="editor-field">
             @Html.EditorFor(model => model.noCreditos)
             @Html.ValidationMessageFor(model => model.noCreditos)
+        </div>
+
+        <div class="editor-label">
+            <label>Cupo</label>
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.cupo)
+            @Html.ValidationMessageFor(model => model.cupo)
         </div>
 
         <div class="editor-label">

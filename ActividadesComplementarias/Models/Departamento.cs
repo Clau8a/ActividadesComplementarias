@@ -16,16 +16,16 @@ namespace ActividadesComplementarias.Models
     {
         public Departamento()
         {
-            this.Maestros = new HashSet<Maestros>();
-            this.Carrera = new HashSet<Carrera>();
             this.ActividadComplementaria = new HashSet<ActividadComplementaria>();
+            this.Carrera = new HashSet<Carrera>();
+            this.Maestros = new HashSet<Maestros>();
         }
     
         public int idDepartamento { get; set; }
         public string nombreDepartamento { get; set; }
     
-        public virtual ICollection<Maestros> Maestros { get; set; }
-        public virtual ICollection<Carrera> Carrera { get; set; }
         public virtual ICollection<ActividadComplementaria> ActividadComplementaria { get; set; }
+        public virtual ICollection<Carrera> Carrera { get; set; }
+        public virtual ICollection<Maestros> Maestros { get; set; }
     }
 }

@@ -10,20 +10,13 @@
 namespace ActividadesComplementarias.Models
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class Carrera
+    public partial class sp_helpdiagrams_Result
     {
-        public Carrera()
-        {
-            this.Estudiante = new HashSet<Estudiante>();
-        }
-    
-        public int idCarrera { get; set; }
-        public string nombreCarrera { get; set; }
-        public int departamento { get; set; }
-    
-        public virtual Departamento Departamento1 { get; set; }
-        public virtual ICollection<Estudiante> Estudiante { get; set; }
+        public string Database { get; set; }
+        public string Name { get; set; }
+        public int ID { get; set; }
+        public string Owner { get; set; }
+        public int OwnerID { get; set; }
     }
 }

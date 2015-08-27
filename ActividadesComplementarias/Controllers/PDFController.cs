@@ -9,6 +9,7 @@ using System.Data.Entity;
 using ActividadesComplementarias.Models;
 using iTextSharp.text.pdf;
 using Microsoft.Reporting.WebForms;
+using Newtonsoft.Json;
 
 namespace ActividadesComplementarias.Controllers
 {
@@ -23,36 +24,103 @@ namespace ActividadesComplementarias.Controllers
             return View();
         }
 
-        public void GenerarPdf(int id) // id = num_certificado_nac
+        public ActionResult Cola(int id,string periodo=null) // id = num_certificado_nac
+        {
+            ActividadComplementaria actCursada = db.ActividadComplementaria.Find(id);
+
+            string idJefe= Session["user.id"].ToString();
+            Maestros ma= db.Maestros.Find(idJefe);
+
+            LocalReport lr = new LocalReport();
+            string path = Path.Combine(Server.MapPath("~/Resources"), "Constancia.rdlc");
+            lr.ReportPath = path;
+
+            ReportParameter[] parametro = new ReportParameter[7];
+            parametro[0] = new ReportParameter("departamento", actCursada.Departamento1.nombreDepartamento);
+            parametro[1] = new ReportParameter("jd", ma.nombreMaestro);
+            parametro[2] = new ReportParameter("creditos", actCursada.noCreditos.ToString());
+            parametro[3] = new ReportParameter("ac", actCursada.nombreActComplementaria);
+            parametro[4] = new ReportParameter("dia", DateTime.Today.Day.ToString());
+            parametro[5] = new ReportParameter("mes", DateTime.Today.Month.ToString());
+            parametro[6] = new ReportParameter("año", DateTime.Today.Year.ToString());
+
+            string json ;
+            lr.SetParameters(parametro);
+            if (Session["user.tipo"].ToString() == "X" || Session["user.tipo"].ToString() == "D")
+            {
+                 json = JsonConvert.SerializeObject(db.lst_byAcred(0, actCursada.idActividadComplementaria, CalculaPeriodo()));
+            }
+            else
+            {
+                json = JsonConvert.SerializeObject(db.lst_byAcred(0, actCursada.idActividadComplementaria, periodo));
+            }
+
+
+            DataTable dtDetalleTF = JsonConvert.DeserializeObject<DataTable>(json);
+            DataSet DSDetalleTF = new DataSet();
+            DSDetalleTF.Tables.Add(dtDetalleTF);
+            ReportDataSource rdtsDetalleTF = new ReportDataSource();
+            rdtsDetalleTF.Name = "DTListas";
+            rdtsDetalleTF.Value = DSDetalleTF.Tables[0];
+            lr.DataSources.Add(rdtsDetalleTF);
+
+            Response.ContentType = "application/force-download";
+            string reportType = "PDF";
+            string mimeType;
+            string encoding;
+            string fileNameExtension;
+            Warning[] warnings;
+            string[] streams;
+            byte[] renderedBytes;
+            renderedBytes = lr.Render(reportType, null, out mimeType, out encoding, out fileNameExtension, out streams, out warnings);
+            return File(renderedBytes, mimeType);
+
+        }
+
+        public ActionResult GenerarPdf(int id) // id = num_certificado_nac
         {
             ActividadCursada actCursada = db.ActividadCursada.Find(id);
-            
-            byte[] ActComplementarias = Recursos.Recursos.ActComplementariasPlantilla;
-            MemoryStream ActComp = new MemoryStream();
 
-            PdfReader pdfReader = new PdfReader(ActComplementarias);
-            PdfStamper pdfStamper = new PdfStamper(pdfReader, ActComp);
-            AcroFields pdfFormFields = pdfStamper.AcroFields;
+            string idJefe = Session["user.id"].ToString();
+            Maestros ma = db.Maestros.Find(idJefe);
 
-            pdfFormFields.SetField("JefeDepartamento", "Joel Mendoza");
-            pdfFormFields.SetField("Estudiante", actCursada.Estudiante.nombreEstudiante);
-            pdfFormFields.SetField("NoControl", actCursada.idEstudiante.ToString()); 
-            pdfFormFields.SetField("Carrera", actCursada.Estudiante.Carrera1.nombreCarrera);
-            pdfFormFields.SetField("ActividadComplementaria", actCursada.ActividadComplementaria.nombreActComplementaria);
-            pdfFormFields.SetField("Periodo", actCursada.periodo);
-            pdfFormFields.SetField("Creditos", actCursada.ActividadComplementaria.noCreditos.ToString());
-            pdfFormFields.SetField("Dia", DateTime.Today.Day.ToString());
-            pdfFormFields.SetField("Mes", DateTime.Today.Month.ToString());
-            pdfFormFields.SetField("Anio", DateTime.Today.Year.ToString());
-            pdfFormFields.SetField("ProfesorFirma", "Luis Bravos");
-            pdfFormFields.SetField("JefeDepartamentoFirma", "Joel Mendoza");
-            pdfFormFields.SetField("Departamento", actCursada.Estudiante.Carrera1.Departamento1.nombreDepartamento);
-            
+            LocalReport lr = new LocalReport();
+            string path = Path.Combine(Server.MapPath("~/Resources"), "Constancia.rdlc");
+            lr.ReportPath = path;
 
-            pdfStamper.FormFlattening = true;
-            pdfStamper.Close();
+            ReportParameter[] parametro = new ReportParameter[7];
+            parametro[0] = new ReportParameter("departamento", actCursada.ActividadComplementaria.Departamento1.nombreDepartamento);
+            parametro[1] = new ReportParameter("jd", ma.nombreMaestro);
+            parametro[2] = new ReportParameter("creditos", actCursada.ActividadComplementaria.noCreditos.ToString());
+            parametro[3] = new ReportParameter("ac", actCursada.ActividadComplementaria.nombreActComplementaria);
+            parametro[4] = new ReportParameter("dia", DateTime.Today.Day.ToString());
+            parametro[5] = new ReportParameter("mes", DateTime.Today.Month.ToString());
+            parametro[6] = new ReportParameter("año", DateTime.Today.Year.ToString());
 
-            Descagar(id, ActComp);
+
+            lr.SetParameters(parametro);
+
+            string json = JsonConvert.SerializeObject(db.lst_byAcred(actCursada.Estudiante.idEstudiante,actCursada.idActComplementaria, actCursada.periodo));
+
+
+            DataTable dtDetalleTF = JsonConvert.DeserializeObject<DataTable>(json);
+            DataSet DSDetalleTF = new DataSet();
+            DSDetalleTF.Tables.Add(dtDetalleTF);
+            ReportDataSource rdtsDetalleTF = new ReportDataSource();
+            rdtsDetalleTF.Name = "DTListas";
+            rdtsDetalleTF.Value = DSDetalleTF.Tables[0];
+            lr.DataSources.Add(rdtsDetalleTF);
+
+            Response.ContentType = "application/force-download";
+            string reportType = "PDF";
+            string mimeType;
+            string encoding;
+            string fileNameExtension;
+            Warning[] warnings;
+            string[] streams;
+            byte[] renderedBytes;
+            renderedBytes = lr.Render(reportType, null, out mimeType, out encoding, out fileNameExtension, out streams, out warnings);
+            return File(renderedBytes, mimeType);
 
         }
 
@@ -72,6 +140,10 @@ namespace ActividadesComplementarias.Controllers
             parametro[4] = new ReportParameter("AC", actCursada.ActividadComplementaria.nombreActComplementaria);
 
             lr.SetParameters(parametro);
+
+
+            
+
             Response.ContentType = "application/force-download";
             string reportType = "PDF";
             string mimeType;
@@ -97,6 +169,17 @@ namespace ActividadesComplementarias.Controllers
             Response.BinaryWrite(bytesInStream);
             Response.End();
         }
-
+        public string CalculaPeriodo()
+        {
+            var perioAño = DateTime.Today.Year;
+            int month = DateTime.Today.Month;
+            string per = "";
+            if (month <= 6)
+                per = "-1";
+            else
+                per = "-2";
+            string periodo = perioAño + per;
+            return periodo;
+        }
     }
 }

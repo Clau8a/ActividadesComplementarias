@@ -10,19 +10,13 @@
 namespace ActividadesComplementarias.Models
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class ActividadCursada
+    public partial class lst_byAcred_Result
     {
-        public int idAvtividadCursada { get; set; }
-        public int idActComplementaria { get; set; }
-        public int idEstudiante { get; set; }
-        public string estatusActividad { get; set; }
+        public Nullable<int> idEstudiante { get; set; }
+        public string nombreEstudiante { get; set; }
+        public string nombreCarrera { get; set; }
+        public Nullable<double> creditosComplementarios { get; set; }
         public string periodo { get; set; }
-        public string mestro { get; set; }
-    
-        public virtual ActividadComplementaria ActividadComplementaria { get; set; }
-        public virtual Estudiante Estudiante { get; set; }
-        public virtual Maestros Maestros { get; set; }
     }
 }

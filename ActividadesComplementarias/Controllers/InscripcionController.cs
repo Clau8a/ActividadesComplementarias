@@ -75,25 +75,28 @@ namespace ActividadesComplementarias.Controllers
         {
             if (id != 0)
             {
+
                 ViewBag.periodo=CalculaPeriodo();
                 var actividad = db.ActividadComplementaria.Find(id);
-                ViewBag.idActComplementaria = actividad.nombreActComplementaria;
-                //ViewBag.idActComplementaria = //new SelectList(db.ActividadComplementaria, "idActividadComplementaria", "nombreActComplementaria",id);
-                string student1=Session["uxid"].ToString();
-                var estudiante = from student in db.Estudiante
-                                 where student.nombreEstudiante == student1
-                                 select student;
-                foreach (var item in estudiante)
-                {
-                    ViewBag.idEstudiante = item.nombreEstudiante;//new SelectList(db.Estudiante, "idEstudiante", "nombreEstudiante", item.idEstudiante);
-                }
-                var maestro = from teacher in db.Maestros
-                                 where teacher.idMaestro == actividad.maestro
-                                 select teacher;
-                foreach (var item in maestro) 
-                {
-                    ViewBag.mestro = item.nombreMaestro;//new SelectList(db.Maestros, "idMaestro", "nombreMaestro",item.idMaestro);
-                }
+                
+                    ViewBag.idActComplementaria = actividad.nombreActComplementaria;
+                    //ViewBag.idActComplementaria = //new SelectList(db.ActividadComplementaria, "idActividadComplementaria", "nombreActComplementaria",id);
+                    string student1=Session["uxid"].ToString();
+                    var estudiante = from student in db.Estudiante
+                                        where student.nombreEstudiante == student1
+                                        select student;
+                    foreach (var item in estudiante)
+                    {
+                        ViewBag.idEstudiante = item.nombreEstudiante;//new SelectList(db.Estudiante, "idEstudiante", "nombreEstudiante", item.idEstudiante);
+                    }
+                    var maestro = from teacher in db.Maestros
+                                        where teacher.idMaestro == actividad.maestro
+                                        select teacher;
+                    foreach (var item in maestro) 
+                    {
+                        ViewBag.mestro = item.nombreMaestro;//new SelectList(db.Maestros, "idMaestro", "nombreMaestro",item.idMaestro);
+                    }
+                
             }
             
             return View();
@@ -109,14 +112,6 @@ namespace ActividadesComplementarias.Controllers
             actividadcursada.idAvtividadCursada = 0;
             actividadcursada.estatusActividad = "Cursando";
 
-            var stu = from s in db.Estudiante
-                         where s.nombreEstudiante == student
-                         select s;
-            foreach (var item in stu)
-            {
-                actividadcursada.idEstudiante = item.idEstudiante;
-            }
-
             var ac = from act in db.ActividadComplementaria
                      where act.nombreActComplementaria == actividad
                      select act;
@@ -125,19 +120,33 @@ namespace ActividadesComplementarias.Controllers
                 actividadcursada.idActComplementaria = item.idActividadComplementaria;
             }
 
-            var ma = from m in db.Maestros
-                     where m.nombreMaestro == actividadcursada.mestro
-                     select m;
-            foreach (var item in ma)
-            {
-                actividadcursada.mestro = item.idMaestro;
-            }
-            if (ModelState.IsValid)
-            {
-                db.ActividadCursada.Add(actividadcursada);
-                db.SaveChanges();
-                return Redirect("/Inscripcion/Index/"+actividadcursada.idEstudiante);
-            }
+            ActividadComplementaria acc = db.ActividadComplementaria.Find(actividadcursada.idActComplementaria);
+            
+                var stu = from s in db.Estudiante
+                          where s.nombreEstudiante == student
+                          select s;
+                foreach (var item in stu)
+                {
+                    actividadcursada.idEstudiante = item.idEstudiante;
+                }
+
+
+                var ma = from m in db.Maestros
+                         where m.nombreMaestro == actividadcursada.mestro
+                         select m;
+                foreach (var item in ma)
+                {
+                    actividadcursada.mestro = item.idMaestro;
+                }
+
+                if (ModelState.IsValid)
+                {
+                    acc.inscritos++;
+                    db.ActividadCursada.Add(actividadcursada);
+                    db.SaveChanges();
+                    return Redirect("/Inscripcion/Index/" + actividadcursada.idEstudiante);
+                }
+            
 
             
             return View(actividadcursada);

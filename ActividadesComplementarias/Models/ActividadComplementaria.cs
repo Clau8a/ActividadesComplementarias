@@ -26,6 +26,8 @@ namespace ActividadesComplementarias.Models
         public string modalidad { get; set; }
         public double noCreditos { get; set; }
         public string maestro { get; set; }
+        public Nullable<int> cupo { get; set; }
+        public Nullable<int> inscritos { get; set; }
     
         public virtual Departamento Departamento1 { get; set; }
         public virtual Maestros Maestros { get; set; }
