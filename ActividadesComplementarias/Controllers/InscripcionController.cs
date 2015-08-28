@@ -142,6 +142,7 @@ namespace ActividadesComplementarias.Controllers
                 if (ModelState.IsValid)
                 {
                     acc.inscritos++;
+                    db.Entry(acc).State = EntityState.Modified;
                     db.ActividadCursada.Add(actividadcursada);
                     db.SaveChanges();
                     return Redirect("/Inscripcion/Index/" + actividadcursada.idEstudiante);
