@@ -7,7 +7,6 @@ using System.Web.Mvc;
 using System.Data;
 using System.Data.Entity;
 using ActividadesComplementarias.Models;
-using iTextSharp.text.pdf;
 using Microsoft.Reporting.WebForms;
 using Newtonsoft.Json;
 
@@ -89,10 +88,10 @@ namespace ActividadesComplementarias.Controllers
             lr.ReportPath = path;
 
             ReportParameter[] parametro = new ReportParameter[7];
-            parametro[0] = new ReportParameter("departamento", actCursada.ActividadComplementaria.Departamento1.nombreDepartamento);
+            parametro[0] = new ReportParameter("departamento", actCursada.Grupos.ActividadComplementaria1.Departamento1.nombreDepartamento);
             parametro[1] = new ReportParameter("jd", ma.nombreMaestro);
-            parametro[2] = new ReportParameter("creditos", actCursada.ActividadComplementaria.noCreditos.ToString());
-            parametro[3] = new ReportParameter("ac", actCursada.ActividadComplementaria.nombreActComplementaria);
+            parametro[2] = new ReportParameter("creditos", actCursada.Grupos.ActividadComplementaria1.noCreditos.ToString());
+            parametro[3] = new ReportParameter("ac", actCursada.Grupos.ActividadComplementaria1.nombreActComplementaria);
             parametro[4] = new ReportParameter("dia", DateTime.Today.Day.ToString());
             parametro[5] = new ReportParameter("mes", DateTime.Today.Month.ToString());
             parametro[6] = new ReportParameter("año", DateTime.Today.Year.ToString());
@@ -100,7 +99,7 @@ namespace ActividadesComplementarias.Controllers
 
             lr.SetParameters(parametro);
 
-            string json = JsonConvert.SerializeObject(db.lst_byAcred(actCursada.Estudiante.idEstudiante,actCursada.idActComplementaria, actCursada.periodo));
+            string json = JsonConvert.SerializeObject(db.lst_byAcred(actCursada.Estudiante.idEstudiante, actCursada.Grupos.ActividadComplementaria1.idActividadComplementaria, actCursada.periodo));
 
 
             DataTable dtDetalleTF = JsonConvert.DeserializeObject<DataTable>(json);
@@ -136,8 +135,8 @@ namespace ActividadesComplementarias.Controllers
             parametro[0] = new ReportParameter("estudiante",actCursada.Estudiante.nombreEstudiante);
             parametro[1] = new ReportParameter("ctrlnum", actCursada.Estudiante.idEstudiante.ToString());
             parametro[2] = new ReportParameter("periodo", actCursada.periodo);
-            parametro[3] = new ReportParameter("creditos", actCursada.ActividadComplementaria.noCreditos.ToString());
-            parametro[4] = new ReportParameter("AC", actCursada.ActividadComplementaria.nombreActComplementaria);
+            parametro[3] = new ReportParameter("creditos", actCursada.Grupos.ActividadComplementaria1.noCreditos.ToString());
+            parametro[4] = new ReportParameter("AC", actCursada.Grupos.ActividadComplementaria1.nombreActComplementaria);
 
             lr.SetParameters(parametro);
 

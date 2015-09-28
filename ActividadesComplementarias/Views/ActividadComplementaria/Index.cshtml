@@ -6,6 +6,7 @@
 }
 
 <div class="col-lg-10 col-lg-offset-1">
+    <h2>Actividades Complementarias</h2>
     <div id="agregar">
         <span><a href="/ActividadComplementaria/Create" class="addNew"><span class="glyphicon glyphicon-plus"></span></a> <b>  Agregar Nuevo</b></span>
     </div>
@@ -29,8 +30,7 @@
             <th>
                 <label>No. Créditos</label>
             </th>
-            <th><label>Cupo</label></th>
-            <th>Maestro</th>
+            <th>Grupos</th>
             <th></th>
         </tr>
 
@@ -55,12 +55,9 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.noCreditos)
                 </td>
-                <td>@Html.DisplayFor(modelItem => item.cupo)</td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Maestros.nombreMaestro)
-                </td>
-                <td style="width:150px;">
-                    <a href="/ActividadComplementaria/List/@item.idActividadComplementaria"><span id="edit" class="glyphicon glyphicon-list cuadrado"></span></a>
+                <td><a href="/Grupos/Index/@item.idActividadComplementaria"><span id="edit" class="glyphicon glyphicon-list cuadrado"></span></a></td>
+                <td style="width:100px;">
+                    
                     <a href="/ActividadComplementaria/Edit/@item.idActividadComplementaria"><span id="edit" class="glyphicon glyphicon-pencil cuadrado"></span></a>
                     <a href="/ActividadComplementaria/Delete/@item.idActividadComplementaria"><span id="delete" class="glyphicon glyphicon-remove cuadrado"></span></a>
 

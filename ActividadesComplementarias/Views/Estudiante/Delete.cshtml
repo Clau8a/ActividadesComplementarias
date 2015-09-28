@@ -2,60 +2,59 @@
 
 @{
     ViewBag.Title = "Delete";
-    Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<div class="col-lg-4 col-lg-offset-4">
-    <h2>Eliminar Estudiante</h2>
 
-    <h3>¿Seguro que desea eliminar Estudiante?</h3>
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>Estudiante</legend>
 
     <div class="display-label">
-        <label>Número de Control</label>
+         @Html.DisplayNameFor(model => model.idEstudiante)
     </div>
     <div class="display-field">
         @Html.DisplayFor(model => model.idEstudiante)
     </div>
 
     <div class="display-label">
-        <label>nombreEstudiante</label>
+         @Html.DisplayNameFor(model => model.nombreEstudiante)
     </div>
     <div class="display-field">
         @Html.DisplayFor(model => model.nombreEstudiante)
     </div>
 
     <div class="display-label">
-        <label>Carrera</label>
+         @Html.DisplayNameFor(model => model.Carrera1.nombreCarrera)
     </div>
     <div class="display-field">
         @Html.DisplayFor(model => model.Carrera1.nombreCarrera)
     </div>
+
     <div class="display-label">
-        <label>Num de créditos</label>
+         @Html.DisplayNameFor(model => model.creditosComplementarios)
     </div>
     <div class="display-field">
         @Html.DisplayFor(model => model.creditosComplementarios)
     </div>
-    <div class="editor-label">
-        <label>Contraseña</label>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.contraseñaEstudiante)
     </div>
-    <div class="editor-field">
-        @Html.EditorFor(model => model.contraseñaEstudiante)
-        @Html.ValidationMessageFor(model => model.contraseñaEstudiante)
+    <div class="display-field">
+        @Html.DisplayFor(model => model.contraseñaEstudiante)
     </div>
 
-    <div class="editor-label">
-        <label>Salt Contraseña</label>
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.saltContraseña)
     </div>
-    <div class="editor-field">
-        @Html.EditorFor(model => model.saltContraseña)
-        @Html.ValidationMessageFor(model => model.saltContraseña)
+    <div class="display-field">
+        @Html.DisplayFor(model => model.saltContraseña)
     </div>
-
-    @using (Html.BeginForm())
-    {
-        @Html.AntiForgeryToken()
-        <div>
-            <input class="btn-success" type="submit" value="Eliminar" />
-        </div>
-    }
-</div>
+</fieldset>
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

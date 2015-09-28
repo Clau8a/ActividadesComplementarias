@@ -1,0 +1,92 @@
+﻿@model ActividadesComplementarias.Models.Grupos
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Grupos</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.idGrupo)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.idGrupo)
+            @Html.ValidationMessageFor(model => model.idGrupo)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.nombreGrupo)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.nombreGrupo)
+            @Html.ValidationMessageFor(model => model.nombreGrupo)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.maestro)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.maestro)
+            @Html.ValidationMessageFor(model => model.maestro)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.cupo)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.cupo)
+            @Html.ValidationMessageFor(model => model.cupo)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.inscritos)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.inscritos)
+            @Html.ValidationMessageFor(model => model.inscritos)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.horario)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.horario)
+            @Html.ValidationMessageFor(model => model.horario)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.lugar)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.lugar)
+            @Html.ValidationMessageFor(model => model.lugar)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.actividadComplementaria, "ActividadComplementaria1")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("actividadComplementaria", String.Empty)
+            @Html.ValidationMessageFor(model => model.actividadComplementaria)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

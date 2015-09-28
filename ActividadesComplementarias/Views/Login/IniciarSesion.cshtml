@@ -1,0 +1,72 @@
+﻿@{
+    ViewBag.Title = "ECAS - Iniciar Sesión";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewBag.Title</title>
+
+    
+    <link href="~/Content/css/bootstrap.css" rel="stylesheet" />
+
+    <link href="~/Content/css/login.css" rel="stylesheet" />
+
+
+</head>
+<body>
+    
+    <div class="container" style="margin-top:100px;">
+        <div id="Logos" class="col-lg-12" style="text-align:center; height:140px; background-color:gray;">
+            <h1> <span><img src="~/Content/logoith.png" /></span><span> Instituto Tecnológico de Hermosillo</span></h1>
+        </div>
+        <div>
+            <div id="izq" class="col-lg-8">
+                <h3>Extra Curricular Activity System - ECAS </h3>
+                <div id="contenido">
+                    <p>Sistema de Inscripción a las Actividades complementarias entre las cuales se encuentran:</p>
+                    <ul>
+                        <li>Tutorias</li>
+                        <li>Extraescolares</li>
+                        <li>Actividades Complementarias</li>
+                    </ul>
+                </div>
+                <div id="lema" class="col-lg-12 bg-success centered">
+                    <h6>"En el esfuerzo común la grandeza de todos."</h6>
+                </div>
+
+            </div>
+
+            <div id="der" class="col-lg-4 ">
+                <form role="form" method="post">
+                    <h2 class="form-signin-heading">Iniciar Sesión</h2>
+                    <div class="form-group input-group input-account">
+                        <span class="input-group-addon"> <i class="glyphicon glyphicon-user"> </i></span>
+                        <input class="form-control input-lg" type="text" name="user" id="user" placeholder="Usuario" required autofocus />
+                    </div>
+                    <div class="form-group input-group input-account">
+                        <span class="input-group-addon"> <i class="glyphicon glyphicon-lock"> </i></span>
+                        <input class="form-control input-lg" type="password" name="password" id="password" placeholder="Contraseña" required />
+                    </div>
+                    <button class="btn btn-signin" type="submit" value="Iniciar Sesión">Iniciar Sesión</button>
+                </form>
+            </div>
+
+        </div>
+        @{
+            if (ViewBag.wrongUser == true)
+            {
+                <div class="alert alert-danger" role="alert">
+                    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                    <span class="sr-only">Error:</span>
+                    Usuario y/o Contraseña inválidos
+                </div>
+            }
+        }
+    </div>
+
+
+
+</body>
+</html>

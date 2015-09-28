@@ -1,18 +1,4 @@
-﻿/* NUGET: BEGIN LICENSE TEXT
- *
- * Microsoft grants you the right to use these script files for the sole
- * purpose of either: (i) interacting through your browser with the Microsoft
- * website or online service, subject to the applicable licensing or use
- * terms; or (ii) using the files as included with a Microsoft product subject
- * to that product's license terms. Microsoft reserves all other rights to the
- * files not expressly granted by Microsoft, whether by implication, estoppel
- * or otherwise. Insofar as a script file is dual licensed under GPL,
- * Microsoft neither took the code under GPL nor distributes it thereunder but
- * under the terms set out in this paragraph. All notices and licenses
- * below are for informational purposes only.
- *
- * NUGET: END LICENSE TEXT */
-/*!
+﻿/*!
 ** Unobtrusive Ajax support library for jQuery
 ** Copyright (C) Microsoft Corporation. All rights reserved.
 */
@@ -126,7 +112,7 @@
         return !validationInfo || !validationInfo.validate || validationInfo.validate();
     }
 
-    $(document).on("click", "a[data-ajax=true]", function (evt) {
+    $("a[data-ajax=true]").live("click", function (evt) {
         evt.preventDefault();
         asyncRequest(this, {
             url: this.href,
@@ -135,7 +121,7 @@
         });
     });
 
-    $(document).on("click", "form[data-ajax=true] input[type=image]", function (evt) {
+    $("form[data-ajax=true] input[type=image]").live("click", function (evt) {
         var name = evt.target.name,
             $target = $(evt.target),
             form = $target.parents("form")[0],
@@ -151,7 +137,7 @@
         }, 0);
     });
 
-    $(document).on("click", "form[data-ajax=true] :submit", function (evt) {
+    $("form[data-ajax=true] :submit").live("click", function (evt) {
         var name = evt.target.name,
             form = $(evt.target).parents("form")[0];
 
@@ -162,7 +148,7 @@
         }, 0);
     });
 
-    $(document).on("submit", "form[data-ajax=true]", function (evt) {
+    $("form[data-ajax=true]").live("submit", function (evt) {
         var clickInfo = $(this).data(data_click) || [];
         evt.preventDefault();
         if (!validate(this)) {

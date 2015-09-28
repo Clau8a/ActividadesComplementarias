@@ -7,7 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 using ActividadesComplementarias.Models;
 
-namespace ActividadesComplementarias.Controllers
+namespace ActividadesComplementariasControllers
 {
     public class CarreraController : Controller
     {
@@ -18,20 +18,8 @@ namespace ActividadesComplementarias.Controllers
 
         public ActionResult Index()
         {
-
-            if (Session["user.tipo"].ToString() == "D" || Session["user.tipo"].ToString() == "C")
-            {
-                string id = Session["user.id"].ToString();
-                Maestros maestro = db.Maestros.Find(id);
-                var carrera1 = db.Carrera.Include(c => c.Departamento1);
-                var cpd = carrera1.Where(s=> s.departamento == maestro.departamentoMaestro);
-                return View(cpd.ToList());
-            }
-            else
-            {
-                var carrera = db.Carrera.Include(c => c.Departamento1);
-                return View(carrera.ToList());
-            }
+            var carrera = db.Carrera.Include(c => c.Departamento1);
+            return View(carrera.ToList());
         }
 
         //
@@ -60,7 +48,6 @@ namespace ActividadesComplementarias.Controllers
         // POST: /Carrera/Create
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public ActionResult Create(Carrera carrera)
         {
             if (ModelState.IsValid)
@@ -92,7 +79,6 @@ namespace ActividadesComplementarias.Controllers
         // POST: /Carrera/Edit/5
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public ActionResult Edit(Carrera carrera)
         {
             if (ModelState.IsValid)
@@ -122,7 +108,6 @@ namespace ActividadesComplementarias.Controllers
         // POST: /Carrera/Delete/5
 
         [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
             Carrera carrera = db.Carrera.Find(id);

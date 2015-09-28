@@ -7,7 +7,7 @@
 <div class="col-lg-4 col-lg-offset-4">
     <h2>Eliminar Actividad</h2>
 
-    <h3>¿Seguro que desea aliminar la actividad?</h3>
+    <h3>¿Seguro que desea eliminar la actividad?</h3>
 
     <div class="display-label">
         <label>Clave Actividad Complementaria</label>
@@ -51,13 +51,7 @@
         @Html.DisplayFor(model => model.noCreditos)
     </div>
 
-    <div class="display-label">
-        @Html.DisplayNameFor(model => model.Maestros.nombreMaestro)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Maestros.nombreMaestro)
-    </div>
-    </fieldset>
+ 
     @using (Html.BeginForm()) {
         @Html.AntiForgeryToken()
 <div class="botones">

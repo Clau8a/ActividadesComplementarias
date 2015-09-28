@@ -7,7 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 using ActividadesComplementarias.Models;
 
-namespace ActividadesComplementarias.Controllers
+namespace ActividadesComplementariasControllers
 {
     public class MaestroController : Controller
     {
@@ -18,12 +18,21 @@ namespace ActividadesComplementarias.Controllers
 
         public ActionResult Index()
         {
-            string id = Session["user.id"].ToString();
-            Maestros maestro = db.Maestros.Find(id);
-
             var maestros = db.Maestros.Include(m => m.Departamento).Include(m => m.TipoMaestro1);
-
             return View(maestros.ToList());
+        }
+
+        //
+        // GET: /Maestro/Details/5
+
+        public ActionResult Details(string id = null)
+        {
+            Maestros maestros = db.Maestros.Find(id);
+            if (maestros == null)
+            {
+                return HttpNotFound();
+            }
+            return View(maestros);
         }
 
         //
@@ -40,7 +49,6 @@ namespace ActividadesComplementarias.Controllers
         // POST: /Maestro/Create
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public ActionResult Create(Maestros maestros)
         {
             if (ModelState.IsValid)
@@ -74,7 +82,6 @@ namespace ActividadesComplementarias.Controllers
         // POST: /Maestro/Edit/5
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public ActionResult Edit(Maestros maestros)
         {
             if (ModelState.IsValid)
@@ -105,7 +112,6 @@ namespace ActividadesComplementarias.Controllers
         // POST: /Maestro/Delete/5
 
         [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string id)
         {
             Maestros maestros = db.Maestros.Find(id);

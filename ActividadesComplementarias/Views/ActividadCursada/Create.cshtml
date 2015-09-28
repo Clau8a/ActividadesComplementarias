@@ -1,0 +1,67 @@
+﻿@model ActividadesComplementarias.Models.ActividadCursada
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>ActividadCursada</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.idAvtividadCursada)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.idAvtividadCursada)
+            @Html.ValidationMessageFor(model => model.idAvtividadCursada)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.idGrupo, "Grupos")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("idGrupo", String.Empty)
+            @Html.ValidationMessageFor(model => model.idGrupo)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.idEstudiante, "Estudiante")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("idEstudiante", String.Empty)
+            @Html.ValidationMessageFor(model => model.idEstudiante)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.estatusActividad)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.estatusActividad)
+            @Html.ValidationMessageFor(model => model.estatusActividad)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.periodo)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.periodo)
+            @Html.ValidationMessageFor(model => model.periodo)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

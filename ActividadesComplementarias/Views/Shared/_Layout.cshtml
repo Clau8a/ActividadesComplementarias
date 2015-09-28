@@ -50,11 +50,12 @@
                                  }
                                  else
                                  {
-                                    <li role="presentation"><a href="/Inscripcion/Index/@Session["user.id"].ToString()">Mis actividades</a></li>
+                                    <li role="presentation"><a href="/ActividadCursada/Index/@Session["user.id"].ToString()">Mis actividades</a></li>
                                     
                                      string estu = Session["user.id"].ToString();
                                      int ides = Convert.ToInt32(estu);
                                      string creditos="";
+                                     
                                      ActividadesComplementarias.Models.CreditosComplementariosEntities db = new ActividadesComplementarias.Models.CreditosComplementariosEntities();
                                      var est = from e in db.Estudiante
                                                where e.idEstudiante == ides
@@ -66,7 +67,7 @@
 
                                      if (creditos != "5")
                                      {
-                                        <li role="presentation"><a href="/Inscripcion/Actividades/@Session["user.id"].ToString()">Inscripciones</a></li>
+                                        <li role="presentation"><a href="/ActividadComplementaria/Inscripciones/@Session["user.id"].ToString()">Inscripciones</a></li>
                                      }
                                     
 
@@ -78,9 +79,9 @@
                     <ul class="nav navbar-nav navbar-right">
                         <!--DEBE SE UN DROPDOWN QUE TE PERMITA CERRAR SESION-->
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span>@Session["uxid"].ToString()<b class="caret"></b></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span>@Session["user"].ToString()<b class="caret"></b></a>
                             <ul class="dropdown-menu">
-                                <li>@Html.ActionLink("Cerrar Sesión", "Logout", "Cuenta")</li>
+                                <li>@Html.ActionLink("Cerrar Sesión", "Logout", "Login")</li>
                             </ul>
                         </li>
                     </ul>

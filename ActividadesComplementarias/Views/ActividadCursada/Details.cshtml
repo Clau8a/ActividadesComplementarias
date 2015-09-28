@@ -1,0 +1,50 @@
+﻿@model ActividadesComplementarias.Models.ActividadCursada
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>ActividadCursada</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.idAvtividadCursada)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.idAvtividadCursada)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Grupos.nombreGrupo)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Grupos.nombreGrupo)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Estudiante.nombreEstudiante)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Estudiante.nombreEstudiante)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.estatusActividad)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.estatusActividad)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.periodo)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.periodo)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id=Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

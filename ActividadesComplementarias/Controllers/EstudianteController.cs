@@ -7,7 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 using ActividadesComplementarias.Models;
 
-namespace ActividadesComplementarias.Controllers
+namespace ActividadesComplementariasControllers
 {
     public class EstudianteController : Controller
     {
@@ -18,12 +18,21 @@ namespace ActividadesComplementarias.Controllers
 
         public ActionResult Index()
         {
-            string id = Session["user.id"].ToString();
-            Maestros maestro = db.Maestros.Find(id);
-
             var estudiante = db.Estudiante.Include(e => e.Carrera1);
-            var student = estudiante.Where(s => s.Carrera1.departamento == maestro.departamentoMaestro);
-            return View(student.ToList());
+            return View(estudiante.ToList());
+        }
+
+        //
+        // GET: /Estudiante/Details/5
+
+        public ActionResult Details(int id = 0)
+        {
+            Estudiante estudiante = db.Estudiante.Find(id);
+            if (estudiante == null)
+            {
+                return HttpNotFound();
+            }
+            return View(estudiante);
         }
 
         //
@@ -39,10 +48,8 @@ namespace ActividadesComplementarias.Controllers
         // POST: /Estudiante/Create
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public ActionResult Create(Estudiante estudiante)
         {
-            estudiante.creditosComplementarios = 0;
             if (ModelState.IsValid)
             {
                 db.Estudiante.Add(estudiante);
@@ -72,7 +79,6 @@ namespace ActividadesComplementarias.Controllers
         // POST: /Estudiante/Edit/5
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public ActionResult Edit(Estudiante estudiante)
         {
             if (ModelState.IsValid)
@@ -102,7 +108,6 @@ namespace ActividadesComplementarias.Controllers
         // POST: /Estudiante/Delete/5
 
         [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
             Estudiante estudiante = db.Estudiante.Find(id);

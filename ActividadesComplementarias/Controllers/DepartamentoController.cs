@@ -7,7 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 using ActividadesComplementarias.Models;
 
-namespace ActividadesComplementarias.Controllers
+namespace ActividadesComplementariasControllers
 {
     public class DepartamentoController : Controller
     {
@@ -22,6 +22,19 @@ namespace ActividadesComplementarias.Controllers
         }
 
         //
+        // GET: /Departamento/Details/5
+
+        public ActionResult Details(int id = 0)
+        {
+            Departamento departamento = db.Departamento.Find(id);
+            if (departamento == null)
+            {
+                return HttpNotFound();
+            }
+            return View(departamento);
+        }
+
+        //
         // GET: /Departamento/Create
 
         public ActionResult Create()
@@ -33,22 +46,13 @@ namespace ActividadesComplementarias.Controllers
         // POST: /Departamento/Create
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public ActionResult Create(Departamento departamento)
         {
             if (ModelState.IsValid)
             {
-                Departamento deptoExistente = db.Departamento.Find(departamento.idDepartamento);
-                if (deptoExistente == null)
-                {
-                    db.Departamento.Add(departamento);
-                    db.SaveChanges();
-                    return RedirectToAction("Index");
-                }
-                else 
-                {
-                    return View(departamento);
-                }
+                db.Departamento.Add(departamento);
+                db.SaveChanges();
+                return RedirectToAction("Index");
             }
 
             return View(departamento);
@@ -57,7 +61,7 @@ namespace ActividadesComplementarias.Controllers
         //
         // GET: /Departamento/Edit/5
 
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int id = 0)
         {
             Departamento departamento = db.Departamento.Find(id);
             if (departamento == null)
@@ -71,7 +75,6 @@ namespace ActividadesComplementarias.Controllers
         // POST: /Departamento/Edit/5
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public ActionResult Edit(Departamento departamento)
         {
             if (ModelState.IsValid)
@@ -100,7 +103,6 @@ namespace ActividadesComplementarias.Controllers
         // POST: /Departamento/Delete/5
 
         [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
             Departamento departamento = db.Departamento.Find(id);

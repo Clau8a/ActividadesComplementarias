@@ -1,0 +1,75 @@
+﻿@model ActividadesComplementarias.Models.Grupos
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>Grupos</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.idGrupo)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.idGrupo)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.nombreGrupo)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.nombreGrupo)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.maestro)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.maestro)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.cupo)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.cupo)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.inscritos)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.inscritos)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.horario)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.horario)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.lugar)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.lugar)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ActividadComplementaria1.nombreActComplementaria)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ActividadComplementaria1.nombreActComplementaria)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

@@ -24,7 +24,7 @@ namespace ActividadesComplementarias.Controllers
                 var cursadas= from cur in db.ActividadCursada
                               where cur.idEstudiante==id
                                   select cur;
-                var curs =cursadas.Include(a => a.ActividadComplementaria).Include(a => a.Estudiante).Include(a => a.Maestros);
+                var curs =cursadas.Include(a => a.Grupos.ActividadComplementaria1).Include(a => a.Estudiante)/*.Include(a => a.Maestros)*/;
                 ViewBag.TotalCreditos = es.creditosComplementarios;
                 return View(curs.ToList());
             }
@@ -32,8 +32,8 @@ namespace ActividadesComplementarias.Controllers
             {
                 string id1 = Session["user.id"].ToString();
                 Maestros maestro = db.Maestros.Find(id1);
-                var actividadcursada = db.ActividadCursada.Include(a => a.ActividadComplementaria).Include(a => a.Estudiante).Include(a => a.Maestros);
-                var inscritos = actividadcursada.Where(s => s.ActividadComplementaria.Departamento1.idDepartamento == maestro.departamentoMaestro || s.ActividadComplementaria.Departamento1.idDepartamento == 123457);
+                var actividadcursada = db.ActividadCursada.Include(a => a.Grupos.ActividadComplementaria1).Include(a => a.Estudiante)/*.Include(a => a.Maestros)*/;
+                var inscritos = actividadcursada.Where(s => s.Grupos.ActividadComplementaria1.Departamento1.idDepartamento == maestro.departamentoMaestro || s.Grupos.ActividadComplementaria1.Departamento1.idDepartamento == 123457);
                 return View(inscritos.ToList());
             }
         }
@@ -89,13 +89,13 @@ namespace ActividadesComplementarias.Controllers
                     {
                         ViewBag.idEstudiante = item.nombreEstudiante;//new SelectList(db.Estudiante, "idEstudiante", "nombreEstudiante", item.idEstudiante);
                     }
-                    var maestro = from teacher in db.Maestros
-                                        where teacher.idMaestro == actividad.maestro
-                                        select teacher;
-                    foreach (var item in maestro) 
-                    {
-                        ViewBag.mestro = item.nombreMaestro;//new SelectList(db.Maestros, "idMaestro", "nombreMaestro",item.idMaestro);
-                    }
+                    //var maestro = from teacher in db.Maestros
+                    //                    where teacher.idMaestro == actividad.
+                    //                    select teacher;
+                    //foreach (var item in maestro) 
+                    //{
+                    //    ViewBag.mestro = item.nombreMaestro;//new SelectList(db.Maestros, "idMaestro", "nombreMaestro",item.idMaestro);
+                    //}
                 
             }
             
@@ -117,10 +117,10 @@ namespace ActividadesComplementarias.Controllers
                      select act;
             foreach (var item in ac)
             {
-                actividadcursada.idActComplementaria = item.idActividadComplementaria;
+                actividadcursada.Grupos.actividadComplementaria = item.idActividadComplementaria;
             }
 
-            ActividadComplementaria acc = db.ActividadComplementaria.Find(actividadcursada.idActComplementaria);
+            Grupos grupoAC = db.Grupos.Find(actividadcursada.idGrupo);
             
                 var stu = from s in db.Estudiante
                           where s.nombreEstudiante == student
@@ -132,17 +132,17 @@ namespace ActividadesComplementarias.Controllers
 
 
                 var ma = from m in db.Maestros
-                         where m.nombreMaestro == actividadcursada.mestro
+                         where m.nombreMaestro == actividadcursada.Grupos.maestro
                          select m;
                 foreach (var item in ma)
                 {
-                    actividadcursada.mestro = item.idMaestro;
+                    actividadcursada.Grupos.maestro = item.idMaestro;
                 }
 
                 if (ModelState.IsValid)
                 {
-                    acc.inscritos++;
-                    db.Entry(acc).State = EntityState.Modified;
+                    grupoAC.inscritos++;
+                    db.Entry(grupoAC).State = EntityState.Modified;
                     db.ActividadCursada.Add(actividadcursada);
                     db.SaveChanges();
                     return Redirect("/Inscripcion/Index/" + actividadcursada.idEstudiante);
@@ -159,7 +159,7 @@ namespace ActividadesComplementarias.Controllers
             ActividadCursada actividadcursada = db.ActividadCursada.Find(id);
             actividadcursada.estatusActividad = "Acreditada";
             db.Entry(actividadcursada).State = EntityState.Modified;
-            ActividadComplementaria ac = db.ActividadComplementaria.Find(actividadcursada.idActComplementaria);
+            ActividadComplementaria ac = db.ActividadComplementaria.Find(actividadcursada.Grupos.actividadComplementaria);
             Estudiante es = db.Estudiante.Find(actividadcursada.idEstudiante);
             if ((es.creditosComplementarios + ac.noCreditos) > 5)
                 es.creditosComplementarios = 5;
@@ -181,9 +181,9 @@ namespace ActividadesComplementarias.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.idActComplementaria = new SelectList(db.ActividadComplementaria, "idActividadComplementaria", "nombreActComplementaria", actividadcursada.idActComplementaria);
+            ViewBag.idActComplementaria = new SelectList(db.ActividadComplementaria, "idActividadComplementaria", "nombreActComplementaria", actividadcursada.Grupos.actividadComplementaria);
             ViewBag.idEstudiante = new SelectList(db.Estudiante, "idEstudiante", "nombreEstudiante", actividadcursada.idEstudiante);
-            ViewBag.mestro = new SelectList(db.Maestros, "idMaestro", "nombreMaestro", actividadcursada.mestro);
+            ViewBag.mestro = new SelectList(db.Maestros, "idMaestro", "nombreMaestro", actividadcursada.Grupos.maestro);
             return View(actividadcursada);
         }
 
@@ -200,9 +200,9 @@ namespace ActividadesComplementarias.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.idActComplementaria = new SelectList(db.ActividadComplementaria, "idActividadComplementaria", "nombreActComplementaria", actividadcursada.idActComplementaria);
+            ViewBag.idActComplementaria = new SelectList(db.ActividadComplementaria, "idActividadComplementaria", "nombreActComplementaria", actividadcursada.Grupos.actividadComplementaria);
             ViewBag.idEstudiante = new SelectList(db.Estudiante, "idEstudiante", "nombreEstudiante", actividadcursada.idEstudiante);
-            ViewBag.mestro = new SelectList(db.Maestros, "idMaestro", "nombreMaestro", actividadcursada.mestro);
+            ViewBag.mestro = new SelectList(db.Maestros, "idMaestro", "nombreMaestro", actividadcursada.Grupos.maestro);
             return View(actividadcursada);
         }
 

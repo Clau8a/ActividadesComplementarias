@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace ActividadesComplementarias.Controllers
+namespace ActividadesComplementariasControllers
 {
     public class HomeController : Controller
     {
@@ -13,21 +13,21 @@ namespace ActividadesComplementarias.Controllers
 
         public ActionResult Index()
         {
-            if (Session["uxid"] == null)
+            if (Session["user"] == null)
             {
-                return RedirectToAction("IniciarSesion", "Cuenta");
+                return RedirectToAction("IniciarSesion", "Login");
             }
-            else 
+            else
             {
                 if (Session["user.tipo"].ToString() == "J")
                 {
                     return RedirectToAction("Index", "Departamento");
                 }
-                else 
+                else
                 {
                     if (Session["user.tipo"].ToString() == "C")
                         return RedirectToAction("Index", "Inscripcion");
-                    else 
+                    else
                     {
                         if (Session["user.tipo"].ToString() == "X" || Session["user.tipo"].ToString() == "D")
                         {
@@ -36,7 +36,7 @@ namespace ActividadesComplementarias.Controllers
                         else
                         {
                             string id = Session["user.id"].ToString();
-                            return Redirect("/Inscripcion/Index/" + id);
+                            return Redirect("/ActividadCursada/Index/" + id);
                         }
                     }
                 }
@@ -46,3 +46,4 @@ namespace ActividadesComplementarias.Controllers
 
     }
 }
+

@@ -1,0 +1,69 @@
+﻿@model ActividadesComplementarias.Models.Grupos
+
+@{
+    Layout = null;
+}
+
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <div class="editor-label">
+            Nombre Grupo
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.nombreGrupo)
+            @Html.ValidationMessageFor(model => model.nombreGrupo)
+        </div>
+
+        <div class="editor-label">
+            Maestro
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.maestro)
+            @Html.ValidationMessageFor(model => model.maestro)
+        </div>
+
+        <div class="editor-label">
+            Cupo
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.cupo)
+            @Html.ValidationMessageFor(model => model.cupo)
+        </div>
+
+        <div class="editor-label">
+           Horario
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.horario)
+            @Html.ValidationMessageFor(model => model.horario)
+        </div>
+
+        <div class="editor-label">
+            Lugar
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.lugar)
+            @Html.ValidationMessageFor(model => model.lugar)
+        </div>
+
+        <div class="editor-field">
+            <input class="input-validation-error" id="actividadComplementaria" name="actividadComplementaria" value="@ViewBag.idActComple" hidden/>
+                
+            @Html.ValidationMessageFor(model => model.actividadComplementaria)
+        </div>
+
+        <div class="modal-footer">
+            
+            <input id="btnAddGrupo" type="submit" class="btn btn-success col-lg-2" value="Agregar" />
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        </div>
+    </fieldset>
+}
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

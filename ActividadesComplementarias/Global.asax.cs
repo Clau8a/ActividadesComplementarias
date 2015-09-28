@@ -9,8 +9,8 @@ using System.Web.Routing;
 
 namespace ActividadesComplementarias
 {
-    // Nota: para obtener instrucciones sobre cómo habilitar el modo clásico de IIS6 o IIS7, 
-    // visite http://go.microsoft.com/?LinkId=9394801
+    // Note: For instructions on enabling IIS6 or IIS7 classic mode, 
+    // visit http://go.microsoft.com/?LinkId=9394801
 
     public class MvcApplication : System.Web.HttpApplication
     {
