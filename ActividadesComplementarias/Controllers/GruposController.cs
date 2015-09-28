@@ -7,7 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 using ActividadesComplementarias.Models;
 
-namespace ActividadesComplementariasControllers
+namespace ActividadesComplementarias.Controllers
 {
     public class GruposController : Controller
     {
@@ -32,7 +32,7 @@ namespace ActividadesComplementariasControllers
             }
             else
             {
-                
+
                 var grupos = db.Grupos.Include(g => g.ActividadComplementaria1).Where(g => g.actividadComplementaria == id);
                 return View(grupos.ToList());
             }
@@ -49,6 +49,7 @@ namespace ActividadesComplementariasControllers
         {
             ViewBag.idActComple = id;
             ViewBag.actividadComplementaria = new SelectList(db.ActividadComplementaria, "idActividadComplementaria", "nombreActComplementaria");
+            ViewBag.maestro = new SelectList(db.Maestros, "idMaestro", "nombreMaestro");
             return View();
         }
 
@@ -56,6 +57,7 @@ namespace ActividadesComplementariasControllers
         // POST: /Grupos/Create
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Create(Grupos grupos)
         {
             grupos.idGrupo = 0;
@@ -69,6 +71,7 @@ namespace ActividadesComplementariasControllers
             }
 
             ViewBag.actividadComplementaria = new SelectList(db.ActividadComplementaria, "idActividadComplementaria", "nombreActComplementaria", grupos.actividadComplementaria);
+            ViewBag.maestro = new SelectList(db.Maestros, "idMaestro", "nombreMaestro", grupos.maestro);
             return View(grupos);
         }
 
@@ -83,6 +86,7 @@ namespace ActividadesComplementariasControllers
                 return HttpNotFound();
             }
             ViewBag.actividadComplementaria = new SelectList(db.ActividadComplementaria, "idActividadComplementaria", "nombreActComplementaria", grupos.actividadComplementaria);
+            ViewBag.maestro = new SelectList(db.Maestros, "idMaestro", "nombreMaestro", grupos.maestro);
             return View(grupos);
         }
 
@@ -90,6 +94,7 @@ namespace ActividadesComplementariasControllers
         // POST: /Grupos/Edit/5
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Edit(Grupos grupos)
         {
             if (ModelState.IsValid)
@@ -99,6 +104,7 @@ namespace ActividadesComplementariasControllers
                 return RedirectToAction("Index");
             }
             ViewBag.actividadComplementaria = new SelectList(db.ActividadComplementaria, "idActividadComplementaria", "nombreActComplementaria", grupos.actividadComplementaria);
+            ViewBag.maestro = new SelectList(db.Maestros, "idMaestro", "nombreMaestro", grupos.maestro);
             return View(grupos);
         }
 
@@ -119,6 +125,7 @@ namespace ActividadesComplementariasControllers
         // POST: /Grupos/Delete/5
 
         [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
             Grupos grupos = db.Grupos.Find(id);
