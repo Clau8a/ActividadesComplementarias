@@ -102,7 +102,7 @@
           <Key>
             <PropertyRef Name="idGrupo" />
           </Key>
-          <Property Name="idGrupo" Type="int" Nullable="false" />
+          <Property Name="idGrupo" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="nombreGrupo" Type="varchar" Nullable="false" MaxLength="20" />
           <Property Name="maestro" Type="varchar" MaxLength="50" />
           <Property Name="cupo" Type="int" Nullable="false" />
@@ -269,7 +269,7 @@
           </ReturnType>
         </Function>
         <Function Name="lst_byact" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="id_actcomp" Type="int" Mode="In" />
+          <Parameter Name="id_Grupo" Type="int" Mode="In" />
           <Parameter Name="periodo" Type="varchar" Mode="In" />
           <ReturnType>
             <CollectionType>
@@ -351,7 +351,7 @@
             <Parameter Name="periodo" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="lst_byact" ReturnType="Collection(CreditosComplementariosModel.lst_byact_Result)" IsComposable="true">
-            <Parameter Name="id_actcomp" Mode="In" Type="Int32" />
+            <Parameter Name="id_Grupo" Mode="In" Type="Int32" />
             <Parameter Name="periodo" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="slctPeriodo" ReturnType="Collection(CreditosComplementariosModel.slctPeriodo_Result)" IsComposable="true" />
