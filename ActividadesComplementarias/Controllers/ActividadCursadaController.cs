@@ -21,6 +21,7 @@ namespace ActividadesComplementariasControllers
             if (id != 0)
             {
                 Estudiante stu = db.Estudiante.Find(id);
+                ViewBag.TotalCreditos = stu.creditosComplementarios;
                 var actividadcursada = db.ActividadCursada.Include(a => a.Estudiante).Include(a => a.Grupos);
                 var ac = actividadcursada.Where(a => a.idEstudiante == id);
                 return View(ac.ToList());
@@ -31,19 +32,6 @@ namespace ActividadesComplementariasControllers
                 var actividadcursada = db.ActividadCursada.Include(a => a.Estudiante).Include(a => a.Grupos);
                 return View(actividadcursada.ToList());
             }
-        }
-
-        //
-        // GET: /ActividadCursada/Details/5
-
-        public ActionResult Details(int id = 0)
-        {
-            ActividadCursada actividadcursada = db.ActividadCursada.Find(id);
-            if (actividadcursada == null)
-            {
-                return HttpNotFound();
-            }
-            return View(actividadcursada);
         }
 
         //

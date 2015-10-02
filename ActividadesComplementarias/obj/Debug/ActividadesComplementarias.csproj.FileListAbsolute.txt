@@ -23,7 +23,6 @@ C:\Users\Claudita\Documents\Visual Studio 2012\Projects\ActividadesComplementari
 C:\Users\Claudita\Documents\Visual Studio 2012\Projects\ActividadesComplementarias\ActividadesComplementarias\obj\Debug\ActividadesComplementarias.dll
 C:\Users\Claudita\Documents\Visual Studio 2012\Projects\ActividadesComplementarias\ActividadesComplementarias\obj\Debug\ActividadesComplementarias.pdb
 C:\Users\Claudita\Documents\Visual Studio 2012\Projects\ActividadesComplementarias\ActividadesComplementarias\bin\ActividadesComplementarias.dll.config
-C:\Users\Claudita\Documents\Visual Studio 2012\Projects\Nueva carpeta\ActividadesComplementarias\ActividadesComplementarias\bin\ActividadesComplementarias.dll.config
 C:\Users\Claudita\Documents\Visual Studio 2012\Projects\Nueva carpeta\ActividadesComplementarias\ActividadesComplementarias\bin\ActividadesComplementarias.dll
 C:\Users\Claudita\Documents\Visual Studio 2012\Projects\Nueva carpeta\ActividadesComplementarias\ActividadesComplementarias\bin\ActividadesComplementarias.pdb
 C:\Users\Claudita\Documents\Visual Studio 2012\Projects\Nueva carpeta\ActividadesComplementarias\ActividadesComplementarias\bin\Antlr3.Runtime.dll

@@ -26,10 +26,10 @@
     </div>
 
     <div class="display-label">
-         @Html.DisplayNameFor(model => model.maestro)
+         @Html.DisplayNameFor(model => model.Maestros.nombreMaestro)
     </div>
     <div class="display-field">
-        @Html.DisplayFor(model => model.maestro)
+        @Html.DisplayFor(model => model.Maestros.nombreMaestro)
     </div>
 
     <div class="display-label">
@@ -68,6 +68,7 @@
     </div>
 </fieldset>
 @using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
     <p>
         <input type="submit" value="Delete" /> |
         @Html.ActionLink("Back to List", "Index")

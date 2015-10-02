@@ -46,12 +46,12 @@
       <End Role="Maestros" EntitySet="Maestros" />
     </AssociationSet>
     <FunctionImport Name="listAsistencia" ReturnType="Collection(CreditosComplementariosModel.listAsistencia_Result)" IsComposable="true">
-      <Parameter Name="id_actcomp" Mode="In" Type="Int32" />
+      <Parameter Name="id_Grupo" Mode="In" Type="Int32" />
       <Parameter Name="periodo" Mode="In" Type="String" />
     </FunctionImport>
     <FunctionImport Name="lst_byAcred" ReturnType="Collection(CreditosComplementariosModel.lst_byAcred_Result)" IsComposable="true">
       <Parameter Name="id_estud" Mode="In" Type="Int32" />
-      <Parameter Name="id_actcomp" Mode="In" Type="Int32" />
+      <Parameter Name="id_Grupo" Mode="In" Type="Int32" />
       <Parameter Name="periodo" Mode="In" Type="String" />
     </FunctionImport>
     <FunctionImport Name="lst_byact" ReturnType="Collection(CreditosComplementariosModel.lst_byact_Result)" IsComposable="true">

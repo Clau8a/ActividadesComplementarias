@@ -53,14 +53,7 @@
                 </td>
                 <td>
                     @{
-                        if (Session["User.Tipo"].ToString() == "J")
-                        {
-                            if (@item.estatusActividad == "Cursando")
-                            {
-                                @Html.ActionLink("Acreditar", "Acreditar", new { id = item.idAvtividadCursada })<br />
-                            }
-                            <a href="/PDF/GenerarPdf/@item.idAvtividadCursada">Constancia</a>
-                        }
+            
                         if (Session["User.Tipo"].ToString() == "E" && @item.estatusActividad == "Acreditada")
                         {
                             <a href="" onclick="Print(@item.idAvtividadCursada)">Acuse</a><br />

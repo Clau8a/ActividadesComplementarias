@@ -25,7 +25,7 @@ namespace ActividadesComplementarias.Controllers
 
         public ActionResult Cola(int id,string periodo=null) // id = num_certificado_nac
         {
-            ActividadComplementaria actCursada = db.ActividadComplementaria.Find(id);
+            Grupos grupo = db.Grupos.Find(id);
 
             string idJefe= Session["user.id"].ToString();
             Maestros ma= db.Maestros.Find(idJefe);
@@ -35,10 +35,10 @@ namespace ActividadesComplementarias.Controllers
             lr.ReportPath = path;
 
             ReportParameter[] parametro = new ReportParameter[7];
-            parametro[0] = new ReportParameter("departamento", actCursada.Departamento1.nombreDepartamento);
+            parametro[0] = new ReportParameter("departamento", grupo.ActividadComplementaria1.Departamento1.nombreDepartamento);
             parametro[1] = new ReportParameter("jd", ma.nombreMaestro);
-            parametro[2] = new ReportParameter("creditos", actCursada.noCreditos.ToString());
-            parametro[3] = new ReportParameter("ac", actCursada.nombreActComplementaria);
+            parametro[2] = new ReportParameter("creditos", grupo.ActividadComplementaria1.noCreditos.ToString());
+            parametro[3] = new ReportParameter("ac", grupo.ActividadComplementaria1.nombreActComplementaria);
             parametro[4] = new ReportParameter("dia", DateTime.Today.Day.ToString());
             parametro[5] = new ReportParameter("mes", DateTime.Today.Month.ToString());
             parametro[6] = new ReportParameter("año", DateTime.Today.Year.ToString());
@@ -47,11 +47,11 @@ namespace ActividadesComplementarias.Controllers
             lr.SetParameters(parametro);
             if (Session["user.tipo"].ToString() == "X" || Session["user.tipo"].ToString() == "D")
             {
-                 json = JsonConvert.SerializeObject(db.lst_byAcred(0, actCursada.idActividadComplementaria, CalculaPeriodo()));
+                json = JsonConvert.SerializeObject(db.lst_byAcred(0, grupo.idGrupo, CalculaPeriodo()));
             }
             else
             {
-                json = JsonConvert.SerializeObject(db.lst_byAcred(0, actCursada.idActividadComplementaria, periodo));
+                json = JsonConvert.SerializeObject(db.lst_byAcred(0, grupo.idGrupo, periodo));
             }
 
 
@@ -99,7 +99,7 @@ namespace ActividadesComplementarias.Controllers
 
             lr.SetParameters(parametro);
 
-            string json = JsonConvert.SerializeObject(db.lst_byAcred(actCursada.Estudiante.idEstudiante, actCursada.Grupos.ActividadComplementaria1.idActividadComplementaria, actCursada.periodo));
+            string json = JsonConvert.SerializeObject(db.lst_byAcred(actCursada.Estudiante.idEstudiante, actCursada.Grupos.idGrupo, actCursada.periodo));
 
 
             DataTable dtDetalleTF = JsonConvert.DeserializeObject<DataTable>(json);

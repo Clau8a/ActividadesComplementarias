@@ -21,7 +21,7 @@
             Maestro
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.maestro)
+            @Html.DropDownList("maestro", String.Empty)
             @Html.ValidationMessageFor(model => model.maestro)
         </div>
 
@@ -34,7 +34,7 @@
         </div>
 
         <div class="editor-label">
-           Horario
+            Horario
         </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.horario)
@@ -50,13 +50,13 @@
         </div>
 
         <div class="editor-field">
-            <input class="input-validation-error" id="actividadComplementaria" name="actividadComplementaria" value="@ViewBag.idActComple" hidden/>
-                
+            <input class="input-validation-error" id="actividadComplementaria" name="actividadComplementaria" value="@ViewBag.idActComple" hidden />
+
             @Html.ValidationMessageFor(model => model.actividadComplementaria)
         </div>
 
         <div class="modal-footer">
-            
+
             <input id="btnAddGrupo" type="submit" class="btn btn-success col-lg-2" value="Agregar" />
             <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
         </div>

@@ -337,10 +337,6 @@
     <Content Include="Views\Maestro\Edit.cshtml" />
     <Content Include="Views\Maestro\Index.cshtml" />
     <Content Include="Views\Login\IniciarSesion.cshtml" />
-    <Content Include="Views\Grupos\Create.cshtml" />
-    <Content Include="Views\Grupos\Delete.cshtml" />
-    <Content Include="Views\Grupos\Edit.cshtml" />
-    <Content Include="Views\Grupos\Index.cshtml" />
     <Content Include="Views\Estudiante\Create.cshtml" />
     <Content Include="Views\Estudiante\Delete.cshtml" />
     <Content Include="Views\Estudiante\Edit.cshtml" />
@@ -350,6 +346,12 @@
     <Content Include="Views\Departamento\Edit.cshtml" />
     <Content Include="Views\Departamento\Index.cshtml" />
     <Content Include="Views\ActividadComplementaria\Inscripciones.cshtml" />
+    <Content Include="Views\Grupos\Index.cshtml" />
+    <Content Include="Views\Grupos\Create.cshtml" />
+    <Content Include="Views\Grupos\Edit.cshtml" />
+    <Content Include="Views\Grupos\Delete.cshtml" />
+    <Content Include="Views\Grupos\Lista.cshtml" />
+    <Content Include="Views\Grupos\Inscritos.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
