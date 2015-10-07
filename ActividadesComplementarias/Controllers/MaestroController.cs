@@ -88,7 +88,7 @@ namespace ActividadesComplementariasControllers
             {
                 db.Entry(maestros).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return Redirect("/ActividadComplementaria");
             }
             ViewBag.departamentoMaestro = new SelectList(db.Departamento, "idDepartamento", "nombreDepartamento", maestros.departamentoMaestro);
             ViewBag.tipoMaestro = new SelectList(db.TipoMaestro, "idTipoMaestro", "tipoMaestro1", maestros.tipoMaestro);

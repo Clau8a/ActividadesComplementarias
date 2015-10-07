@@ -29,22 +29,25 @@
             @Html.ValidationMessageFor(model => model.nombreMaestro)
         </div>
 
-        <div class="editor-label">
+        @*<div class="editor-label">
             <label>Departamento</label>
-        </div>
+        </div>*@
         <div class="editor-field">
             @Html.DropDownList("departamentoMaestro", String.Empty)
             @Html.ValidationMessageFor(model => model.departamentoMaestro)
         </div>
 
-        <div class="editor-label">
-            <label>Tipo</label>
-        </div>
         <div class="editor-field">
             @Html.DropDownList("tipoMaestro", String.Empty)
             @Html.ValidationMessageFor(model => model.tipoMaestro)
         </div>
-        <input id="contraseñaMaestro" name="contraseñaMaestro" value="@Model.contraseñaMaestro" hidden />
+        <div class="editor-label">
+            <label>Contraseña</label>
+        </div>
+        <div class="editor-field">
+            <input id="contraseñaMaestro" name="contraseñaMaestro" maxlength="4" value="@Model.contraseñaMaestro"  />
+        </div>
+        
         <input id="saltContraseña" name="saltContraseña" value="@Model.saltContraseña" hidden />
 
 
@@ -55,6 +58,19 @@
 
     }
 </div>
+
+<script src="~/Scripts/jquery-1.7.1.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#departamentoMaestro').attr("hidden", "hidden");
+        $('#tipoMaestro').attr("hidden", "hidden");
+
+    })
+    
+
+</script>
+
     @section Scripts {
         @Scripts.Render("~/bundles/jqueryval")
     }
+
