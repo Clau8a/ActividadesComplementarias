@@ -54,9 +54,24 @@
         </td>
         
         <td>
-            <a class="btn btn-success" href="/Grupos/Inscripcion/@item.idGrupo"><b>Inscribirme</b></a> 
+            <a class="btn btn-success" onclick="inscribirme(@item.idGrupo, @Session["user.id"].ToString())"><b>Inscribirme</b></a> 
         </td>
     </tr>
 }
 
 </table>
+
+<script>
+    var x="";
+    function inscribirme(id,stu) {
+        $.post("/Grupos/Inscripcion/" + id, function (data) {
+            x=data;
+        }).done(function () {
+            if (x == "success") {
+                alert("Inscripción Correcta");
+                location.href = "/ActividadCursada/Index/" + stu;
+            }
+        })
+    }
+
+</script>

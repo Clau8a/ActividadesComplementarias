@@ -70,8 +70,9 @@ namespace ActividadesComplementarias.Controllers
                 grup.inscritos += 1;
                 db.Entry(grup).State = EntityState.Modified;
                 db.SaveChanges();
-                
-                return Redirect("/ActividadCursada/Index/"+actCur.idEstudiante);
+
+                return Content("success", "text/plain");
+                //return Redirect("/ActividadCursada/Index/"+actCur.idEstudiante);
             }
 
             return Redirect("");
@@ -105,7 +106,7 @@ namespace ActividadesComplementarias.Controllers
         {
             grupos.idGrupo = 0;
             grupos.inscritos = 0;
-            ViewBag.idActComple = grupos.idGrupo;
+            ViewBag.idActComple = grupos.actividadComplementaria;
             if (ModelState.IsValid)
             {
                 db.Grupos.Add(grupos);
@@ -115,7 +116,7 @@ namespace ActividadesComplementarias.Controllers
 
             ViewBag.actividadComplementaria = new SelectList(db.ActividadComplementaria, "idActividadComplementaria", "nombreActComplementaria", grupos.actividadComplementaria);
             ViewBag.maestro = new SelectList(db.Maestros, "idMaestro", "nombreMaestro", grupos.maestro);
-            return View(grupos);
+            return Redirect("/Grupos/Index/"+grupos.actividadComplementaria);
         }
 
         //
