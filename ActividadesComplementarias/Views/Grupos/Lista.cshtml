@@ -6,29 +6,29 @@
 }
 
 <h2>Seleccione Grupo</h2>
-
-<table>
+<div >
+<table class="table ">
     <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.nombreGrupo)
+        <th class="col-md-1">
+            Nombre Grupo
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.maestro)
+        <th class="col-md-1">
+            Maestro
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.cupo)
+        <th class="col-md-1">
+            Cupo
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.inscritos)
+        <th class="col-md-1">
+            Inscritos
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.horario)
+        <th class="col-md-1">
+            Horario
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.lugar)
+        <th class="col-md-1">
+            Lugar
         </th>
        
-        <th></th>
+        <th class="col-md-1"></th>
     </tr>
 
 @foreach (var item in Model) {
@@ -60,3 +60,5 @@
 }
 
 </table>
+
+</div>

@@ -132,6 +132,7 @@
     <Compile Include="Controllers\DepartamentoController.cs" />
     <Compile Include="Controllers\EstudianteController.cs" />
     <Compile Include="Controllers\GruposController.cs" />
+    <Compile Include="Controllers\grurupoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\MaestroController.cs" />
@@ -347,11 +348,16 @@
     <Content Include="Views\Departamento\Index.cshtml" />
     <Content Include="Views\ActividadComplementaria\Inscripciones.cshtml" />
     <Content Include="Views\Grupos\Index.cshtml" />
-    <Content Include="Views\Grupos\Create.cshtml" />
     <Content Include="Views\Grupos\Edit.cshtml" />
     <Content Include="Views\Grupos\Delete.cshtml" />
     <Content Include="Views\Grupos\Lista.cshtml" />
     <Content Include="Views\Grupos\Inscritos.cshtml" />
+    <Content Include="Views\Grupos\Create.cshtml" />
+    <Content Include="Views\grurupo\Index.cshtml" />
+    <Content Include="Views\grurupo\Details.cshtml" />
+    <Content Include="Views\grurupo\Create.cshtml" />
+    <Content Include="Views\grurupo\Edit.cshtml" />
+    <Content Include="Views\grurupo\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

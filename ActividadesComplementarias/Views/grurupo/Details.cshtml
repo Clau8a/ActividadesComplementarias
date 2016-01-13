@@ -1,0 +1,71 @@
+﻿@model ActividadesComplementarias.Models.Grupos
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Grupos</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.idGrupo)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.idGrupo)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.nombreGrupo)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.nombreGrupo)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Maestros.nombreMaestro)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Maestros.nombreMaestro)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.cupo)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.cupo)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.inscritos)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.inscritos)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.horario)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.horario)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.lugar)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.lugar)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ActividadComplementaria1.nombreActComplementaria)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ActividadComplementaria1.nombreActComplementaria)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id=Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
