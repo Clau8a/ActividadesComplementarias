@@ -43,16 +43,16 @@
         <div class="editor-label">
             <label>Modalidad</label>
         </div>
-        <select id="modalidad" name="modalidad">
-            <option value="Congreso">Congreso</option>
-            <option value="Tutorias">Tutorias</option>
-            <option value="Extraescolar">Extraescolar</option>
-            <option value="Otro">Otro</option>
-        </select>
+<select id="modalidad" name="modalidad">
+    <option value="Congreso">Congreso</option>
+    <option value="Tutorias">Tutorias</option>
+    <option value="Extraescolar">Extraescolar</option>
+    <option value="Otro">Otro</option>
+</select>
 
-        <div class="editor-label">
-            <label>No. Créditos</label>
-        </div>
+<div class="editor-label">
+    <label>No. Créditos</label>
+</div>
         <div class="editor-field">
             @Html.EditorFor(model => model.noCreditos)
             @Html.ValidationMessageFor(model => model.noCreditos)
