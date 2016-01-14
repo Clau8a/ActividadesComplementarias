@@ -70,8 +70,8 @@ namespace ActividadesComplementarias.Controllers
                 grup.inscritos += 1;
                 db.Entry(grup).State = EntityState.Modified;
                 db.SaveChanges();
-                
-                return Redirect("/ActividadCursada/Index/"+actCur.idEstudiante);
+
+                return RedirectToAction("Index", "Home");
             }
 
             return Redirect("");
